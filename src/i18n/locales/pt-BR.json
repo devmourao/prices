@@ -3,6 +3,11 @@
     "title": "prices",
     "tagline": "Descubra o melhor custo-benefício no corredor."
   },
+  "calculator": {
+    "unitSelector": {
+      "label": "Unidade"
+    }
+  },
   "locale": {
     "en": "Inglês",
     "ptBR": "Português"
