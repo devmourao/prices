@@ -30,7 +30,7 @@ export function formatPrice(value: number, locale: AppLocale): string {
 }
 
 /**
- * Formats a per-unit price, e.g. "$5.00/L" (en) or "R$ 5,00/L" (pt-BR).
+ * Formats a per-unit price, e.g. "$5.00/L" (en) or "R$ 5,00/L" (pt-BR).
  */
 export function formatUnitPrice(value: number, unit: string, locale: AppLocale): string {
   return `${formatPrice(value, locale)}/${unit}`
