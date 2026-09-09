@@ -3,6 +3,14 @@
     "switchToDark": "Ativar modo escuro",
     "switchToLight": "Ativar modo claro"
   },
+  "connectivity": {
+    "offline": "Offline — usando a versão em cache"
+  },
+  "pwa": {
+    "updateAvailable": "Uma nova versão está disponível.",
+    "reload": "Recarregar",
+    "dismiss": "Agora não"
+  },
   "app": {
     "title": "prices",
     "tagline": "Descubra o melhor custo-benefício no corredor."

@@ -5,7 +5,9 @@ import { ProductCard } from './components/ProductCard'
 import { HistoryPanel } from './components/HistoryPanel'
 import { ResultsList } from './components/ResultsList'
 import { LanguageToggle } from '../../components/ui/LanguageToggle'
+import { OfflineBadge } from '../../components/ui/OfflineBadge'
 import { ThemeToggle } from '../../components/ui/ThemeToggle'
+import { UpdatePrompt } from '../../components/ui/UpdatePrompt'
 
 /**
  * Mobile-first single view: header, product cards, add action,
@@ -19,10 +21,12 @@ export function CalculatorPage() {
 
   return (
     <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-6">
+      <UpdatePrompt />
       <header className="flex items-start justify-between gap-2">
         <div className="flex flex-col gap-1">
           <h1 className="text-2xl font-bold text-fg">{t('app.title')}</h1>
           <p className="text-muted">{t('app.tagline')}</p>
+          <OfflineBadge />
         </div>
         <div className="flex items-center gap-2">
           <LanguageToggle />

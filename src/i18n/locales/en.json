@@ -3,6 +3,14 @@
     "switchToDark": "Switch to dark mode",
     "switchToLight": "Switch to light mode"
   },
+  "connectivity": {
+    "offline": "Offline — using the cached version"
+  },
+  "pwa": {
+    "updateAvailable": "A new version is available.",
+    "reload": "Reload",
+    "dismiss": "Not now"
+  },
   "app": {
     "title": "prices",
     "tagline": "Find the best value in the aisle."
