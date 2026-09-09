@@ -4,6 +4,7 @@ export type UnitFamily = 'volume' | 'mass' | 'count'
 
 export interface PricedEntry {
   readonly id: string
+  readonly label: string
   readonly price: number
   readonly quantity: number
   readonly unit: Unit

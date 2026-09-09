@@ -20,6 +20,13 @@
         "quantityPositive": "Informe uma quantidade maior que zero",
         "priceInvalid": "Informe um preço válido"
       }
+    },
+    "results": {
+      "title": "Comparativo",
+      "bestValue": "Melhor valor",
+      "cheaperBy": "{{pct}} mais barato",
+      "cannotCompare": "Os produtos usam famílias de medida diferentes (ex.: L vs kg) e não podem ser comparados.",
+      "needTwo": "Preencha ao menos dois produtos para comparar."
     }
   },
   "locale": {

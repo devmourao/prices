@@ -35,3 +35,14 @@ export function formatPrice(value: number, locale: AppLocale): string {
 export function formatUnitPrice(value: number, unit: string, locale: AppLocale): string {
   return `${formatPrice(value, locale)}/${unit}`
 }
+
+/**
+ * Formats a savings fraction, e.g. 0.2 -> "20%" (en) or "20%" (pt-BR).
+ */
+export function formatPercent(fraction: number, locale: AppLocale): string {
+  assertAmount(fraction)
+  return new Intl.NumberFormat(locale, {
+    style: 'percent',
+    maximumFractionDigits: 0,
+  }).format(fraction)
+}
