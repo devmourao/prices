@@ -103,3 +103,11 @@ export function savingsPct(unitPrice: number, referencePrice: number): number {
   }
   return Math.max(0, 1 - unitPrice / referencePrice)
 }
+
+/**
+ * Float-tolerant equality for unit prices (e.g. 10/3 vs 20/6).
+ * Used to detect ties without false negatives from binary rounding.
+ */
+export function unitPricesEqual(a: number, b: number): boolean {
+  return Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(a), Math.abs(b))
+}

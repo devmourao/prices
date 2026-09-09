@@ -11,6 +11,7 @@ import {
   familyOf,
   rank,
   savingsPct,
+  unitPricesEqual,
   type RankedEntry,
 } from '../lib/units'
 import { WinnerBadge } from './WinnerBadge'
@@ -31,7 +32,11 @@ export function ResultsList() {
     )
     if (comparable.length < 2) return { status: 'need-more' as const }
     try {
-      return { status: 'ok' as const, ranked: rank(comparable) }
+      const ranked = rank(comparable)
+      const tied =
+        ranked.length > 1 &&
+        unitPricesEqual(ranked[0].unitPrice, ranked[ranked.length - 1].unitPrice)
+      return { status: 'ok' as const, ranked, tied }
     } catch {
       return { status: 'mixed' as const }
     }
@@ -52,18 +57,26 @@ export function ResultsList() {
       )}
 
       {content.status === 'ok' && (
-        <ol className="flex flex-col gap-2">
-          {content.ranked.map((entry, position) => (
-            <ResultRow
-              key={entry.id}
-              entry={entry}
-              locale={locale}
-              isWinner={position === 0}
-              referencePrice={content.ranked[content.ranked.length - 1].unitPrice}
-              fallbackIndex={products.findIndex((product) => product.id === entry.id) + 1}
-            />
-          ))}
-        </ol>
+        <>
+          {content.tied && (
+            <p role="status" className="text-sm font-medium text-fg">
+              {t('calculator.results.tie')}
+            </p>
+          )}
+          <ol className="flex flex-col gap-2">
+            {content.ranked.map((entry, position) => (
+              <ResultRow
+                key={entry.id}
+                entry={entry}
+                locale={locale}
+                isWinner={position === 0 && !content.tied}
+                showSavings={!content.tied}
+                referencePrice={content.ranked[content.ranked.length - 1].unitPrice}
+                fallbackIndex={products.findIndex((product) => product.id === entry.id) + 1}
+              />
+            ))}
+          </ol>
+        </>
       )}
     </section>
   )
@@ -73,11 +86,12 @@ interface ResultRowProps {
   readonly entry: RankedEntry
   readonly locale: AppLocale
   readonly isWinner: boolean
+  readonly showSavings: boolean
   readonly referencePrice: number
   readonly fallbackIndex: number
 }
 
-function ResultRow({ entry, locale, isWinner, referencePrice, fallbackIndex }: ResultRowProps) {
+function ResultRow({ entry, locale, isWinner, showSavings, referencePrice, fallbackIndex }: ResultRowProps) {
   const { t } = useTranslation()
   const name =
     entry.label.trim() === '' ? t('calculator.product.title', { index: fallbackIndex }) : entry.label
@@ -91,13 +105,13 @@ function ResultRow({ entry, locale, isWinner, referencePrice, fallbackIndex }: R
       </div>
       {isWinner ? (
         <WinnerBadge />
-      ) : (
+      ) : showSavings ? (
         <span className="text-sm font-medium text-fg">
           {t('calculator.results.cheaperBy', {
             pct: formatPercent(savingsPct(entry.unitPrice, referencePrice), locale),
           })}
         </span>
-      )}
+      ) : null}
     </li>
   )
 }

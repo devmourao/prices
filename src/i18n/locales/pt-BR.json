@@ -30,7 +30,8 @@
       "bestValue": "Melhor valor",
       "cheaperBy": "{{pct}} mais barato",
       "cannotCompare": "Os produtos usam famílias de medida diferentes (ex.: L vs kg) e não podem ser comparados.",
-      "needTwo": "Preencha ao menos dois produtos para comparar."
+      "needTwo": "Preencha ao menos dois produtos para comparar.",
+      "tie": "Mesmo preço por unidade — empate!"
     },
     "actions": {
       "addProduct": "Adicionar produto",
