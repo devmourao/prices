@@ -7,7 +7,6 @@
 
   --color-bg: #fafafa;
   --color-surface: #ffffff;
-  --color-panel: #efeff2;
   --color-fg: #17171c;
   --color-muted: #6b6375;
   --color-accent: #7c3aed;
@@ -16,7 +15,6 @@
 .dark {
   --color-bg: #16171d;
   --color-surface: #1e1f26;
-  --color-panel: #26272e;
   --color-fg: #f3f4f6;
   --color-muted: #9ca3af;
   --color-accent: #c084fc;
