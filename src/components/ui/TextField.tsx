@@ -44,7 +44,7 @@ export function TextField({
         className="min-h-[44px] rounded-lg border border-fg/20 bg-bg px-3 text-fg placeholder:text-muted focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent"
       />
       {error !== undefined && (
-        <p id={errorId} role="alert" className="text-sm text-red-500 dark:text-red-400">
+        <p id={errorId} role="alert" className="text-sm text-red-600 dark:text-red-400">
           {error}
         </p>
       )}
