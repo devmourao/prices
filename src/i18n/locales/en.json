@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "prices",
+    "tagline": "Find the best value in the aisle."
+  },
+  "locale": {
+    "en": "English",
+    "ptBR": "Portuguese"
+  }
+}

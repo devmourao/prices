@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "prices",
+    "tagline": "Descubra o melhor custo-benefício no corredor."
+  },
+  "locale": {
+    "en": "Inglês",
+    "ptBR": "Português"
+  }
+}
