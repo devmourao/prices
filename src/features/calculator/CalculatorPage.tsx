@@ -3,6 +3,7 @@ import { Plus, RotateCcw } from 'lucide-react'
 import { useCalculatorActions, useProducts } from './hooks/useCalculator'
 import { ProductCard } from './components/ProductCard'
 import { ResultsList } from './components/ResultsList'
+import { LanguageToggle } from '../../components/ui/LanguageToggle'
 import { ThemeToggle } from '../../components/ui/ThemeToggle'
 
 /**
@@ -22,7 +23,10 @@ export function CalculatorPage() {
           <h1 className="text-2xl font-bold text-fg">{t('app.title')}</h1>
           <p className="text-muted">{t('app.tagline')}</p>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <LanguageToggle />
+          <ThemeToggle />
+        </div>
       </header>
 
       <div className="flex flex-col gap-3">
