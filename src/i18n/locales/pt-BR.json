@@ -27,6 +27,10 @@
       "cheaperBy": "{{pct}} mais barato",
       "cannotCompare": "Os produtos usam famílias de medida diferentes (ex.: L vs kg) e não podem ser comparados.",
       "needTwo": "Preencha ao menos dois produtos para comparar."
+    },
+    "actions": {
+      "addProduct": "Adicionar produto",
+      "clearAll": "Limpar todos os produtos"
     }
   },
   "locale": {
