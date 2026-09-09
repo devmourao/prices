@@ -96,7 +96,7 @@ function ResultRow({ entry, locale, isWinner, showSavings, referencePrice, fallb
   const name =
     entry.label.trim() === '' ? t('calculator.product.title', { index: fallbackIndex }) : entry.label
   return (
-    <li className="flex items-center justify-between gap-2 rounded-xl border border-fg/15 bg-bg p-3">
+    <li className="flex animate-rise items-center justify-between gap-2 rounded-xl border border-fg/15 bg-bg p-3">
       <div className="flex flex-col gap-1">
         <span className="font-medium text-fg">{name}</span>
         <span className="text-sm text-muted">
