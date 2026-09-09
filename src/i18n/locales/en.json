@@ -3,6 +3,14 @@
     "switchToDark": "Switch to dark mode",
     "switchToLight": "Switch to light mode"
   },
+  "footer": {
+    "madeBy": "Made by {{name}}",
+    "contact": "Contact links",
+    "site": "Website",
+    "email": "Email",
+    "github": "GitHub profile",
+    "project": "Running project"
+  },
   "connectivity": {
     "offline": "Offline — using the cached version"
   },

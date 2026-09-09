@@ -3,6 +3,14 @@
     "switchToDark": "Ativar modo escuro",
     "switchToLight": "Ativar modo claro"
   },
+  "footer": {
+    "madeBy": "Feito por {{name}}",
+    "contact": "Links de contato",
+    "site": "Site",
+    "email": "E-mail",
+    "github": "Perfil no GitHub",
+    "project": "Projeto no ar"
+  },
   "connectivity": {
     "offline": "Offline — usando a versão em cache"
   },
