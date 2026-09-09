@@ -9,8 +9,8 @@ import { useProducts } from '../hooks/useCalculator'
 import {
   baseUnitOf,
   familyOf,
+  overpayPct,
   rank,
-  savingsPct,
   unitPricesEqual,
   type RankedEntry,
 } from '../lib/units'
@@ -19,7 +19,8 @@ import { WinnerBadge } from './WinnerBadge'
 /**
  * Ranked comparison. Only complete entries (price > 0, quantity > 0)
  * take part; mixed unit families render the guard message instead
- * of wrong math. Announced politely for screen readers.
+ * of wrong math. Non-winners show how much MORE expensive they are
+ * than the best value. Announced politely for screen readers.
  */
 export function ResultsList() {
   const products = useProducts()
@@ -70,8 +71,8 @@ export function ResultsList() {
                 entry={entry}
                 locale={locale}
                 isWinner={position === 0 && !content.tied}
-                showSavings={!content.tied}
-                referencePrice={content.ranked[content.ranked.length - 1].unitPrice}
+                showOverpay={position > 0 && !content.tied}
+                winnerPrice={content.ranked[0].unitPrice}
                 fallbackIndex={products.findIndex((product) => product.id === entry.id) + 1}
               />
             ))}
@@ -86,12 +87,12 @@ interface ResultRowProps {
   readonly entry: RankedEntry
   readonly locale: AppLocale
   readonly isWinner: boolean
-  readonly showSavings: boolean
-  readonly referencePrice: number
+  readonly showOverpay: boolean
+  readonly winnerPrice: number
   readonly fallbackIndex: number
 }
 
-function ResultRow({ entry, locale, isWinner, showSavings, referencePrice, fallbackIndex }: ResultRowProps) {
+function ResultRow({ entry, locale, isWinner, showOverpay, winnerPrice, fallbackIndex }: ResultRowProps) {
   const { t } = useTranslation()
   const name =
     entry.label.trim() === '' ? t('calculator.product.title', { index: fallbackIndex }) : entry.label
@@ -105,10 +106,10 @@ function ResultRow({ entry, locale, isWinner, showSavings, referencePrice, fallb
       </div>
       {isWinner ? (
         <WinnerBadge />
-      ) : showSavings ? (
+      ) : showOverpay ? (
         <span className="text-sm font-medium text-fg">
-          {t('calculator.results.cheaperBy', {
-            pct: formatPercent(savingsPct(entry.unitPrice, referencePrice), locale),
+          {t('calculator.results.moreExpensive', {
+            pct: formatPercent(overpayPct(entry.unitPrice, winnerPrice), locale),
           })}
         </span>
       ) : null}

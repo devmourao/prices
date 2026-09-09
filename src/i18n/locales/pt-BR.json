@@ -36,7 +36,7 @@
     "results": {
       "title": "Comparativo",
       "bestValue": "Melhor valor",
-      "cheaperBy": "{{pct}} mais barato",
+      "moreExpensive": "{{pct}} mais caro",
       "cannotCompare": "Os produtos usam famílias de medida diferentes (ex.: L vs kg) e não podem ser comparados.",
       "needTwo": "Preencha ao menos dois produtos para comparar.",
       "tie": "Mesmo preço por unidade — empate!"

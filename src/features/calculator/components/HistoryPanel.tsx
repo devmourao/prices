@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next'
-import { BookmarkPlus, History, RotateCcw, Trash2 } from 'lucide-react'
+import { BookmarkPlus, History, Trash2 } from 'lucide-react'
+import { formatUnitPrice, type AppLocale } from '../../../lib/currency'
 import { useProducts } from '../hooks/useCalculator'
-import { rank, type PricedEntry } from '../lib/units'
+import { baseUnitOf, familyOf, rank, type PricedEntry } from '../lib/units'
 import { useHistoryEntries, useHistoryStore } from '../store/historyStore'
 
 /**
- * Local comparison history. Snapshots live in localStorage only:
- * save the current comparison, restore it later, or wipe everything.
+ * Local comparison history. Snapshots live in localStorage only.
+ * Tapping a row restores that comparison; the trash icon deletes it.
  */
 export function HistoryPanel() {
   const { t, i18n } = useTranslation()
@@ -20,7 +21,7 @@ export function HistoryPanel() {
   const comparableCount = products.filter(
     (product) => product.price > 0 && product.quantity > 0,
   ).length
-  const locale = i18n.language === 'pt-BR' ? 'pt-BR' : 'en'
+  const locale: AppLocale = i18n.language === 'pt-BR' ? 'pt-BR' : 'en'
 
   return (
     <section aria-labelledby="history-title" className="flex flex-col gap-3">
@@ -59,7 +60,7 @@ export function HistoryPanel() {
               key={entry.id}
               createdAt={entry.createdAt}
               productCount={entry.products.length}
-              winnerName={winnerOf(entry.products)}
+              winner={winnerOf(entry.products)}
               locale={locale}
               onRestore={() => restoreSnapshot(entry.id)}
               onRemove={() => removeSnapshot(entry.id)}
@@ -71,10 +72,18 @@ export function HistoryPanel() {
   )
 }
 
-function winnerOf(products: readonly PricedEntry[]): string | null {
+interface WinnerInfo {
+  readonly name: string
+  readonly unitPrice: number
+  readonly unit: PricedEntry['unit']
+}
+
+function winnerOf(products: readonly PricedEntry[]): WinnerInfo | null {
   try {
     const ranked = rank(products)
-    return ranked.length > 0 ? ranked[0].label : null
+    if (ranked.length === 0) return null
+    const { label, unitPrice, unit } = ranked[0]
+    return { name: label, unitPrice, unit }
   } catch {
     return null
   }
@@ -83,57 +92,45 @@ function winnerOf(products: readonly PricedEntry[]): string | null {
 interface HistoryRowProps {
   readonly createdAt: string
   readonly productCount: number
-  readonly winnerName: string | null
-  readonly locale: string
+  readonly winner: WinnerInfo | null
+  readonly locale: AppLocale
   readonly onRestore: () => void
   readonly onRemove: () => void
 }
 
-function HistoryRow({
-  createdAt,
-  productCount,
-  winnerName,
-  locale,
-  onRestore,
-  onRemove,
-}: HistoryRowProps) {
+function HistoryRow({ createdAt, productCount, winner, locale, onRestore, onRemove }: HistoryRowProps) {
   const { t } = useTranslation()
   const when = new Intl.DateTimeFormat(locale, {
     dateStyle: 'short',
     timeStyle: 'short',
   }).format(new Date(createdAt))
+  const detail =
+    winner === null
+      ? when
+      : winner.name.trim() === ''
+        ? `${when} • ${formatUnitPrice(winner.unitPrice, baseUnitOf(familyOf(winner.unit)), locale)}`
+        : `${when} • ${t('calculator.history.winner', { name: winner.name })} — ${formatUnitPrice(winner.unitPrice, baseUnitOf(familyOf(winner.unit)), locale)}`
   return (
     <li className="flex items-center justify-between gap-2 rounded-xl border border-fg/15 bg-bg p-3">
-      <div className="flex flex-col gap-0.5">
+      <button
+        type="button"
+        onClick={onRestore}
+        aria-label={`${t('calculator.history.restore')}: ${t('calculator.history.summary', { count: productCount })}, ${detail}`}
+        className="flex min-h-[44px] flex-1 flex-col items-start gap-0.5 rounded-lg text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
         <span className="text-sm font-medium text-fg">
           {t('calculator.history.summary', { count: productCount })}
         </span>
-        <span className="text-xs text-muted">
-          {when}
-          {winnerName !== null && winnerName.trim() !== ''
-            ? ` • ${t('calculator.history.winner', { name: winnerName })}`
-            : ''}
-        </span>
-      </div>
-      <div className="flex items-center gap-1">
-        <button
-          type="button"
-          onClick={onRestore}
-          aria-label={t('calculator.history.restore')}
-          title={t('calculator.history.restore')}
-          className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-muted transition-colors hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-        >
-          <RotateCcw size={18} aria-hidden="true" />
-        </button>
-        <button
-          type="button"
-          onClick={onRemove}
-          aria-label={t('calculator.history.remove')}
-          className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-muted transition-colors hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-        >
-          <Trash2 size={18} aria-hidden="true" />
-        </button>
-      </div>
+        <span className="text-xs text-muted">{detail}</span>
+      </button>
+      <button
+        type="button"
+        onClick={onRemove}
+        aria-label={t('calculator.history.remove')}
+        className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-muted transition-colors hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        <Trash2 size={18} aria-hidden="true" />
+      </button>
     </li>
   )
 }
