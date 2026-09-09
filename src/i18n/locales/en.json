@@ -3,6 +3,11 @@
     "title": "prices",
     "tagline": "Find the best value in the aisle."
   },
+  "calculator": {
+    "unitSelector": {
+      "label": "Unit"
+    }
+  },
   "locale": {
     "en": "English",
     "ptBR": "Portuguese"
