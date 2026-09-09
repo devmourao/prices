@@ -1,4 +1,8 @@
 {
+  "theme": {
+    "switchToDark": "Switch to dark mode",
+    "switchToLight": "Switch to light mode"
+  },
   "app": {
     "title": "prices",
     "tagline": "Find the best value in the aisle."
