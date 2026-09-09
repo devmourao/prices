@@ -35,6 +35,17 @@
     "actions": {
       "addProduct": "Add product",
       "clearAll": "Clear all products"
+    },
+    "history": {
+      "title": "History",
+      "save": "Save comparison",
+      "clear": "Clear history",
+      "empty": "No saved comparisons yet.",
+      "summary": "{{count}} products",
+      "summary_one": "{{count}} product",
+      "winner": "Winner: {{name}}",
+      "restore": "Restore comparison",
+      "remove": "Remove saved comparison"
     }
   },
   "locale": {

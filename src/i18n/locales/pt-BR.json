@@ -35,6 +35,17 @@
     "actions": {
       "addProduct": "Adicionar produto",
       "clearAll": "Limpar todos os produtos"
+    },
+    "history": {
+      "title": "Histórico",
+      "save": "Salvar comparativo",
+      "clear": "Limpar histórico",
+      "empty": "Nenhum comparativo salvo ainda.",
+      "summary": "{{count}} produtos",
+      "summary_one": "{{count}} produto",
+      "winner": "Vencedor: {{name}}",
+      "restore": "Restaurar comparativo",
+      "remove": "Remover comparativo salvo"
     }
   },
   "locale": {
