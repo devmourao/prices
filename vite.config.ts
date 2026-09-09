@@ -1,7 +1,7 @@
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -20,6 +20,11 @@ export default defineConfig({
         display: 'standalone',
         start_url: '.',
         icons: [
+          {
+            src: 'icons/icon-180.png',
+            sizes: '180x180',
+            type: 'image/png',
+          },
           {
             src: 'icons/icon-192.png',
             sizes: '192x192',
@@ -40,7 +45,12 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // Single-view SPA: every navigation serves the app shell offline.
+        navigateFallback: 'index.html',
       },
     }),
   ],
+  test: {
+    environment: 'jsdom',
+  },
 })

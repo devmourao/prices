@@ -5,7 +5,8 @@
 @theme {
   --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
 
-  --color-bg: #ffffff;
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
   --color-fg: #17171c;
   --color-muted: #6b6375;
   --color-accent: #7c3aed;
@@ -13,6 +14,7 @@
 
 .dark {
   --color-bg: #16171d;
+  --color-surface: #1e1f26;
   --color-fg: #f3f4f6;
   --color-muted: #9ca3af;
   --color-accent: #c084fc;
@@ -38,4 +40,31 @@ body {
 
 #root {
   min-height: 100svh;
+}
+
+/* Subtle entrance for freshly mounted rows/badges. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-rise {
+  animation: rise 180ms ease-out;
+}
+
+/* Accessibility: kill motion for users who ask for it. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

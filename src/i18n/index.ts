@@ -25,3 +25,18 @@ void i18n
   })
 
 export default i18n
+
+const LOCALE_STORAGE_KEY = 'prices-locale'
+
+// The detector reads this key on boot; mirroring every change here keeps
+// persistence explicit instead of relying on detector internals.
+i18n.on('languageChanged', (lng) => {
+  try {
+    localStorage.setItem(LOCALE_STORAGE_KEY, lng)
+  } catch {
+    // Storage unavailable: locale still applies for this session.
+  }
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = lng === 'pt-BR' ? 'pt-BR' : 'en'
+  }
+})

@@ -1,9 +1,64 @@
 {
+  "theme": {
+    "switchToDark": "Ativar modo escuro",
+    "switchToLight": "Ativar modo claro"
+  },
+  "connectivity": {
+    "offline": "Offline — usando a versão em cache"
+  },
+  "pwa": {
+    "updateAvailable": "Uma nova versão está disponível.",
+    "reload": "Recarregar",
+    "dismiss": "Agora não"
+  },
   "app": {
     "title": "prices",
     "tagline": "Descubra o melhor custo-benefício no corredor."
   },
+  "calculator": {
+    "unitSelector": {
+      "label": "Unidade"
+    },
+    "product": {
+      "title": "Produto {{index}}",
+      "nameLabel": "Nome do produto (opcional)",
+      "namePlaceholder": "Ex.: Leite",
+      "quantityLabel": "Tamanho da embalagem",
+      "quantityPlaceholder": "Ex.: 2 ou 1,5",
+      "priceLabel": "Preço",
+      "pricePlaceholder": "Ex.: 10,00",
+      "remove": "Remover produto",
+      "errors": {
+        "quantityPositive": "Informe uma quantidade maior que zero",
+        "priceInvalid": "Informe um preço válido"
+      }
+    },
+    "results": {
+      "title": "Comparativo",
+      "bestValue": "Melhor valor",
+      "moreExpensive": "{{pct}} mais caro",
+      "cannotCompare": "Os produtos usam famílias de medida diferentes (ex.: L vs kg) e não podem ser comparados.",
+      "needTwo": "Preencha ao menos dois produtos para comparar.",
+      "tie": "Mesmo preço por unidade — empate!"
+    },
+    "actions": {
+      "addProduct": "Adicionar produto",
+      "clearAll": "Limpar todos os produtos"
+    },
+    "history": {
+      "title": "Histórico",
+      "save": "Salvar comparativo",
+      "clear": "Limpar histórico",
+      "empty": "Nenhum comparativo salvo ainda.",
+      "summary": "{{count}} produtos",
+      "summary_one": "{{count}} produto",
+      "winner": "Vencedor: {{name}}",
+      "restore": "Restaurar comparativo",
+      "remove": "Remover comparativo salvo"
+    }
+  },
   "locale": {
+    "label": "Idioma",
     "en": "Inglês",
     "ptBR": "Português"
   }

@@ -19,7 +19,7 @@
 | CB-04 | Tailwind dark-mode + theme tokens | Infrastructure | P0 | M-02 | Configure `dark:` class strategy, CSS vars, fluid transitions, `theme-color` meta. | Toggling `<html>` class flips theme with transition, no flash of unstyled content |
 | CB-05 | Internationalization skeleton (en + pt-BR) | Infrastructure | P0 | M-02 | Set up `i18n/index.ts` + `locales/en.json`, `pt-BR.json`; English default; detector + persist. | Switching locale changes sample string; no hardcoded strings in new code |
 | CB-06 | PWA scaffold (manifest + icons + service worker) | Infrastructure | P0 | M-02 | Configure PWA plugin: manifest (name, icons 192/512 maskable), precache app shell, offline fallback. | DevTools → Application shows manifest + service worker; install prompt available |
-| CB-07 | Decide deploy target + preview | Infrastructure | P0 | M-02 | Vercel selected as static host (HTTPS included); publish preview URL. | Preview URL live on Vercel over HTTPS |
+| CB-07 | Decide deploy target + preview | Infrastructure | P0 | M-02 | Vercel selected as static host (HTTPS included); publish preview URL. | ✅ Done 2026-09-08 — preview live at https://prices-mauve.vercel.app (shell + manifest verified over HTTPS) |
 | CB-08 | Test + quality baseline | Tests | P2 (deferred to Hardening) | M-05 | Add Vitest + Testing Library; scripts `lint`, `typecheck`; first smoke test (renders shell). Owner decision 2026-09-08: moved out of Sprint Zero to keep it lean. | `lint` + `tsc --noEmit` + `vitest` green |
 
 **Sprint Zero exit gate:** CB-01–CB-07 done; preview live; ready for MVP.
@@ -37,6 +37,8 @@
 | CB-13 | `ProductCard` inputs | Functionality | P0 | M-03 | Price + quantity numeric inputs (`inputmode="decimal"`), optional label, remove button, inline validation. | Invalid (≤0, empty) shows localized error; valid computes instantly |
 | CB-14 | `ResultsList` + `WinnerBadge` | Functionality | P0 | M-03 | Ranked list with unit price, best-value highlight, savings %; cross-family guard message. | Best entry badged; L vs kg shows "cannot compare" message |
 | CB-15 | Mobile-first calculator layout | Functionality | P0 | M-03 | Single-view responsive layout, sticky results, minimal taps. | Usable at 360px width; ≤3 taps from input to result |
+| CB-15b | mL unit support (promoted from follow-ups) | Functionality | P1 | M-03 | Extend `lib/units` with mL→L conversion, labels, and checks (essential for beverages in BR). Owner decision 2026-09-09: portfolio calculator must be robust. | 250 mL @ 2.50 (10.00/L) ranks correctly; checks green |
+| CB-15c | Evaluate global family selector UX alternative | Research | P2 | M-04 | Prototype assessment: single top-level family selector (Volume/Mass/Count) that prevents cross-family errors by construction, vs per-product units. Decide before Experience polish. | ✅ Decided 2026-09-09 — KEEP per-product units for v1.0 (see AD-06). Fewer taps, zero rework, guard message already clear/localized; revisit only with observed user confusion |
 
 ---
 
@@ -70,7 +72,8 @@
 | CB-25 | README rewrite (portfolio-grade) | Documentation | P0 | M-05 | Demo link, screenshots/GIF, features, stack, scripts, PWA/internationalization/theme notes, architecture map, decisions, roadmap. | Reviewer can run + install in <5 min from README |
 | CB-26 | Production deploy | Automation | P0 | M-05 | Deploy static build over HTTPS; verify manifest + service worker in prod. | Public URL installable on Android + iOS guidance |
 | CB-27 | v1.0 tag + Release Notes | Documentation | P0 | M-05 | Tag `v1.0.0` (SemVer); Release Notes; Definition of Done check. | Tag + notes published; DoD signed |
-| CB-28 | Follow-ups (deferred, not v1.0) | Research | P2 | — | mL/oz/lb units, barcode/OCR, price history charts, share-link. | Recorded as future epics, not in v1.0 scope |
+| CB-28 | Follow-ups (deferred, not v1.0) | Research | P2 | — | oz/lb units, barcode/OCR, price history charts, share-link. (mL promoted to MVP scope.) | Recorded as future epics, not in v1.0 scope |
+| CB-29 | Smart shopping list (future product track) | Research | P2 | — | Product vision for the mature product at prices.mourao.info (organize purchases, prioritize items). Explicitly OUT of this portfolio scope; to be analyzed in a future conversation. Portfolio track stays calculator-only. | Vision recorded; no portfolio commitment |
 
 ---
 

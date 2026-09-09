@@ -1,12 +1,9 @@
-import { useTranslation } from 'react-i18next'
+import { CalculatorPage } from './features/calculator/CalculatorPage'
 
 function App() {
-  const { t } = useTranslation()
-
   return (
     <main>
-      <h1>{t('app.title')}</h1>
-      <p>{t('app.tagline')}</p>
+      <CalculatorPage />
     </main>
   )
 }

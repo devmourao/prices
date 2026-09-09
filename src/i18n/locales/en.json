@@ -1,9 +1,64 @@
 {
+  "theme": {
+    "switchToDark": "Switch to dark mode",
+    "switchToLight": "Switch to light mode"
+  },
+  "connectivity": {
+    "offline": "Offline — using the cached version"
+  },
+  "pwa": {
+    "updateAvailable": "A new version is available.",
+    "reload": "Reload",
+    "dismiss": "Not now"
+  },
   "app": {
     "title": "prices",
     "tagline": "Find the best value in the aisle."
   },
+  "calculator": {
+    "unitSelector": {
+      "label": "Unit"
+    },
+    "product": {
+      "title": "Product {{index}}",
+      "nameLabel": "Product name (optional)",
+      "namePlaceholder": "e.g. Milk",
+      "quantityLabel": "Package size",
+      "quantityPlaceholder": "e.g. 2 or 1.5",
+      "priceLabel": "Price",
+      "pricePlaceholder": "e.g. 10.00",
+      "remove": "Remove product",
+      "errors": {
+        "quantityPositive": "Enter a quantity greater than zero",
+        "priceInvalid": "Enter a valid price"
+      }
+    },
+    "results": {
+      "title": "Comparison",
+      "bestValue": "Best value",
+      "moreExpensive": "{{pct}} more expensive",
+      "cannotCompare": "Products use different unit families (e.g. L vs kg) and cannot be compared.",
+      "needTwo": "Fill in at least two products to compare.",
+      "tie": "Same unit price — it's a tie!"
+    },
+    "actions": {
+      "addProduct": "Add product",
+      "clearAll": "Clear all products"
+    },
+    "history": {
+      "title": "History",
+      "save": "Save comparison",
+      "clear": "Clear history",
+      "empty": "No saved comparisons yet.",
+      "summary": "{{count}} products",
+      "summary_one": "{{count}} product",
+      "winner": "Winner: {{name}}",
+      "restore": "Restore comparison",
+      "remove": "Remove saved comparison"
+    }
+  },
   "locale": {
+    "label": "Language",
     "en": "English",
     "ptBR": "Portuguese"
   }
