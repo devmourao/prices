@@ -51,7 +51,7 @@ export function ResultsList() {
       {content.status === 'need-more' && <p className="text-muted">{t('calculator.results.needTwo')}</p>}
 
       {content.status === 'mixed' && (
-        <p role="alert" className="text-sm text-red-500 dark:text-red-400">
+        <p role="alert" className="text-sm text-red-600 dark:text-red-400">
           {t('calculator.results.cannotCompare')}
         </p>
       )}
