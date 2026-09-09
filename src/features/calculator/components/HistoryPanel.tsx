@@ -111,7 +111,7 @@ function HistoryRow({ createdAt, productCount, winner, locale, onRestore, onRemo
         ? `${when} • ${formatUnitPrice(winner.unitPrice, baseUnitOf(familyOf(winner.unit)), locale)}`
         : `${when} • ${t('calculator.history.winner', { name: winner.name })} — ${formatUnitPrice(winner.unitPrice, baseUnitOf(familyOf(winner.unit)), locale)}`
   return (
-    <li className="flex items-center justify-between gap-2 rounded-xl border border-fg/15 bg-bg p-3">
+    <li className="flex items-center justify-between gap-2 rounded-xl border border-fg/15 bg-surface p-3">
       <button
         type="button"
         onClick={onRestore}

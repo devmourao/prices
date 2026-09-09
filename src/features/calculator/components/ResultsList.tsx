@@ -45,7 +45,7 @@ export function ResultsList() {
   }, [products])
 
   return (
-    <section aria-labelledby="results-title" aria-live="polite">
+    <section aria-labelledby="results-title" aria-live="polite" className="flex flex-col gap-3 rounded-2xl border border-fg/10 bg-panel p-4">
       <h2 id="results-title" className="text-lg font-semibold text-fg">
         {t('calculator.results.title')}
       </h2>

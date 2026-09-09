@@ -62,7 +62,7 @@ export function CalculatorPage() {
         )}
       </div>
 
-      <div className="sticky bottom-0 border-t border-fg/10 bg-bg/95 py-3 backdrop-blur">
+      <div className="sticky bottom-0 py-2">
         <ResultsList />
       </div>
 

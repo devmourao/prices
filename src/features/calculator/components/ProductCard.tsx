@@ -52,7 +52,7 @@ export function ProductCard({ product, index }: ProductCardProps) {
   const accent = accentFor(index - 1)
 
   return (
-    <article aria-labelledby={`${product.id}-title`} className={`flex flex-col gap-3 rounded-2xl border border-fg/15 border-t-4 bg-bg p-4 shadow-sm ${accent.edge}`}>
+    <article aria-labelledby={`${product.id}-title`} className={`flex flex-col gap-3 rounded-2xl border border-fg/15 border-t-4 bg-surface p-4 shadow-sm ${accent.edge}`}>
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <span
