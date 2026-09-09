@@ -19,7 +19,7 @@
 | CB-04 | Tailwind dark-mode + theme tokens | Infrastructure | P0 | M-02 | Configure `dark:` class strategy, CSS vars, fluid transitions, `theme-color` meta. | Toggling `<html>` class flips theme with transition, no flash of unstyled content |
 | CB-05 | Internationalization skeleton (en + pt-BR) | Infrastructure | P0 | M-02 | Set up `i18n/index.ts` + `locales/en.json`, `pt-BR.json`; English default; detector + persist. | Switching locale changes sample string; no hardcoded strings in new code |
 | CB-06 | PWA scaffold (manifest + icons + service worker) | Infrastructure | P0 | M-02 | Configure PWA plugin: manifest (name, icons 192/512 maskable), precache app shell, offline fallback. | DevTools → Application shows manifest + service worker; install prompt available |
-| CB-07 | Decide deploy target + preview | Infrastructure | P0 | M-02 | Vercel selected as static host (HTTPS included); publish preview URL. | Preview URL live on Vercel over HTTPS |
+| CB-07 | Decide deploy target + preview | Infrastructure | P0 | M-02 | Vercel selected as static host (HTTPS included); publish preview URL. | ✅ Done 2026-09-08 — preview live at https://prices-mauve.vercel.app (shell + manifest verified over HTTPS) |
 | CB-08 | Test + quality baseline | Tests | P2 (deferred to Hardening) | M-05 | Add Vitest + Testing Library; scripts `lint`, `typecheck`; first smoke test (renders shell). Owner decision 2026-09-08: moved out of Sprint Zero to keep it lean. | `lint` + `tsc --noEmit` + `vitest` green |
 
 **Sprint Zero exit gate:** CB-01–CB-07 done; preview live; ready for MVP.
