@@ -5,7 +5,7 @@
  * its own public copy.
  */
 export const CONTACT = {
-  name: 'Marcos Ferreira Mourão',
+  name: 'Marcos Mourão',
   siteUrl: 'https://dev.mourao.info',
   email: 'dev@mourao.info',
   githubUrl: 'https://github.com/devmourao',
