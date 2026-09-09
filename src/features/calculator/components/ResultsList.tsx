@@ -15,6 +15,7 @@ import {
   type RankedEntry,
 } from '../lib/units'
 import { WinnerBadge } from './WinnerBadge'
+import { accentFor } from '../../../components/ui/cardAccents'
 
 /**
  * Ranked comparison. Only complete entries (price > 0, quantity > 0)
@@ -94,15 +95,30 @@ interface ResultRowProps {
 
 function ResultRow({ entry, locale, isWinner, showOverpay, winnerPrice, fallbackIndex }: ResultRowProps) {
   const { t } = useTranslation()
+  const accent = accentFor(fallbackIndex - 1)
   const name =
     entry.label.trim() === '' ? t('calculator.product.title', { index: fallbackIndex }) : entry.label
   return (
-    <li className="flex animate-rise items-center justify-between gap-2 rounded-xl border border-fg/15 bg-bg p-3">
-      <div className="flex flex-col gap-1">
-        <span className="font-medium text-fg">{name}</span>
-        <span className="text-sm text-muted">
-          {formatUnitPrice(entry.unitPrice, baseUnitOf(familyOf(entry.unit)), locale)}
+    <li
+      className={
+        isWinner
+          ? 'flex animate-rise items-center justify-between gap-2 rounded-xl border border-accent bg-accent/10 p-3 shadow-md ring-1 ring-accent'
+          : 'flex animate-rise items-center justify-between gap-2 rounded-xl border border-fg/15 bg-bg p-3'
+      }
+    >
+      <div className="flex items-center gap-2">
+        <span
+          aria-hidden="true"
+          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold ${accent.chip}`}
+        >
+          {fallbackIndex}
         </span>
+        <div className="flex flex-col gap-1">
+          <span className="font-medium text-fg">{name}</span>
+          <span className={isWinner ? 'text-base font-bold text-fg' : 'text-sm text-muted'}>
+            {formatUnitPrice(entry.unitPrice, baseUnitOf(familyOf(entry.unit)), locale)}
+          </span>
+        </div>
       </div>
       {isWinner ? (
         <WinnerBadge />
