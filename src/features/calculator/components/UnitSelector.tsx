@@ -4,6 +4,7 @@ import type { Unit } from '../lib/units'
 
 const UNIT_OPTIONS = [
   { value: 'L', label: 'L' },
+  { value: 'mL', label: 'mL' },
   { value: 'kg', label: 'kg' },
   { value: 'g', label: 'g' },
   { value: 'un', label: 'un' },

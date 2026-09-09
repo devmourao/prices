@@ -1,4 +1,4 @@
-export type Unit = 'L' | 'kg' | 'g' | 'un'
+export type Unit = 'L' | 'mL' | 'kg' | 'g' | 'un'
 
 export type UnitFamily = 'volume' | 'mass' | 'count'
 
@@ -16,10 +16,12 @@ export interface RankedEntry extends PricedEntry {
 }
 
 const GRAMS_PER_KILO = 1000
+const ML_PER_LITER = 1000
 
 export function familyOf(unit: Unit): UnitFamily {
   switch (unit) {
     case 'L':
+    case 'mL':
       return 'volume'
     case 'kg':
     case 'g':
@@ -53,6 +55,8 @@ export function toBaseUnit(quantity: number, unit: Unit): number {
     case 'kg':
     case 'un':
       return quantity
+    case 'mL':
+      return quantity / ML_PER_LITER
     case 'g':
       return quantity / GRAMS_PER_KILO
   }
