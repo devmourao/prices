@@ -6,6 +6,20 @@
   "calculator": {
     "unitSelector": {
       "label": "Unidade"
+    },
+    "product": {
+      "title": "Produto {{index}}",
+      "nameLabel": "Nome do produto (opcional)",
+      "namePlaceholder": "Ex.: Leite",
+      "quantityLabel": "Tamanho da embalagem",
+      "quantityPlaceholder": "Ex.: 2 ou 1,5",
+      "priceLabel": "Preço",
+      "pricePlaceholder": "Ex.: 10,00",
+      "remove": "Remover produto",
+      "errors": {
+        "quantityPositive": "Informe uma quantidade maior que zero",
+        "priceInvalid": "Informe um preço válido"
+      }
     }
   },
   "locale": {

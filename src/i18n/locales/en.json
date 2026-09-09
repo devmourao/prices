@@ -6,6 +6,20 @@
   "calculator": {
     "unitSelector": {
       "label": "Unit"
+    },
+    "product": {
+      "title": "Product {{index}}",
+      "nameLabel": "Product name (optional)",
+      "namePlaceholder": "e.g. Milk",
+      "quantityLabel": "Package size",
+      "quantityPlaceholder": "e.g. 2 or 1.5",
+      "priceLabel": "Price",
+      "pricePlaceholder": "e.g. 10.00",
+      "remove": "Remove product",
+      "errors": {
+        "quantityPositive": "Enter a quantity greater than zero",
+        "priceInvalid": "Enter a valid price"
+      }
     }
   },
   "locale": {
