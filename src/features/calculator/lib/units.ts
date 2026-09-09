@@ -91,17 +91,17 @@ export function rank(entries: readonly PricedEntry[]): RankedEntry[] {
 }
 
 /**
- * Savings of an entry relative to a reference (usually the most expensive),
- * as a fraction in [0, 1). E.g. 0.2 = 20% cheaper.
+ * Overpay of an entry relative to the winner, as a fraction >= 0.
+ * E.g. 2.81 = 281% more expensive than the best value.
  */
-export function savingsPct(unitPrice: number, referencePrice: number): number {
-  if (!Number.isFinite(unitPrice) || !Number.isFinite(referencePrice)) {
+export function overpayPct(unitPrice: number, winnerPrice: number): number {
+  if (!Number.isFinite(unitPrice) || !Number.isFinite(winnerPrice)) {
     throw new RangeError('Unit prices must be finite numbers')
   }
-  if (referencePrice <= 0) {
-    throw new RangeError('Reference price must be positive')
+  if (winnerPrice <= 0) {
+    throw new RangeError('Winner price must be positive')
   }
-  return Math.max(0, 1 - unitPrice / referencePrice)
+  return Math.max(0, unitPrice / winnerPrice - 1)
 }
 
 /**

@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import {
   familyOf,
+  overpayPct,
   pricePerBase,
   rank,
-  savingsPct,
   toBaseUnit,
   unitPricesEqual,
 } from './units'
@@ -78,10 +78,10 @@ describe('rank', () => {
   })
 })
 
-describe('savingsPct', () => {
-  it('returns the fraction saved vs the reference', () => {
-    expect(savingsPct(4.5, 5)).toBeCloseTo(0.1)
-    expect(savingsPct(5, 5)).toBe(0)
+describe('overpayPct', () => {
+  it('returns the fraction overpaid vs the winner', () => {
+    expect(overpayPct(6, 5)).toBeCloseTo(0.2)
+    expect(overpayPct(5, 5)).toBe(0)
   })
 })
 
