@@ -38,6 +38,7 @@
     }
   },
   "locale": {
+    "label": "Language",
     "en": "English",
     "ptBR": "Portuguese"
   }
