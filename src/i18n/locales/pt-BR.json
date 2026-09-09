@@ -1,4 +1,8 @@
 {
+  "theme": {
+    "switchToDark": "Ativar modo escuro",
+    "switchToLight": "Ativar modo claro"
+  },
   "app": {
     "title": "prices",
     "tagline": "Descubra o melhor custo-benefício no corredor."
