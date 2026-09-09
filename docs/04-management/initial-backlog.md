@@ -37,6 +37,8 @@
 | CB-13 | `ProductCard` inputs | Functionality | P0 | M-03 | Price + quantity numeric inputs (`inputmode="decimal"`), optional label, remove button, inline validation. | Invalid (≤0, empty) shows localized error; valid computes instantly |
 | CB-14 | `ResultsList` + `WinnerBadge` | Functionality | P0 | M-03 | Ranked list with unit price, best-value highlight, savings %; cross-family guard message. | Best entry badged; L vs kg shows "cannot compare" message |
 | CB-15 | Mobile-first calculator layout | Functionality | P0 | M-03 | Single-view responsive layout, sticky results, minimal taps. | Usable at 360px width; ≤3 taps from input to result |
+| CB-15b | mL unit support (promoted from follow-ups) | Functionality | P1 | M-03 | Extend `lib/units` with mL→L conversion, labels, and checks (essential for beverages in BR). Owner decision 2026-09-09: portfolio calculator must be robust. | 250 mL @ 2.50 (10.00/L) ranks correctly; checks green |
+| CB-15c | Evaluate global family selector UX alternative | Research | P2 | M-04 | Prototype assessment: single top-level family selector (Volume/Mass/Count) that prevents cross-family errors by construction, vs per-product units. Decide before Experience polish. | Decision recorded with rationale; no dead prototype left behind |
 
 ---
 
@@ -70,7 +72,8 @@
 | CB-25 | README rewrite (portfolio-grade) | Documentation | P0 | M-05 | Demo link, screenshots/GIF, features, stack, scripts, PWA/internationalization/theme notes, architecture map, decisions, roadmap. | Reviewer can run + install in <5 min from README |
 | CB-26 | Production deploy | Automation | P0 | M-05 | Deploy static build over HTTPS; verify manifest + service worker in prod. | Public URL installable on Android + iOS guidance |
 | CB-27 | v1.0 tag + Release Notes | Documentation | P0 | M-05 | Tag `v1.0.0` (SemVer); Release Notes; Definition of Done check. | Tag + notes published; DoD signed |
-| CB-28 | Follow-ups (deferred, not v1.0) | Research | P2 | — | mL/oz/lb units, barcode/OCR, price history charts, share-link. | Recorded as future epics, not in v1.0 scope |
+| CB-28 | Follow-ups (deferred, not v1.0) | Research | P2 | — | oz/lb units, barcode/OCR, price history charts, share-link. (mL promoted to MVP scope.) | Recorded as future epics, not in v1.0 scope |
+| CB-29 | Smart shopping list (future product track) | Research | P2 | — | Product vision for the mature product at prices.mourao.info (organize purchases, prioritize items). Explicitly OUT of this portfolio scope; to be analyzed in a future conversation. Portfolio track stays calculator-only. | Vision recorded; no portfolio commitment |
 
 ---
 

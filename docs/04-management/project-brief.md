@@ -75,7 +75,7 @@ Build and deploy an installable, offline-capable, bilingual, themed Cost-Benefit
 ## Included in Scope
 
 - Product comparison core: add/edit/remove products (name optional, price, quantity, unit); automatic price-per-base-unit; best-value badge + savings %.
-- Units v1: Liter (L), Kilo (kg), Gram (g), Unit (un). Normalization: L base, kg base, g→kg, mL→L if added later.
+- Units v1: Liter (L), Milliliter (mL), Kilo (kg), Gram (g), Unit (un). Normalization: L base, mL→L, kg base, g→kg.
 - Mobile-first minimalist UI; quick unit buttons; numeric `inputmode="decimal"`.
 - State with Hooks + Zustand (persisted theme/locale/history).
 - PWA: manifest, icons, service worker (Workbox-based), offline fallback.
@@ -92,6 +92,7 @@ Build and deploy an installable, offline-capable, bilingual, themed Cost-Benefit
 - Complex unit families v1 (mL, oz, lb) — may enter as follow-up.
 - Push notifications, analytics, ads.
 - Full design system — only a minimal reusable UI kit.
+- Smart shopping list and other mature-product features (future product track at prices.mourao.info, analyzed separately). This portfolio track stays calculator-only; the Vercel URL is its final home.
 
 ---
 
