@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Plus, RotateCcw } from 'lucide-react'
 import { useCalculatorActions, useProducts } from './hooks/useCalculator'
 import { ProductCard } from './components/ProductCard'
+import { HistoryPanel } from './components/HistoryPanel'
 import { ResultsList } from './components/ResultsList'
 import { LanguageToggle } from '../../components/ui/LanguageToggle'
 import { ThemeToggle } from '../../components/ui/ThemeToggle'
@@ -60,6 +61,8 @@ export function CalculatorPage() {
       <div className="sticky bottom-0 border-t border-fg/10 bg-bg/95 py-3 backdrop-blur">
         <ResultsList />
       </div>
+
+      <HistoryPanel />
     </div>
   )
 }
