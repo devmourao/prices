@@ -38,7 +38,7 @@
 | CB-14 | `ResultsList` + `WinnerBadge` | Functionality | P0 | M-03 | Ranked list with unit price, best-value highlight, savings %; cross-family guard message. | Best entry badged; L vs kg shows "cannot compare" message |
 | CB-15 | Mobile-first calculator layout | Functionality | P0 | M-03 | Single-view responsive layout, sticky results, minimal taps. | Usable at 360px width; ≤3 taps from input to result |
 | CB-15b | mL unit support (promoted from follow-ups) | Functionality | P1 | M-03 | Extend `lib/units` with mL→L conversion, labels, and checks (essential for beverages in BR). Owner decision 2026-09-09: portfolio calculator must be robust. | 250 mL @ 2.50 (10.00/L) ranks correctly; checks green |
-| CB-15c | Evaluate global family selector UX alternative | Research | P2 | M-04 | Prototype assessment: single top-level family selector (Volume/Mass/Count) that prevents cross-family errors by construction, vs per-product units. Decide before Experience polish. | Decision recorded with rationale; no dead prototype left behind |
+| CB-15c | Evaluate global family selector UX alternative | Research | P2 | M-04 | Prototype assessment: single top-level family selector (Volume/Mass/Count) that prevents cross-family errors by construction, vs per-product units. Decide before Experience polish. | ✅ Decided 2026-09-09 — KEEP per-product units for v1.0 (see AD-06). Fewer taps, zero rework, guard message already clear/localized; revisit only with observed user confusion |
 
 ---
 

@@ -94,6 +94,7 @@ Update strategy: pin majors; automated dependency updates deferred to post-v1.0.
 | AD-03 | Block cross-family comparison | L vs kg is physically meaningless | Clear UX message instead of wrong math |
 | AD-04 | PWA cache-first app shell + versioned precache | Supermarket offline requirement | Stale-cache risk → mitigated by versioning + update prompt |
 | AD-05 | Tailwind `dark:` class on `<html>` + CSS vars | Fluid transitions, persisted, no flash of unstyled content | Single theming mechanism |
+| AD-06 | Per-product unit selectors over a global family switch (CB-15c, 2026-09-08) | Fewer taps (no global mode tap); zero rework on a built/tested MVP; cross-family guard already clear and localized; global switch would force a unit-migration problem on family change | Keep for v1.0; revisit only with observed user confusion |
 
 ---
 
