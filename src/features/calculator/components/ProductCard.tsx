@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Trash2 } from 'lucide-react'
+import { accentFor } from '../../../components/ui/cardAccents'
 import { TextField } from '../../../components/ui/TextField'
 import { useCalculatorActions } from '../hooks/useCalculator'
 import { parseAmount } from '../lib/parse'
@@ -48,12 +49,22 @@ export function ProductCard({ product, index }: ProductCardProps) {
     updateProduct(product.id, { price: parsed === null ? 0 : parsed })
   }
 
+  const accent = accentFor(index - 1)
+
   return (
-    <article aria-labelledby={`${product.id}-title`} className="flex flex-col gap-3 rounded-2xl border border-fg/15 bg-bg p-4 shadow-sm">
+    <article aria-labelledby={`${product.id}-title`} className={`flex flex-col gap-3 rounded-2xl border border-fg/15 border-t-4 bg-bg p-4 shadow-sm ${accent.edge}`}>
       <div className="flex items-center justify-between gap-2">
-        <h3 id={`${product.id}-title`} className="text-base font-semibold text-fg">
-          {product.label.trim() === '' ? t('calculator.product.title', { index }) : product.label}
-        </h3>
+        <div className="flex items-center gap-2">
+          <span
+            aria-hidden="true"
+            className={`flex h-7 w-7 items-center justify-center rounded-full text-sm font-bold ${accent.chip}`}
+          >
+            {index}
+          </span>
+          <h3 id={`${product.id}-title`} className="text-base font-semibold text-fg">
+            {product.label.trim() === '' ? t('calculator.product.title', { index }) : product.label}
+          </h3>
+        </div>
         <button
           type="button"
           aria-label={t('calculator.product.remove')}
