@@ -9,5 +9,6 @@ export const CONTACT = {
   siteUrl: 'https://dev.mourao.info',
   email: 'dev@mourao.info',
   githubUrl: 'https://github.com/devmourao',
+  linkedinUrl: 'https://www.linkedin.com/in/devmourao/',
   projectUrl: 'https://prices-mauve.vercel.app',
 } as const

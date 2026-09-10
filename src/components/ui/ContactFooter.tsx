@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { ExternalLink, FolderGit2, Globe, Mail } from 'lucide-react'
+import { Briefcase, ExternalLink, FolderGit2, Globe, Mail } from 'lucide-react'
 import { CONTACT } from '../../app/contact'
 
 /**
@@ -12,6 +12,7 @@ export function ContactFooter() {
     { href: CONTACT.siteUrl, label: t('footer.site'), Icon: Globe },
     { href: `mailto:${CONTACT.email}`, label: t('footer.email'), Icon: Mail },
     { href: CONTACT.githubUrl, label: t('footer.github'), Icon: FolderGit2 },
+    { href: CONTACT.linkedinUrl, label: t('footer.linkedin'), Icon: Briefcase },
     { href: CONTACT.projectUrl, label: t('footer.project'), Icon: ExternalLink },
   ]
   return (
