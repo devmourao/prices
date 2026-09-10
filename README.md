@@ -90,4 +90,6 @@ Single-view calculator (v1.0) → polish/i18n/history → offline + a11y hardeni
 
 ## Screenshots
 
-> Pending: capture mobile screenshots (light/dark, EN/PT-BR) after the release deploy and place them under `docs/03-design/screenshots/`.
+<img src="docs/03-design/screenshots/Print01.jpeg" width="300" alt="Best-value verdict and history, light mode, Portuguese" />
+<img src="docs/03-design/screenshots/Print02.jpeg" width="300" alt="Product card and comparison, dark mode, English" />
+<img src="docs/03-design/screenshots/Print03.jpeg" width="300" alt="Comparison, history and contact footer, dark mode, English" />
