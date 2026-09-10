@@ -5,6 +5,7 @@ import { ProductCard } from './components/ProductCard'
 import { HistoryPanel } from './components/HistoryPanel'
 import { ResultsList } from './components/ResultsList'
 import { LanguageToggle } from '../../components/ui/LanguageToggle'
+import { ContactFooter } from '../../components/ui/ContactFooter'
 import { OfflineBadge } from '../../components/ui/OfflineBadge'
 import { ThemeToggle } from '../../components/ui/ThemeToggle'
 import { UpdatePrompt } from '../../components/ui/UpdatePrompt'
@@ -67,6 +68,8 @@ export function CalculatorPage() {
       </div>
 
       <HistoryPanel />
+
+      <ContactFooter />
     </div>
   )
 }
