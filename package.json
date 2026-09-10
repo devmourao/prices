@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "docs:dev": "npx -y docsify-cli@latest serve ./docs --port 5174"
   },
   "dependencies": {
     "clsx": "^2.1.1",

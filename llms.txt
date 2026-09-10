@@ -1,0 +1,34 @@
+# prices
+
+Cost-benefit calculator for supermarket use (React + Vite + TypeScript PWA).
+Live demo: https://prices-mauve.vercel.app
+
+## Docs
+
+- [README](README.md): setup, features, stack, architecture, decisions.
+- [docs/README](docs/README.md): living documentation home.
+
+## Product
+
+- [docs/04-management/project-brief.md](docs/04-management/project-brief.md): vision, scope, stakeholders, success criteria.
+- [docs/04-management/roadmap.md](docs/04-management/roadmap.md): phases and milestones (M-01 to M-05).
+- [docs/04-management/initial-backlog.md](docs/04-management/initial-backlog.md): actionable backlog CB-01 to CB-29.
+
+## Architecture
+
+- [docs/02-architecture/architecture-review.md](docs/02-architecture/architecture-review.md): stack, folder structure, Zustand state strategy, decisions AD-01 to AD-06.
+
+## Way of working
+
+- [docs/04-management/development-standards.md](docs/04-management/development-standards.md): branches, Conventional Commits, merge checklist, Definition of Done.
+
+## Code map
+
+- `src/main.tsx`: bootstrap (styles, i18n, PWA registration).
+- `src/app/`: composition root (PWA flow, preferences store).
+- `src/features/calculator/`: page, components, hooks, stores, pure domain lib.
+- `src/components/ui/`: reusable primitives (segmented control, toggles, badges, inputs).
+- `src/i18n/locales/`: en.json, pt-BR.json (no hardcoded UI strings).
+- `src/lib/`: Intl currency helpers.
+- `vite.config.ts`: Tailwind, PWA manifest, Vitest.
+- `index.html`: meta, theme-color, pre-paint theme guard.
