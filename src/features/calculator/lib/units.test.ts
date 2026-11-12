@@ -4,9 +4,20 @@ import {
   overpayPct,
   pricePerBase,
   rank,
+  rankedUnitPricesEqual,
   toBaseUnit,
+  toCents,
+  toScaledBase,
   unitPricesEqual,
 } from './units'
+
+describe('toCents', () => {
+  it('rounds major units to integer cents', () => {
+    expect(toCents(7.5)).toBe(750)
+    expect(toCents(10)).toBe(1000)
+    expect(toCents(2.505)).toBe(251)
+  })
+})
 
 describe('toBaseUnit', () => {
   it('keeps L, kg and un as-is', () => {
@@ -26,6 +37,13 @@ describe('toBaseUnit', () => {
   })
 })
 
+describe('toScaledBase', () => {
+  it('scales L and mL into milliliters', () => {
+    expect(toScaledBase(1.5, 'L')).toBe(1500)
+    expect(toScaledBase(250, 'mL')).toBe(250)
+  })
+})
+
 describe('familyOf', () => {
   it('groups L/mL, kg/g and un', () => {
     expect(familyOf('L')).toBe('volume')
@@ -37,7 +55,7 @@ describe('familyOf', () => {
 })
 
 describe('pricePerBase', () => {
-  it('computes the backlog acceptance cases', () => {
+  it('computes the backlog acceptance cases via cents', () => {
     expect(pricePerBase(10, 2, 'L')).toBe(5)
     expect(pricePerBase(7.5, 1.5, 'L')).toBe(5)
     expect(pricePerBase(5, 500, 'g')).toBe(10)
@@ -50,7 +68,7 @@ describe('pricePerBase', () => {
 })
 
 describe('rank', () => {
-  it('sorts by ascending unit price', () => {
+  it('sorts by ascending unit price using cross-multiply cents', () => {
     const ranked = rank([
       { id: 'a', label: 'A', price: 10, quantity: 2, unit: 'L' },
       { id: 'b', label: 'B', price: 9, quantity: 2, unit: 'L' },
@@ -58,6 +76,7 @@ describe('rank', () => {
     ])
     expect(ranked.map((entry) => entry.id)).toEqual(['b', 'a', 'c'])
     expect(ranked[0].unitPrice).toBe(4.5)
+    expect(ranked[0].priceCents).toBe(900)
   })
 
   it('ranks mL against L', () => {
@@ -76,6 +95,14 @@ describe('rank', () => {
       ]),
     ).toThrow('different unit families')
   })
+
+  it('ties BRL shelf prices that share the same unit cost', () => {
+    const ranked = rank([
+      { id: 'a', label: 'A', price: 10, quantity: 2, unit: 'L' },
+      { id: 'b', label: 'B', price: 7.5, quantity: 1.5, unit: 'L' },
+    ])
+    expect(rankedUnitPricesEqual(ranked[0], ranked[1])).toBe(true)
+  })
 })
 
 describe('overpayPct', () => {
@@ -93,6 +120,6 @@ describe('unitPricesEqual', () => {
 
   it('distinguishes different prices', () => {
     expect(unitPricesEqual(4.5, 5)).toBe(false)
-    expect(unitPricesEqual(0, 1e-6)).toBe(false)
+    expect(unitPricesEqual(0, 0.01)).toBe(false)
   })
 })

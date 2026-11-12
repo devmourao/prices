@@ -1,56 +1,43 @@
-import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   formatPercent,
   formatUnitPrice,
   type AppLocale,
 } from '../../../lib/currency'
-import { useProducts } from '../hooks/useCalculator'
+import { useComparison, useProducts } from '../hooks/useCalculator'
 import {
   baseUnitOf,
   familyOf,
   overpayPct,
-  rank,
-  unitPricesEqual,
   type RankedEntry,
 } from '../lib/units'
 import { WinnerBadge } from './WinnerBadge'
 import { accentFor } from '../../../components/ui/cardAccents'
 
 /**
- * Ranked comparison. Only complete entries (price > 0, quantity > 0)
- * take part; mixed unit families render the guard message instead
- * of wrong math. Non-winners show how much MORE expensive they are
- * than the best value. Announced politely for screen readers.
+ * Ranked comparison from the shared store selector. Non-winners show
+ * how much MORE expensive they are than the best value. Announced
+ * politely for screen readers.
  */
 export function ResultsList() {
   const products = useProducts()
+  const content = useComparison()
   const { t, i18n } = useTranslation()
   const locale: AppLocale = i18n.language === 'pt-BR' ? 'pt-BR' : 'en'
 
-  const content = useMemo(() => {
-    const comparable = products.filter(
-      (product) => product.price > 0 && product.quantity > 0,
-    )
-    if (comparable.length < 2) return { status: 'need-more' as const }
-    try {
-      const ranked = rank(comparable)
-      const tied =
-        ranked.length > 1 &&
-        unitPricesEqual(ranked[0].unitPrice, ranked[ranked.length - 1].unitPrice)
-      return { status: 'ok' as const, ranked, tied }
-    } catch {
-      return { status: 'mixed' as const }
-    }
-  }, [products])
-
   return (
-    <section aria-labelledby="results-title" aria-live="polite" className="flex flex-col gap-3 rounded-2xl border border-fg/15 border-t-4 border-t-accent bg-surface p-4 shadow-sm">
+    <section
+      aria-labelledby="results-title"
+      aria-live="polite"
+      className="flex flex-col gap-3 rounded-2xl border border-fg/15 border-t-4 border-t-accent bg-surface p-4 shadow-sm"
+    >
       <h2 id="results-title" className="text-lg font-semibold text-fg">
         {t('calculator.results.title')}
       </h2>
 
-      {content.status === 'need-more' && <p className="text-muted">{t('calculator.results.needTwo')}</p>}
+      {content.status === 'need-more' && (
+        <p className="text-muted">{t('calculator.results.needTwo')}</p>
+      )}
 
       {content.status === 'mixed' && (
         <p role="alert" className="text-sm text-red-600 dark:text-red-400">
@@ -93,11 +80,20 @@ interface ResultRowProps {
   readonly fallbackIndex: number
 }
 
-function ResultRow({ entry, locale, isWinner, showOverpay, winnerPrice, fallbackIndex }: ResultRowProps) {
+function ResultRow({
+  entry,
+  locale,
+  isWinner,
+  showOverpay,
+  winnerPrice,
+  fallbackIndex,
+}: ResultRowProps) {
   const { t } = useTranslation()
   const accent = accentFor(fallbackIndex - 1)
   const name =
-    entry.label.trim() === '' ? t('calculator.product.title', { index: fallbackIndex }) : entry.label
+    entry.label.trim() === ''
+      ? t('calculator.product.title', { index: fallbackIndex })
+      : entry.label
   return (
     <li
       className={

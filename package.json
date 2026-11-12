@@ -12,14 +12,12 @@
     "docs:dev": "npx -y docsify-cli@latest serve ./docs --port 5174"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
     "i18next": "^26.4.2",
     "i18next-browser-languagedetector": "^8.2.1",
     "lucide-react": "^1.43.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-i18next": "^17.0.13",
-    "tailwind-merge": "^3.6.0",
     "zustand": "^5.0.15"
   },
   "devDependencies": {
@@ -27,6 +25,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.10",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",

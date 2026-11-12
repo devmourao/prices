@@ -1,6 +1,11 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
-import { rank, type RankedEntry, type Unit } from '../lib/units'
+import {
+  rank,
+  rankedUnitPricesEqual,
+  type RankedEntry,
+  type Unit,
+} from '../lib/units'
 
 export interface Product {
   readonly id: string
@@ -18,6 +23,11 @@ interface CalculatorState {
   clearAll: () => void
 }
 
+export type ComparisonStatus =
+  | { readonly status: 'need-more' }
+  | { readonly status: 'mixed' }
+  | { readonly status: 'ok'; readonly ranked: RankedEntry[]; readonly tied: boolean }
+
 function createProduct(): Product {
   return {
     id: crypto.randomUUID(),
@@ -26,6 +36,10 @@ function createProduct(): Product {
     quantity: 1,
     unit: 'L',
   }
+}
+
+export function isComparableProduct(product: Pick<Product, 'price' | 'quantity'>): boolean {
+  return product.price > 0 && product.quantity > 0
 }
 
 export const useCalculatorStore = create<CalculatorState>()(
@@ -55,18 +69,37 @@ export const useCalculatorStore = create<CalculatorState>()(
 )
 
 /**
- * Ranked products or [] when the current inputs are not comparable
- * (mixed families, invalid values). Never throws: safe for rendering.
+ * Single comparison path shared by ResultsList and selectors.
+ * Incomplete rows are excluded; mixed families become `mixed`.
  */
-export function selectRankedProducts(state: CalculatorState): RankedEntry[] {
+export function compareProducts(products: readonly Product[]): ComparisonStatus {
+  const comparable = products.filter(isComparableProduct)
+  if (comparable.length < 2) return { status: 'need-more' }
   try {
-    return rank(state.products)
+    const ranked = rank(comparable)
+    const tied =
+      ranked.length > 1 && rankedUnitPricesEqual(ranked[0], ranked[ranked.length - 1])
+    return { status: 'ok', ranked, tied }
   } catch {
-    return []
+    return { status: 'mixed' }
   }
 }
 
+export function selectComparison(state: CalculatorState): ComparisonStatus {
+  return compareProducts(state.products)
+}
+
+/**
+ * Ranked products or [] when the current inputs are not comparable
+ * (need more rows, mixed families, invalid values). Never throws.
+ */
+export function selectRankedProducts(state: CalculatorState): RankedEntry[] {
+  const comparison = selectComparison(state)
+  return comparison.status === 'ok' ? comparison.ranked : []
+}
+
 export function selectWinnerId(state: CalculatorState): string | null {
-  const ranked = selectRankedProducts(state)
-  return ranked.length > 0 ? ranked[0].id : null
+  const comparison = selectComparison(state)
+  if (comparison.status !== 'ok' || comparison.tied) return null
+  return comparison.ranked[0]?.id ?? null
 }

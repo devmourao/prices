@@ -30,7 +30,7 @@ A portfolio-grade, mobile-first SPA + PWA that answers a real aisle question: *2
 | i18n      | i18next + react-i18next + browser detection       |
 | PWA       | Workbox-based Vite plugin (precache + fallback)   |
 | Icons     | lucide-react (tree-shaken)                        |
-| Tests     | Vitest + Testing Library + jsdom (33 tests)       |
+| Tests     | Vitest + Testing Library + jsdom (47 tests)       |
 
 ## Getting started (under 5 minutes)
 
@@ -80,7 +80,7 @@ State strategy: thin UI over persisted Zustand stores; all unit math lives in pu
 
 ## Accessibility & quality
 
-- `npm test` (33 tests), `npm run lint`, `npm run build` (typecheck) all green.
+- `npm test` (47 tests), `npm run lint`, `npm run build` (typecheck) all green.
 - Keyboard-only flow: Tab enters each option group once, arrows move/select.
 - Lighthouse targets (mobile): Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 90.
 

@@ -37,8 +37,12 @@ describe('history store', () => {
     expect(persisted.state.entries).toHaveLength(20)
 
     useCalculatorStore.getState().updateProduct('a', { price: 99 })
-    expect(history().restoreSnapshot(history().entries[0].id)).toBe(true)
-    expect(useCalculatorStore.getState().products[0].price).toBe(10)
+    const snapshotId = history().entries[0].id
+    const previousIds = useCalculatorStore.getState().products.map((row) => row.id)
+    expect(history().restoreSnapshot(snapshotId)).toBe(true)
+    const restored = useCalculatorStore.getState().products
+    expect(restored[0].price).toBe(10)
+    expect(restored.map((row) => row.id)).not.toEqual(previousIds)
 
     history().removeSnapshot(history().entries[0].id)
     expect(history().entries).toHaveLength(19)
