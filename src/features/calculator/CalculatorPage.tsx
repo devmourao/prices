@@ -1,24 +1,26 @@
 import { useTranslation } from 'react-i18next'
 import { Plus, RotateCcw } from 'lucide-react'
-import { useCalculatorActions, useProducts } from './hooks/useCalculator'
-import { ProductCard } from './components/ProductCard'
-import { HistoryPanel } from './components/HistoryPanel'
-import { ResultsList } from './components/ResultsList'
 import { LanguageToggle } from '../../components/ui/LanguageToggle'
 import { ContactFooter } from '../../components/ui/ContactFooter'
 import { InstallPrompt } from '../../components/ui/InstallPrompt'
 import { OfflineBadge } from '../../components/ui/OfflineBadge'
 import { ThemeToggle } from '../../components/ui/ThemeToggle'
+import type { AppLocale } from '../../lib/currency'
+import { useCalculatorActions, useProducts } from './hooks/useCalculator'
+import { HandoffBar } from './components/HandoffBar'
+import { HistoryPanel } from './components/HistoryPanel'
+import { ProductCard } from './components/ProductCard'
+import { ResultsList } from './components/ResultsList'
 
 /**
- * Mobile-first Compare view: header, product cards, add action,
- * and results pinned above the bottom nav. Add price -> tap
- * unit -> read the winner: three taps or fewer after typing.
+ * Mobile-first Compare view. Optional `?itemId=` enables list handoff:
+ * seed labels, apply winner price back to the shopping list.
  */
 export function CalculatorPage() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const products = useProducts()
   const { addProduct, clearAll } = useCalculatorActions()
+  const locale: AppLocale = i18n.language === 'pt-BR' ? 'pt-BR' : 'en'
 
   return (
     <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-6">
@@ -35,6 +37,8 @@ export function CalculatorPage() {
       </header>
 
       <InstallPrompt />
+
+      <HandoffBar locale={locale} />
 
       <div className="flex flex-col gap-3">
         {products.map((product, position) => (

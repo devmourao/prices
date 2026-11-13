@@ -1,6 +1,6 @@
 # BACKLOG — Shopping List module
 
-**Status:** Active — M-06 approved; Sprint L0 (shell) + L1 (checklist) implemented  
+**Status:** Active — M-06–M-08 done; Sprint L2 (handoff) in progress  
 **Date:** 2026-11-13  
 **Related:** `shopping-list-brief.md` v0.1.0, `shopping-list-architecture.md`, `initial-backlog.md` (CB-29)  
 **Convention:** `SL-NN` = shopping-list backlog item. Priority: P0 / P1 / P2.  
