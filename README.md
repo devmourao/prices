@@ -98,14 +98,14 @@ State strategy: thin UI over persisted Zustand stores; all unit math lives in pu
 
 ## Accessibility & quality
 
-- `npm test` (69 tests), `npm run lint`, `npm run build` (typecheck) all green.
+- `npm test` (86 tests), `npm run lint`, `npm run build` (typecheck) all green.
 - Keyboard-only flow: Tab/arrows on unit groups; sheet Esc + Tab trap; bottom nav `aria-current`.
 - Lighthouse targets (mobile): Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 90.
 - Release notes: `docs/04-management/release-notes-v1.1.0.md`.
 
 ## Roadmap
 
-Calculator v1.0 → shopping list **v1.1** → proposed **receipt/cupom** track (list → confirm → receipt, v1.2). See `docs/04-management/roadmap.md`, `shopping-list-backlog.md`, `receipt-backlog.md`.
+Calculator v1.0 → shopping list **v1.1** → **receipt/cupom** track (list → confirm → receipt, toward v1.2). See `docs/04-management/roadmap.md`, `shopping-list-backlog.md`, `receipt-backlog.md`.
 
 ## Screenshots
 

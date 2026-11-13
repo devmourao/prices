@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { Calculator, ListChecks } from 'lucide-react'
+import { Calculator, ListChecks, Receipt } from 'lucide-react'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   [
@@ -9,7 +9,7 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
   ].join(' ')
 
 /**
- * Two-destination thumb nav: List (plan/execute) and Compare (decide).
+ * Three-destination thumb nav: List (plan), Compare (decide), Receipt (record).
  * Fixed above the safe-area inset so aisle use stays one-handed.
  */
 export function BottomNav() {
@@ -28,6 +28,10 @@ export function BottomNav() {
         <NavLink to="/compare" className={linkClass}>
           <Calculator size={20} aria-hidden="true" />
           {t('nav.compare')}
+        </NavLink>
+        <NavLink to="/receipt" className={linkClass}>
+          <Receipt size={20} aria-hidden="true" />
+          {t('nav.receipt')}
         </NavLink>
       </div>
     </nav>

@@ -1,6 +1,6 @@
 # ARCHITECTURE ADDENDUM — Receipt / Purchases module
 
-**Status:** Proposed — Pending Owner Approval  
+**Status:** Approved (M-11)  
 **Date:** 2026-11-13  
 **Related:** `shopping-list-architecture.md` (AD-07–AD-10), `receipt-brief.md` v0.1.0
 
@@ -167,8 +167,8 @@ Display via existing `formatPrice`. If product later needs `price × qty`, defin
 - [x] Model B domain  
 - [x] Single confirm path  
 - [x] AD-11–AD-14  
-- [ ] Owner approval  
+- [x] Owner approval (PR #11)  
 
 ---
 
-*Next: implement purchase store + Receipt page after backlog M-11 approval.*
+*Next: Sprint R0 — purchaseStore + `/receipt` + migration (RC-01–RC-04).*

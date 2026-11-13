@@ -1,11 +1,11 @@
 # BACKLOG — Receipt / Purchases module
 
-**Status:** Proposed — Pending Owner Approval  
+**Status:** Active — M-11 approved; Sprint R0 in progress  
 **Date:** 2026-11-13  
 **Related:** `receipt-brief.md` v0.1.0, `receipt-architecture.md`  
 **Convention:** `RC-NN` = receipt backlog item. Priority: P0 / P1 / P2.
 
-> No receipt feature code before M-11 (docs approval). List + Compare v1.1 remain shippable.
+> M-11 approved (plan PR merged). List + Compare v1.1 remain shippable alongside receipt foundation.
 
 ---
 
@@ -13,7 +13,7 @@
 
 | ID | Title | Category | Priority | Description | Acceptance Criteria |
 | -- | ----- | -------- | -------- | ----------- | ------------------- |
-| RC-00 | Approve receipt brief + architecture + backlog | Documentation | P0 | Owner reviews model B, three-nav IA, AD-11–AD-14. | Written approval (merge of plan PR) |
+| RC-00 | Approve receipt brief + architecture + backlog | Documentation | P0 | Owner reviews model B, three-nav IA, AD-11–AD-14. | ✅ Written approval (PR #11 merged) |
 
 ---
 
@@ -85,4 +85,4 @@
 
 ---
 
-*Ready for: Owner approval (M-11) → Sprint R0 (RC-01).*
+*Ready for: Sprint R0 (RC-01–RC-04) → M-12 → Sprint R1 cupom.*
