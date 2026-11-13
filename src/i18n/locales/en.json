@@ -41,7 +41,16 @@
     "tagline": "What you bought this trip.",
     "empty": "Confirm items from the list to build your receipt.",
     "linesLabel": "Receipt lines",
-    "total": "Total {{amount}}"
+    "total": "Total {{amount}}",
+    "started": "Started {{when}}",
+    "endPurchase": "End purchase",
+    "confirmEnd": "Archive this receipt and start a new one?",
+    "removeLine": "Remove {{name}} from receipt",
+    "chip": "Receipt · {{amount}}",
+    "toast": {
+      "added": "Added to receipt · {{amount}}",
+      "dismiss": "Dismiss"
+    }
   },
   "list": {
     "title": "Shopping list",
@@ -51,6 +60,7 @@
     "progress": {
       "label": "Progress",
       "summary": "{{done}} of {{total}} done",
+      "pending": "{{count}} of {{total}} left",
       "spend": "Spent {{amount}}"
     },
     "add": {
@@ -73,14 +83,16 @@
       "nameLabel": "Item name",
       "priceLabel": "Price paid",
       "pricePlaceholder": "e.g. 10.00",
-      "quantityLabel": "Quantity (optional)",
+      "quantityLabel": "Quantity",
       "quantityPlaceholder": "e.g. 1 or 1.5",
       "priceOptional": "Price is optional — you can check it off without one.",
+      "priceRequiredHint": "Price goes to the receipt. Quantity defaults to 1.",
       "back": "Back",
-      "saveBought": "Save",
+      "saveBought": "Add to receipt",
       "saveEdit": "Save name",
       "errors": {
         "priceInvalid": "Enter a valid price",
+        "priceRequired": "Enter a price to add to the receipt",
         "quantityPositive": "Enter a quantity greater than zero"
       }
     },
@@ -96,7 +108,7 @@
       "usePrice": "Use this price on the list",
       "tieHint": "It’s a tie — adjust an option to pick a price for the list.",
       "applyTitle": "Apply to list",
-      "applyBody": "Save the better shelf price on “{{name}}”.",
+      "applyBody": "Use the better shelf price for “{{name}}”. Mark bought adds it to the receipt.",
       "applyAndDone": "Apply and mark bought",
       "applyPriceOnly": "Apply price only"
     }

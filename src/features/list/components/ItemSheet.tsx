@@ -7,31 +7,34 @@ import { TextField } from '../../../components/ui/TextField'
 import { UnitSelector } from '../../calculator/components/UnitSelector'
 import { parseAmount } from '../../calculator/lib/parse'
 import type { Unit } from '../../calculator/lib/units'
+import { confirmPurchaseWithFeedback } from '../../purchase/lib/confirmFeedback'
 import { useListActions } from '../hooks/useList'
 import { seedCalculatorForListItem } from '../lib/handoff'
 import type { ListItem } from '../store/listStore'
 
+export type ItemSheetMode = 'menu' | 'buy' | 'edit'
+
 interface ItemSheetProps {
   readonly item: ListItem
   readonly onClose: () => void
+  readonly initialMode?: ItemSheetMode
 }
 
-type Mode = 'menu' | 'buy' | 'edit'
-
 /**
- * Item actions: mark bought (+ optional price), compare, edit name, delete.
+ * Item actions: confirm buy → receipt, compare, edit name, delete.
+ * Price is required to create a purchase line (qty defaults to 1).
  */
-export function ItemSheet({ item, onClose }: ItemSheetProps) {
+export function ItemSheet({ item, onClose, initialMode = 'menu' }: ItemSheetProps) {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { markBought, updateItem, removeItem } = useListActions()
-  const [mode, setMode] = useState<Mode>('menu')
+  const { updateItem, removeItem } = useListActions()
+  const [mode, setMode] = useState<ItemSheetMode>(initialMode)
   const [name, setName] = useState(item.name)
   const [priceText, setPriceText] = useState(
     item.paidPrice === undefined || item.paidPrice === 0 ? '' : String(item.paidPrice),
   )
   const [quantityText, setQuantityText] = useState(
-    item.paidQuantity === undefined ? '' : String(item.paidQuantity),
+    item.paidQuantity === undefined ? '1' : String(item.paidQuantity),
   )
   const [unit, setUnit] = useState<Unit>(item.paidUnit ?? item.preferredUnit ?? 'un')
 
@@ -39,7 +42,7 @@ export function ItemSheet({ item, onClose }: ItemSheetProps) {
   const quantity = parseAmount(quantityText)
   const priceError =
     priceText.trim() === ''
-      ? undefined
+      ? t('list.item.errors.priceRequired')
       : price === null || price <= 0
         ? t('list.item.errors.priceInvalid')
         : undefined
@@ -52,15 +55,15 @@ export function ItemSheet({ item, onClose }: ItemSheetProps) {
 
   const saveBuy = () => {
     if (priceError !== undefined || quantityError !== undefined) return
-    if (priceText.trim() === '') {
-      markBought(item.id)
-    } else if (price !== null) {
-      markBought(item.id, {
-        price,
-        quantity: quantity === null ? undefined : quantity,
-        unit: quantity === null ? undefined : unit,
-      })
-    }
+    if (price === null) return
+    const qty = quantityText.trim() === '' || quantity === null ? 1 : quantity
+    confirmPurchaseWithFeedback({
+      name: item.name,
+      price,
+      quantity: qty,
+      unit,
+      sourceItemId: item.id,
+    })
     onClose()
   }
 
@@ -132,7 +135,7 @@ export function ItemSheet({ item, onClose }: ItemSheetProps) {
             value={priceText}
             placeholder={t('list.item.pricePlaceholder')}
             inputMode="decimal"
-            error={priceError}
+            error={priceText.trim() === '' ? undefined : priceError}
             onChange={setPriceText}
           />
           <TextField
@@ -145,7 +148,7 @@ export function ItemSheet({ item, onClose }: ItemSheetProps) {
             onChange={setQuantityText}
           />
           <UnitSelector value={unit} onChange={setUnit} />
-          <p className="text-sm text-muted">{t('list.item.priceOptional')}</p>
+          <p className="text-sm text-muted">{t('list.item.priceRequiredHint')}</p>
           <div className="flex gap-2">
             <button
               type="button"

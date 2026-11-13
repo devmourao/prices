@@ -41,7 +41,16 @@
     "tagline": "O que você comprou nesta ida.",
     "empty": "Confirme itens da lista para montar o recibo.",
     "linesLabel": "Linhas do recibo",
-    "total": "Total {{amount}}"
+    "total": "Total {{amount}}",
+    "started": "Início {{when}}",
+    "endPurchase": "Encerrar compra",
+    "confirmEnd": "Arquivar este recibo e começar outro?",
+    "removeLine": "Remover {{name}} do recibo",
+    "chip": "Recibo · {{amount}}",
+    "toast": {
+      "added": "Adicionado ao recibo · {{amount}}",
+      "dismiss": "Fechar"
+    }
   },
   "list": {
     "title": "Lista de compras",
@@ -51,6 +60,7 @@
     "progress": {
       "label": "Progresso",
       "summary": "{{done}} de {{total}} feitos",
+      "pending": "{{count}} de {{total}} restantes",
       "spend": "Gasto {{amount}}"
     },
     "add": {
@@ -73,14 +83,16 @@
       "nameLabel": "Nome do item",
       "priceLabel": "Preço pago",
       "pricePlaceholder": "Ex.: 10,00",
-      "quantityLabel": "Quantidade (opcional)",
+      "quantityLabel": "Quantidade",
       "quantityPlaceholder": "Ex.: 1 ou 1,5",
       "priceOptional": "O preço é opcional — você pode marcar sem informar.",
+      "priceRequiredHint": "O preço vai para o recibo. Quantidade padrão: 1.",
       "back": "Voltar",
-      "saveBought": "Salvar",
+      "saveBought": "Adicionar ao recibo",
       "saveEdit": "Salvar nome",
       "errors": {
         "priceInvalid": "Informe um preço válido",
+        "priceRequired": "Informe um preço para adicionar ao recibo",
         "quantityPositive": "Informe uma quantidade maior que zero"
       }
     },
@@ -96,7 +108,7 @@
       "usePrice": "Usar este preço na lista",
       "tieHint": "Empate — ajuste uma opção para escolher o preço da lista.",
       "applyTitle": "Aplicar na lista",
-      "applyBody": "Salvar o melhor preço de gôndola em “{{name}}”.",
+      "applyBody": "Usar o melhor preço de gôndola em “{{name}}”. Marcar comprado adiciona ao recibo.",
       "applyAndDone": "Aplicar e marcar comprado",
       "applyPriceOnly": "Só aplicar o preço"
     }

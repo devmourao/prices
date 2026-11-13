@@ -1,6 +1,6 @@
 # BACKLOG — Receipt / Purchases module
 
-**Status:** Active — M-11 approved; Sprint R0 in progress  
+**Status:** Active — M-12 done; Sprint R1 (cupom) in progress  
 **Date:** 2026-11-13  
 **Related:** `receipt-brief.md` v0.1.0, `receipt-architecture.md`  
 **Convention:** `RC-NN` = receipt backlog item. Priority: P0 / P1 / P2.
@@ -21,10 +21,10 @@
 
 | ID | Title | Category | Priority | Description | Acceptance Criteria |
 | -- | ----- | -------- | -------- | ----------- | ------------------- |
-| RC-01 | `purchaseStore` + persist | Functionality | P0 | Open purchase, history cap 20, `confirmPurchase` / `removeLine` / `endPurchase`. | Unit tests; reload keeps open lines |
-| RC-02 | Migrate v1.1 done+price items → lines | Functionality | P0 | One-shot migration; then pending-only list. | Fixture test; no double count |
-| RC-03 | `purchaseTotals` cents helpers | Functionality | P0 | Pure sum + format integration. | BRL cent cases green |
-| RC-04 | Bottom nav third tab + `/receipt` route | Infrastructure | P0 | List \| Compare \| Receipt; SPA fallback OK. | Deep link `/receipt` works |
+| RC-01 | `purchaseStore` + persist | Functionality | P0 | Open purchase, history cap 20, `confirmPurchase` / `removeLine` / `endPurchase`. | ✅ Unit tests; reload keeps open lines |
+| RC-02 | Migrate v1.1 done+price items → lines | Functionality | P0 | One-shot migration; then pending-only list. | ✅ Fixture test; no double count |
+| RC-03 | `purchaseTotals` cents helpers | Functionality | P0 | Pure sum + format integration. | ✅ BRL cent cases green |
+| RC-04 | Bottom nav third tab + `/receipt` route | Infrastructure | P0 | List \| Compare \| Receipt; SPA fallback OK. | ✅ Deep link `/receipt` works |
 
 ---
 
@@ -32,12 +32,12 @@
 
 | ID | Title | Category | Priority | Description | Acceptance Criteria |
 | -- | ----- | -------- | -------- | ----------- | ------------------- |
-| RC-05 | `ReceiptPage` cupom layout | Functionality | P0 | Lines + sticky total; empty state. | Usable at 360px; tabular amounts |
-| RC-06 | Wire ItemSheet confirm → `confirmPurchase` | Functionality | P0 | Price required for receipt; qty default 1; remove pending item. | List shrinks; receipt grows |
-| RC-07 | Wire handoff “Apply and mark bought” | Functionality | P0 | Uses winner shelf price/qty/unit. | Price-only still skips receipt |
-| RC-08 | Remove line + End purchase | Functionality | P0 | Confirm end; archive; new empty open. | History entry has frozen totalCents |
-| RC-09 | List chip / link to receipt total | Improvement | P1 | Compact “Receipt · {amount}” when open has lines. | Navigates to `/receipt` |
-| RC-10 | Toast / status after confirm | Improvement | P1 | Localized feedback with new total. | `aria-live` friendly |
+| RC-05 | `ReceiptPage` cupom layout | Functionality | P0 | Lines + sticky total; empty state. | ✅ Usable at 360px; tabular amounts |
+| RC-06 | Wire ItemSheet confirm → `confirmPurchase` | Functionality | P0 | Price required for receipt; qty default 1; remove pending item. | ✅ List shrinks; receipt grows |
+| RC-07 | Wire handoff “Apply and mark bought” | Functionality | P0 | Uses winner shelf price/qty/unit. | ✅ Price-only still skips receipt |
+| RC-08 | Remove line + End purchase | Functionality | P0 | Confirm end; archive; new empty open. | ✅ History entry has frozen totalCents |
+| RC-09 | List chip / link to receipt total | Improvement | P1 | Compact “Receipt · {amount}” when open has lines. | ✅ Navigates to `/receipt` |
+| RC-10 | Toast / status after confirm | Improvement | P1 | Localized feedback with new total. | ✅ `aria-live` friendly |
 
 ---
 
@@ -85,4 +85,4 @@
 
 ---
 
-*Ready for: Sprint R0 (RC-01–RC-04) → M-12 → Sprint R1 cupom.*
+*Ready for: Sprint R1 (RC-05–RC-10) → M-13 → Sprint R2 history/release.*

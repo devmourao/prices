@@ -7,6 +7,7 @@ import {
   type AppLocale,
 } from '../../../lib/currency'
 import { baseUnitOf, familyOf, type RankedEntry } from '../../calculator/lib/units'
+import { confirmPurchaseWithFeedback } from '../../purchase/lib/confirmFeedback'
 import { useListActions } from '../hooks/useList'
 import type { ListItem } from '../store/listStore'
 
@@ -18,13 +19,12 @@ interface ApplyPriceDialogProps {
 }
 
 /**
- * Apply the compared winner's shelf price back onto the list item.
- * (A) mark bought + price, or (B) price only — then return home.
+ * Apply the compared winner: (A) confirmPurchase → receipt, or (B) price only on list.
  */
 export function ApplyPriceDialog({ item, winner, locale, onClose }: ApplyPriceDialogProps) {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { markBought, updateItem } = useListActions()
+  const { updateItem } = useListActions()
 
   const paid = {
     price: winner.price,
@@ -38,7 +38,14 @@ export function ApplyPriceDialog({ item, winner, locale, onClose }: ApplyPriceDi
   }
 
   const applyAndMarkDone = () => {
-    markBought(item.id, paid)
+    confirmPurchaseWithFeedback({
+      name: item.name,
+      price: paid.price,
+      quantity: paid.quantity,
+      unit: paid.unit,
+      unitPrice: winner.unitPrice,
+      sourceItemId: item.id,
+    })
     goHome()
   }
 

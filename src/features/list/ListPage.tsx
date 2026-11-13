@@ -5,27 +5,31 @@ import { InstallPrompt } from '../../components/ui/InstallPrompt'
 import { LanguageToggle } from '../../components/ui/LanguageToggle'
 import { OfflineBadge } from '../../components/ui/OfflineBadge'
 import { ThemeToggle } from '../../components/ui/ThemeToggle'
-import { formatPrice, type AppLocale } from '../../lib/currency'
+import type { AppLocale } from '../../lib/currency'
+import { ReceiptLinkChip } from '../purchase/components/ReceiptLinkChip'
 import { AddItemField } from './components/AddItemField'
-import { ItemSheet } from './components/ItemSheet'
+import { ItemSheet, type ItemSheetMode } from './components/ItemSheet'
 import { ListItemRow } from './components/ListItemRow'
-import { useListActions, useListItems, useListProgress, useListSpend } from './hooks/useList'
+import { useListActions, useListItems, useListProgress } from './hooks/useList'
+
+type SheetState = {
+  readonly id: string
+  readonly mode: ItemSheetMode
+}
 
 /**
- * Checklist MVP: add items, check off, buy+price sheet, clear actions.
- * Compare remains on /compare (handoff seed completes in Sprint L2).
+ * Pending checklist: confirm buy writes to Receipt; chip links to open cupom total.
  */
 export function ListPage() {
   const { t, i18n } = useTranslation()
   const items = useListItems()
   const progress = useListProgress()
-  const spend = useListSpend()
   const { clearDone, clearAll } = useListActions()
-  const [openItemId, setOpenItemId] = useState<string | null>(null)
+  const [sheet, setSheet] = useState<SheetState | null>(null)
   const locale: AppLocale = i18n.language === 'pt-BR' ? 'pt-BR' : 'en'
 
-  const openItem = items.find((item) => item.id === openItemId) ?? null
-  const closeSheet = useCallback(() => setOpenItemId(null), [])
+  const openItem = items.find((item) => item.id === sheet?.id) ?? null
+  const closeSheet = useCallback(() => setSheet(null), [])
 
   const confirmClearDone = () => {
     if (progress.done === 0) return
@@ -56,17 +60,18 @@ export function ListPage() {
       <section
         aria-labelledby="list-progress-title"
         aria-live="polite"
-        className="flex flex-col gap-1 rounded-2xl border border-fg/15 border-t-4 border-t-accent bg-surface p-4 shadow-sm"
+        className="flex flex-col gap-2 rounded-2xl border border-fg/15 border-t-4 border-t-accent bg-surface p-4 shadow-sm"
       >
         <h2 id="list-progress-title" className="text-sm font-medium text-muted">
           {t('list.progress.label')}
         </h2>
         <p className="text-lg font-semibold text-fg">
-          {t('list.progress.summary', { done: progress.done, total: progress.total })}
+          {t('list.progress.pending', {
+            count: progress.total - progress.done,
+            total: progress.total,
+          })}
         </p>
-        <p className="text-sm text-muted">
-          {t('list.progress.spend', { amount: formatPrice(spend, locale) })}
-        </p>
+        <ReceiptLinkChip locale={locale} />
       </section>
 
       <AddItemField />
@@ -81,7 +86,8 @@ export function ListPage() {
                 key={item.id}
                 item={item}
                 locale={locale}
-                onOpen={() => setOpenItemId(item.id)}
+                onOpen={() => setSheet({ id: item.id, mode: 'menu' })}
+                onBuy={() => setSheet({ id: item.id, mode: 'buy' })}
               />
             ))}
           </ul>
@@ -107,7 +113,9 @@ export function ListPage() {
 
       <ContactFooter />
 
-      {openItem !== null && <ItemSheet item={openItem} onClose={closeSheet} />}
+      {openItem !== null && sheet !== null && (
+        <ItemSheet item={openItem} initialMode={sheet.mode} onClose={closeSheet} />
+      )}
     </div>
   )
 }

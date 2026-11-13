@@ -98,7 +98,7 @@ State strategy: thin UI over persisted Zustand stores; all unit math lives in pu
 
 ## Accessibility & quality
 
-- `npm test` (86 tests), `npm run lint`, `npm run build` (typecheck) all green.
+- `npm test` (90 tests), `npm run lint`, `npm run build` (typecheck) all green.
 - Keyboard-only flow: Tab/arrows on unit groups; sheet Esc + Tab trap; bottom nav `aria-current`.
 - Lighthouse targets (mobile): Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 90.
 - Release notes: `docs/04-management/release-notes-v1.1.0.md`.

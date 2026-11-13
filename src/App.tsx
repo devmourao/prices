@@ -4,6 +4,7 @@ import { BottomNav } from './components/ui/BottomNav'
 import { UpdatePrompt } from './components/ui/UpdatePrompt'
 import { CalculatorPage } from './features/calculator/CalculatorPage'
 import { ListPage } from './features/list/ListPage'
+import { ConfirmToast } from './features/purchase/components/ConfirmToast'
 import { applyListV11Migration } from './features/purchase/lib/migrateFromList'
 import { ReceiptPage } from './features/purchase/ReceiptPage'
 import { useListStore } from './features/list/store/listStore'
@@ -37,6 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <UpdatePrompt />
+      <ConfirmToast />
       <main className="min-h-svh pb-24">
         <Routes>
           <Route path="/" element={<ListPage />} />

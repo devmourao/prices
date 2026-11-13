@@ -7,12 +7,15 @@ interface ListItemRowProps {
   readonly item: ListItem
   readonly locale: AppLocale
   readonly onOpen: () => void
+  /** Opens the confirm-buy sheet (price required → receipt). */
+  readonly onBuy: () => void
 }
 
 /**
- * Checklist row: checkbox toggles done; the rest of the row opens the sheet.
+ * Checklist row: checkbox opens confirm-buy; the rest opens the action menu.
+ * Legacy done items can still be unchecked back to todo.
  */
-export function ListItemRow({ item, locale, onOpen }: ListItemRowProps) {
+export function ListItemRow({ item, locale, onOpen, onBuy }: ListItemRowProps) {
   const { t } = useTranslation()
   const { updateItem } = useListActions()
   const done = item.status === 'done'
@@ -27,7 +30,7 @@ export function ListItemRow({ item, locale, onOpen }: ListItemRowProps) {
       })
       return
     }
-    updateItem(item.id, { status: 'done' })
+    onBuy()
   }
 
   return (
