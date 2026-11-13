@@ -47,8 +47,9 @@ The calculator remains **independently reachable**. The list does not own compar
 
 | Surface | Job |
 | ------- | --- |
-| **List** | Plan and execute the trip (what’s left). Confirmed buys feed the future Receipt track. |
+| **List** | Plan and execute the trip (what’s left). Confirmed buys feed the Receipt track (v1.2). |
 | **Compare** | Decide between package options (unit price). |
+| **Receipt** | What was bought + total as a cupom (see `receipt-brief.md`). |
 | **Item sheet** | Bridge: buy / compare / edit — never dump ranking into the checklist. |
 
 Three entry points:
