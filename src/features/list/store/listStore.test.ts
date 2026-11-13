@@ -52,4 +52,14 @@ describe('listStore', () => {
     expect(raw).not.toBeNull()
     expect(JSON.parse(raw ?? '').state.items).toHaveLength(1)
   })
+
+  it('restores a removed item by id without duplicating', () => {
+    useListStore.getState().addItem('Milk')
+    const item = useListStore.getState().items[0]
+    useListStore.getState().removeItem(item.id)
+    useListStore.getState().restoreItem(item)
+    useListStore.getState().restoreItem(item)
+    expect(useListStore.getState().items).toHaveLength(1)
+    expect(useListStore.getState().items[0].id).toBe(item.id)
+  })
 })

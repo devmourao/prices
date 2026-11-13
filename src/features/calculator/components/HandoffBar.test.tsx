@@ -121,3 +121,86 @@ describe('Compare handoff', () => {
     expect(screen.queryByRole('button', { name: /use this price/i })).not.toBeInTheDocument()
   })
 })
+
+describe('Save winner to list (SL-22)', () => {
+  function renderStandalone() {
+    return render(
+      <I18nextProvider i18n={i18n}>
+        <MemoryRouter initialEntries={['/compare']}>
+          <Routes>
+            <Route path="/" element={<div>List home</div>} />
+            <Route path="/compare" element={<CalculatorPage />} />
+          </Routes>
+        </MemoryRouter>
+      </I18nextProvider>,
+    )
+  }
+
+  it('saves standalone winner to the list and receipt', async () => {
+    const user = userEvent.setup()
+    const [first, second] = useCalculatorStore.getState().products
+    useCalculatorStore.getState().updateProduct(first.id, {
+      label: 'Oat milk',
+      price: 10,
+      quantity: 2,
+      unit: 'L',
+    })
+    useCalculatorStore.getState().updateProduct(second.id, {
+      label: 'Oat milk',
+      price: 8,
+      quantity: 2,
+      unit: 'L',
+    })
+
+    renderStandalone()
+    await user.click(screen.getByRole('button', { name: /save winner to list/i }))
+    await user.click(
+      within(screen.getByRole('dialog')).getByRole('button', {
+        name: /add and mark bought/i,
+      }),
+    )
+
+    expect(screen.getByText('List home')).toBeInTheDocument()
+    expect(useListStore.getState().items).toHaveLength(0)
+    expect(usePurchaseStore.getState().open.lines[0]).toMatchObject({
+      name: 'Oat milk',
+      price: 8,
+      quantity: 2,
+      unit: 'L',
+    })
+  })
+
+  it('matches an existing list item by name for price-only save', async () => {
+    const user = userEvent.setup()
+    useListStore.getState().addItem('Oat milk')
+    const [first, second] = useCalculatorStore.getState().products
+    useCalculatorStore.getState().updateProduct(first.id, {
+      label: 'Oat milk',
+      price: 10,
+      quantity: 1,
+      unit: 'L',
+    })
+    useCalculatorStore.getState().updateProduct(second.id, {
+      label: 'Oat milk',
+      price: 7,
+      quantity: 1,
+      unit: 'L',
+    })
+
+    renderStandalone()
+    await user.click(screen.getByRole('button', { name: /save winner to list/i }))
+    await user.click(
+      within(screen.getByRole('dialog')).getByRole('button', {
+        name: /add with price only/i,
+      }),
+    )
+
+    expect(useListStore.getState().items).toHaveLength(1)
+    expect(useListStore.getState().items[0]).toMatchObject({
+      name: 'Oat milk',
+      status: 'todo',
+      paidPrice: 7,
+    })
+    expect(usePurchaseStore.getState().open.lines).toHaveLength(0)
+  })
+})

@@ -57,7 +57,7 @@
 | ID | Title | Priority | Notes |
 | -- | ----- | -------- | ----- |
 | RC-20 | Line = unit price × quantity explicit model | P2 | Only if users expect pack×qty |
-| RC-21 | Undo last confirm (snackbar) | P2 | |
+| RC-21 | Undo last confirm (snackbar) | P2 | ✅ Toast Undo restores line + list item |
 | RC-22 | Export / share receipt text | P2 | |
 | RC-23 | Multi-store or named trips | P2 | Overlaps multi-list |
 | RC-24 | Budget cap vs total | P2 | Was SL-23 |

@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { formatPrice, type AppLocale } from '../../../lib/currency'
 import {
+  clearPendingUndo,
   RECEIPT_CONFIRM_EVENT,
+  RECEIPT_UNDO_EVENT,
+  undoLastConfirm,
   type ReceiptConfirmDetail,
 } from '../lib/confirmFeedback'
 
-const TOAST_MS = 3500
+const TOAST_MS = 5000
 
 /**
- * Ephemeral status after confirmPurchase — aria-live polite, auto-dismiss.
+ * Ephemeral status after confirmPurchase — aria-live polite, optional Undo.
  */
 export function ConfirmToast() {
   const { t, i18n } = useTranslation()
@@ -22,13 +25,21 @@ export function ConfirmToast() {
       if (custom.detail === undefined) return
       setDetail(custom.detail)
     }
+    const onUndo = () => setDetail(null)
     window.addEventListener(RECEIPT_CONFIRM_EVENT, onConfirm)
-    return () => window.removeEventListener(RECEIPT_CONFIRM_EVENT, onConfirm)
+    window.addEventListener(RECEIPT_UNDO_EVENT, onUndo)
+    return () => {
+      window.removeEventListener(RECEIPT_CONFIRM_EVENT, onConfirm)
+      window.removeEventListener(RECEIPT_UNDO_EVENT, onUndo)
+    }
   }, [])
 
   useEffect(() => {
     if (detail === null) return
-    const timer = window.setTimeout(() => setDetail(null), TOAST_MS)
+    const timer = window.setTimeout(() => {
+      clearPendingUndo()
+      setDetail(null)
+    }, TOAST_MS)
     return () => window.clearTimeout(timer)
   }, [detail])
 
@@ -38,7 +49,7 @@ export function ConfirmToast() {
     <div
       role="status"
       aria-live="polite"
-      className="fixed inset-x-0 top-0 z-50 mx-auto flex w-full max-w-xl items-center justify-between gap-2 border-b border-fg/15 bg-bg/95 px-4 py-3 shadow-sm backdrop-blur"
+      className="fixed inset-x-0 top-0 z-50 mx-auto flex w-full max-w-xl flex-wrap items-center justify-between gap-2 border-b border-fg/15 bg-bg/95 px-4 py-3 shadow-sm backdrop-blur"
     >
       <span className="text-sm font-medium text-fg">
         {t('receipt.toast.added', {
@@ -46,13 +57,30 @@ export function ConfirmToast() {
           amount: formatPrice(detail.total, locale),
         })}
       </span>
-      <button
-        type="button"
-        onClick={() => setDetail(null)}
-        className="min-h-[44px] shrink-0 rounded-lg px-3 text-sm text-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-      >
-        {t('receipt.toast.dismiss')}
-      </button>
+      <span className="flex gap-1">
+        {detail.canUndo && (
+          <button
+            type="button"
+            onClick={() => {
+              undoLastConfirm()
+              setDetail(null)
+            }}
+            className="min-h-[44px] shrink-0 rounded-lg bg-accent/15 px-3 text-sm font-semibold text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            {t('receipt.toast.undo')}
+          </button>
+        )}
+        <button
+          type="button"
+          onClick={() => {
+            clearPendingUndo()
+            setDetail(null)
+          }}
+          className="min-h-[44px] shrink-0 rounded-lg px-3 text-sm text-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          {t('receipt.toast.dismiss')}
+        </button>
+      </span>
     </div>
   )
 }

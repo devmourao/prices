@@ -24,6 +24,8 @@ export type PaidPatch = {
 interface ListState {
   readonly items: readonly ListItem[]
   addItem: (name: string) => void
+  /** Re-insert a previously removed item (undo confirm). No-op if id already present. */
+  restoreItem: (item: ListItem) => void
   updateItem: (id: string, patch: Partial<Omit<ListItem, 'id'>>) => void
   removeItem: (id: string) => void
   markBought: (id: string, paid?: PaidPatch) => void
@@ -53,6 +55,11 @@ export const useListStore = create<ListState>()(
         if (trimmed === '') return
         set((state) => ({ items: [...state.items, createItem(trimmed)] }))
       },
+      restoreItem: (item) =>
+        set((state) => {
+          if (state.items.some((existing) => existing.id === item.id)) return state
+          return { items: [...state.items, item] }
+        }),
       updateItem: (id, patch) =>
         set((state) => ({
           items: state.items.map((item) =>
