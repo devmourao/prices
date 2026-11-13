@@ -73,7 +73,7 @@
 | CB-26 | Production deploy | Automation | P0 | M-05 | Deploy static build over HTTPS; verify manifest + service worker in prod. | Public URL installable on Android + iOS guidance |
 | CB-27 | v1.0 tag + Release Notes | Documentation | P0 | M-05 | Tag `v1.0.0` (SemVer); Release Notes; Definition of Done check. | Tag + notes published; DoD signed |
 | CB-28 | Follow-ups (deferred, not v1.0) | Research | P2 | — | oz/lb units, barcode/OCR, price history charts, share-link. (mL promoted to MVP scope.) | Recorded as future epics, not in v1.0 scope |
-| CB-29 | Smart shopping list (future product track) | Research | P2 | — | Product vision for the mature product at prices.mourao.info (organize purchases, prioritize items). Explicitly OUT of this portfolio scope; to be analyzed in a future conversation. Portfolio track stays calculator-only. | Vision recorded; no portfolio commitment |
+| CB-29 | Smart shopping list (future product track) | Research | P2 | — | **Promoted 2026-11-13** to planned track: see `shopping-list-brief.md`, `shopping-list-architecture.md`, `shopping-list-backlog.md` (SL-00…). Portfolio calculator remains valid alone; list is v1.x+ additive. | M-06 approval → SL backlog owns delivery |
 
 ---
 

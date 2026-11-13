@@ -86,7 +86,7 @@ State strategy: thin UI over persisted Zustand stores; all unit math lives in pu
 
 ## Roadmap
 
-Single-view calculator (v1.0) → polish/i18n/history → offline + a11y hardening → portfolio release. See `docs/04-management/roadmap.md` and `initial-backlog.md` for phases, milestones, and the full backlog; `docs/02-architecture/architecture-review.md` for the architecture record.
+Single-view calculator (v1.0) → polish/i18n/history → offline + a11y hardening → portfolio release → **shopping list track** (list + compare handoff, v1.1). See `docs/04-management/roadmap.md`, `initial-backlog.md`, and `shopping-list-backlog.md`; architecture in `docs/02-architecture/architecture-review.md` and `shopping-list-architecture.md`.
 
 ## Screenshots
 

@@ -1,8 +1,11 @@
 - [Home](/)
 - Architecture
   - [Architecture Review](02-architecture/architecture-review.md)
+  - [Shopping List Architecture](02-architecture/shopping-list-architecture.md)
 - Management
   - [Project Brief](04-management/project-brief.md)
   - [Roadmap](04-management/roadmap.md)
   - [Initial Backlog](04-management/initial-backlog.md)
+  - [Shopping List Brief](04-management/shopping-list-brief.md)
+  - [Shopping List Backlog](04-management/shopping-list-backlog.md)
   - [Development Standards](04-management/development-standards.md)
