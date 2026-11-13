@@ -48,7 +48,7 @@
 | RC-11 | Receipt history UI | Functionality | P1 | List archived purchases; open read-only cupom. | ✅ Cap 20; newest first |
 | RC-12 | Offline + a11y pass | Tests | P0 | Airplane: confirm → receipt → end; keyboard/nav. | ✅ Checklist recorded (`receipt-mvp-verification.md`) |
 | RC-13 | README + release notes v1.2.0 | Documentation | P0 | Third mode documented; demo script. | ✅ Reviewer demos in &lt;5 min |
-| RC-14 | Tag v1.2.0 | Documentation | P1 | SemVer tag after M-14 gate. | After merge: `git tag -a v1.2.0` |
+| RC-14 | Tag v1.2.0 | Documentation | P1 | SemVer tag after M-14 gate. | ✅ `v1.2.0` published; polish continues in `v1.3.0` |
 
 ---
 

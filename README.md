@@ -6,7 +6,7 @@ Compare supermarket products by unit price, plan the trip with a local shopping 
 
 ## Why this project
 
-A portfolio-grade, mobile-first SPA + PWA for the aisle: *2 L for $10.00 vs 1.5 L for $7.50 — which is cheaper?* Type two prices, tap the unit buttons, and the cheapest option is highlighted. **v1.2** adds a **Receipt** mode: confirm items from the list with price and quantity, then review a running cupom total and archive finished trips.
+A portfolio-grade, mobile-first SPA + PWA for the aisle: *2 L for $10.00 vs 1.5 L for $7.50 — which is cheaper?* Type two prices, tap the unit buttons, and the cheapest option is highlighted. **v1.2+** adds **Receipt** (confirm → cupom → archive); **v1.3** adds share, trip budget, undo, and save-winner from Compare.
 
 ## Features
 
@@ -24,7 +24,7 @@ A portfolio-grade, mobile-first SPA + PWA for the aisle: *2 L for $10.00 vs 1.5 
 - Handoff from a list item: seed Compare → **Apply and mark bought** (receipt) or **Apply price only** (stay on list).
 - Standalone Compare: **Save winner to list** (match/create by name → receipt or price-only).
 
-### Receipt (`/receipt`) — v1.2
+### Receipt (`/receipt`) — v1.2 / v1.3
 
 - Cupom lines (name · qty · price) with sticky total (integer cents).
 - Remove a line; **End purchase** archives the open receipt (frozen total, cap 20).
@@ -64,7 +64,7 @@ npm run build    # typecheck + production build to dist/
 npx vite preview # serve the production build locally (PWA fully active)
 ```
 
-**Demo script:** `docs/04-management/release-notes-v1.2.0.md`. Offline/a11y checklist: `docs/04-management/receipt-mvp-verification.md`.
+**Demo script:** `docs/04-management/release-notes-v1.3.0.md` (also v1.2.0). Offline/a11y checklist: `docs/04-management/receipt-mvp-verification.md`.
 
 ## Project structure
 
@@ -92,11 +92,11 @@ docs/                      # brief, architecture, roadmap, backlog, release note
 - `npm test`, `npm run lint`, `npm run build` (typecheck) all green.
 - Keyboard: unit groups, sheet Esc + Tab trap, three-tab nav `aria-current`.
 - Lighthouse targets (mobile): Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 90.
-- Release notes: `docs/04-management/release-notes-v1.2.0.md`.
+- Release notes: `docs/04-management/release-notes-v1.3.0.md`.
 
 ## Roadmap
 
-Calculator **v1.0** → shopping list **v1.1** → receipt/cupom **v1.2**. See `docs/04-management/roadmap.md`.
+Calculator **v1.0** → shopping list **v1.1** → receipt **v1.2** → polish **v1.3**. See `docs/04-management/roadmap.md`.
 
 ## Screenshots
 

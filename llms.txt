@@ -1,6 +1,6 @@
 # prices
 
-Cost-benefit calculator + shopping list + receipt for supermarket use (React + Vite + TypeScript PWA) — v1.2.
+Cost-benefit calculator + shopping list + receipt for supermarket use (React + Vite + TypeScript PWA) — v1.3.
 Live demo: https://prices.mourao.info
 
 ## Docs
@@ -21,6 +21,7 @@ Live demo: https://prices.mourao.info
 - [docs/04-management/receipt-backlog.md](docs/04-management/receipt-backlog.md): receipt backlog RC-00+.
 - [docs/04-management/receipt-mvp-verification.md](docs/04-management/receipt-mvp-verification.md): offline + a11y checklist (receipt).
 - [docs/04-management/release-notes-v1.2.0.md](docs/04-management/release-notes-v1.2.0.md): v1.2 release notes.
+- [docs/04-management/release-notes-v1.3.0.md](docs/04-management/release-notes-v1.3.0.md): v1.3 release notes (share, budget, undo, save-winner).
 
 ## Architecture
 
