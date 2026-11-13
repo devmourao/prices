@@ -218,3 +218,7 @@ type CalculatorState = {
 ---
 
 *Next: Initial Roadmap → Milestones → Initial Backlog → Sprint Zero (milestone gate before Sprint Planning).*
+
+---
+
+**Addendum (2026-11-13):** Shopping List module planning lives in [`shopping-list-architecture.md`](./shopping-list-architecture.md) (AD-07–AD-10). Calculator decisions AD-01–AD-06 remain in force.

@@ -1,6 +1,6 @@
 # prices
 
-Cost-benefit calculator for supermarket use (React + Vite + TypeScript PWA).
+Cost-benefit calculator for supermarket use (React + Vite + TypeScript PWA), with a planned shopping-list module.
 Live demo: https://prices-mauve.vercel.app
 
 ## Docs
@@ -11,12 +11,15 @@ Live demo: https://prices-mauve.vercel.app
 ## Product
 
 - [docs/04-management/project-brief.md](docs/04-management/project-brief.md): vision, scope, stakeholders, success criteria.
-- [docs/04-management/roadmap.md](docs/04-management/roadmap.md): phases and milestones (M-01 to M-05).
-- [docs/04-management/initial-backlog.md](docs/04-management/initial-backlog.md): actionable backlog CB-01 to CB-29.
+- [docs/04-management/roadmap.md](docs/04-management/roadmap.md): phases and milestones (M-01 to M-10).
+- [docs/04-management/initial-backlog.md](docs/04-management/initial-backlog.md): calculator backlog CB-01 to CB-29.
+- [docs/04-management/shopping-list-brief.md](docs/04-management/shopping-list-brief.md): list module vision, flows, UX.
+- [docs/04-management/shopping-list-backlog.md](docs/04-management/shopping-list-backlog.md): list backlog SL-00+.
 
 ## Architecture
 
-- [docs/02-architecture/architecture-review.md](docs/02-architecture/architecture-review.md): stack, folder structure, Zustand state strategy, decisions AD-01 to AD-06.
+- [docs/02-architecture/architecture-review.md](docs/02-architecture/architecture-review.md): stack, folder structure, Zustand, AD-01 to AD-06.
+- [docs/02-architecture/shopping-list-architecture.md](docs/02-architecture/shopping-list-architecture.md): routes, list slice, handoff, AD-07 to AD-10.
 
 ## Way of working
 
@@ -27,6 +30,7 @@ Live demo: https://prices-mauve.vercel.app
 - `src/main.tsx`: bootstrap (styles, i18n, PWA registration).
 - `src/app/`: composition root (PWA flow, preferences store).
 - `src/features/calculator/`: page, components, hooks, stores, pure domain lib.
+- `src/features/list/`: planned — list page, sheet, store (see shopping-list architecture).
 - `src/components/ui/`: reusable primitives (segmented control, toggles, badges, inputs).
 - `src/i18n/locales/`: en.json, pt-BR.json (no hardcoded UI strings).
 - `src/lib/`: Intl currency helpers.

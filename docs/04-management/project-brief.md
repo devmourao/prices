@@ -92,7 +92,7 @@ Build and deploy an installable, offline-capable, bilingual, themed Cost-Benefit
 - Complex unit families v1 (mL, oz, lb) — may enter as follow-up.
 - Push notifications, analytics, ads.
 - Full design system — only a minimal reusable UI kit.
-- Smart shopping list and other mature-product features (future product track at prices.mourao.info, analyzed separately). This portfolio track stays calculator-only; the Vercel URL is its final home.
+- Smart shopping list and other mature-product features were deferred from calculator v1.0. **Planning for the list module started 2026-11-13** — see `shopping-list-brief.md` (not in calculator v1.0 scope; additive v1.x+ track). The Vercel calculator demo remains valid as a standalone portfolio piece.
 
 ---
 
@@ -244,7 +244,8 @@ See `docs/04-management/roadmap.md` for details and `initial-backlog.md` for act
 | 0.1.0 | 2026-09-08 | Generic baseline (template repo only) | Tech Lead |
 | 0.2.0 | 2026-09-08 | Re-scoped to Cost-Benefit Calculator SPA+PWA per Owner requirements | Tech Lead / Frontend Architect |
 | 0.2.1 | 2026-09-08 | Documentation polish: standardized on industry terminology | Tech Lead / Frontend Architect |
+| 0.2.2 | 2026-11-13 | Pointer to shopping-list track docs (CB-29 promoted to planned) | Frontend Architect |
 
 ---
 
-*End of Project Brief — prices v0.2.1 (Draft).*
+*End of Project Brief — prices v0.2.1 (Draft). List module: `shopping-list-brief.md`.*
