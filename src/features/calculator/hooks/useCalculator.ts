@@ -1,4 +1,6 @@
+import { useMemo } from 'react'
 import {
+  compareProducts,
   selectRankedProducts,
   selectWinnerId,
   useCalculatorStore,
@@ -7,6 +9,12 @@ import {
 /** Thin selector layer so components subscribe only to what they render. */
 export function useProducts() {
   return useCalculatorStore((state) => state.products)
+}
+
+/** Derive comparison in render — avoids Zustand infinite loops from fresh objects. */
+export function useComparison() {
+  const products = useProducts()
+  return useMemo(() => compareProducts(products), [products])
 }
 
 export function useRankedProducts() {

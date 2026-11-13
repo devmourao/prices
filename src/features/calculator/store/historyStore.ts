@@ -1,6 +1,10 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
-import { useCalculatorStore, type Product } from './calculatorStore'
+import {
+  isComparableProduct,
+  useCalculatorStore,
+  type Product,
+} from './calculatorStore'
 
 export interface HistoryEntry {
   readonly id: string
@@ -20,16 +24,12 @@ interface HistoryState {
 
 const MAX_ENTRIES = 20
 
-function isComparable(product: Product): boolean {
-  return product.price > 0 && product.quantity > 0
-}
-
 export const useHistoryStore = create<HistoryState>()(
   persist(
     (set, get) => ({
       entries: [],
       saveSnapshot: (products) => {
-        if (products.filter(isComparable).length < 2) return false
+        if (products.filter(isComparableProduct).length < 2) return false
         const entry: HistoryEntry = {
           id: crypto.randomUUID(),
           createdAt: new Date().toISOString(),
@@ -41,8 +41,12 @@ export const useHistoryStore = create<HistoryState>()(
       restoreSnapshot: (id) => {
         const entry = get().entries.find((candidate) => candidate.id === id)
         if (!entry) return false
+        // Fresh ids remount ProductCards so local input text cannot stay stale.
         useCalculatorStore.setState({
-          products: entry.products.map((product) => ({ ...product })),
+          products: entry.products.map((product) => ({
+            ...product,
+            id: crypto.randomUUID(),
+          })),
         })
         return true
       },

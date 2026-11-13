@@ -18,7 +18,13 @@
   "pwa": {
     "updateAvailable": "A new version is available.",
     "reload": "Reload",
-    "dismiss": "Not now"
+    "dismiss": "Not now",
+    "installTitle": "Install prices",
+    "installBody": "Add it to your home screen for one-tap access in the aisle — works offline.",
+    "install": "Install",
+    "installIosTitle": "Add to Home Screen",
+    "installIosHint": "On iPhone/iPad: tap Share, then “Add to Home Screen”.",
+    "installIosAction": "Share → Add to Home Screen"
   },
   "app": {
     "title": "prices",

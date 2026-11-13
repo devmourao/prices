@@ -6,6 +6,7 @@ import { HistoryPanel } from './components/HistoryPanel'
 import { ResultsList } from './components/ResultsList'
 import { LanguageToggle } from '../../components/ui/LanguageToggle'
 import { ContactFooter } from '../../components/ui/ContactFooter'
+import { InstallPrompt } from '../../components/ui/InstallPrompt'
 import { OfflineBadge } from '../../components/ui/OfflineBadge'
 import { ThemeToggle } from '../../components/ui/ThemeToggle'
 import { UpdatePrompt } from '../../components/ui/UpdatePrompt'
@@ -35,6 +36,8 @@ export function CalculatorPage() {
         </div>
       </header>
 
+      <InstallPrompt />
+
       <div className="flex flex-col gap-3">
         {products.map((product, position) => (
           <ProductCard key={product.id} product={product} index={position + 1} />
@@ -63,7 +66,7 @@ export function CalculatorPage() {
         )}
       </div>
 
-      <div className="sticky bottom-0 py-2">
+      <div className="sticky bottom-0 -mx-4 bg-bg/95 px-4 py-2 backdrop-blur">
         <ResultsList />
       </div>
 

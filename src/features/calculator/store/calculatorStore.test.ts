@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import {
+  selectComparison,
+  selectRankedProducts,
   selectWinnerId,
   useCalculatorStore,
   type Product,
@@ -35,11 +37,27 @@ describe('calculator store', () => {
 
   it('selects the cheapest winner', () => {
     expect(selectWinnerId(useCalculatorStore.getState())).toBe('b')
+    expect(selectRankedProducts(useCalculatorStore.getState())[0].id).toBe('b')
   })
 
   it('returns no winner for mixed families instead of throwing', () => {
     useCalculatorStore.getState().updateProduct('b', { unit: 'kg' })
     expect(selectWinnerId(useCalculatorStore.getState())).toBeNull()
+    expect(selectComparison(useCalculatorStore.getState()).status).toBe('mixed')
+  })
+
+  it('ignores incomplete rows in ranking', () => {
+    useCalculatorStore.setState({
+      products: [
+        product({ id: 'a', price: 10, quantity: 2, unit: 'L' }),
+        product({ id: 'b', price: 0, quantity: 2, unit: 'L' }),
+        product({ id: 'c', price: 9, quantity: 2, unit: 'L' }),
+      ],
+    })
+    expect(selectRankedProducts(useCalculatorStore.getState()).map((row) => row.id)).toEqual([
+      'c',
+      'a',
+    ])
   })
 
   it('persists products across reloads', () => {

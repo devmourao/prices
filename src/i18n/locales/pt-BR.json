@@ -18,7 +18,13 @@
   "pwa": {
     "updateAvailable": "Uma nova versão está disponível.",
     "reload": "Recarregar",
-    "dismiss": "Agora não"
+    "dismiss": "Agora não",
+    "installTitle": "Instalar prices",
+    "installBody": "Adicione à tela inicial para abrir no corredor com um toque — funciona offline.",
+    "install": "Instalar",
+    "installIosTitle": "Adicionar à Tela de Início",
+    "installIosHint": "No iPhone/iPad: toque em Compartilhar e depois em “Adicionar à Tela de Início”.",
+    "installIosAction": "Compartilhar → Tela de Início"
   },
   "app": {
     "title": "prices",

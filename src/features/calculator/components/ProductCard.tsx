@@ -14,28 +14,38 @@ interface ProductCardProps {
   readonly index: number
 }
 
+function priceToText(price: number): string {
+  return price === 0 ? '' : String(price)
+}
+
 /**
  * Editable product card. Numeric fields keep raw text locally (so typing
- * "1," never jumps) and commit parsed numbers to the store instantly;
- * empty/invalid text commits 0 and is reported as an inline error.
- * Incomplete entries (price/quantity <= 0) are excluded from results.
+ * "1," never jumps) and commit parsed numbers to the store instantly.
+ * History restore remints product ids so parents remount via key={id}
+ * and local input text cannot stay stale.
  */
 export function ProductCard({ product, index }: ProductCardProps) {
   const { t } = useTranslation()
   const { updateProduct, removeProduct } = useCalculatorActions()
 
   const [quantityText, setQuantityText] = useState(() => String(product.quantity))
-  const [priceText, setPriceText] = useState(() =>
-    product.price === 0 ? '' : String(product.price),
-  )
+  const [priceText, setPriceText] = useState(() => priceToText(product.price))
 
   const quantity = parseAmount(quantityText)
   const price = parseAmount(priceText)
 
   const quantityError =
-    quantity === null || quantity <= 0 ? t('calculator.product.errors.quantityPositive') : undefined
+    quantityText.trim() === ''
+      ? undefined
+      : quantity === null || quantity <= 0
+        ? t('calculator.product.errors.quantityPositive')
+        : undefined
   const priceError =
-    price === null || price < 0 ? t('calculator.product.errors.priceInvalid') : undefined
+    priceText.trim() === ''
+      ? undefined
+      : price === null || price <= 0
+        ? t('calculator.product.errors.priceInvalid')
+        : undefined
 
   const handleQuantityChange = (text: string) => {
     setQuantityText(text)
@@ -52,7 +62,10 @@ export function ProductCard({ product, index }: ProductCardProps) {
   const accent = accentFor(index - 1)
 
   return (
-    <article aria-labelledby={`${product.id}-title`} className={`flex flex-col gap-3 rounded-2xl border border-fg/15 border-t-4 bg-surface p-4 shadow-sm ${accent.edge}`}>
+    <article
+      aria-labelledby={`${product.id}-title`}
+      className={`flex flex-col gap-3 rounded-2xl border border-fg/15 border-t-4 bg-surface p-4 shadow-sm ${accent.edge}`}
+    >
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <span
@@ -62,7 +75,9 @@ export function ProductCard({ product, index }: ProductCardProps) {
             {index}
           </span>
           <h3 id={`${product.id}-title`} className="text-base font-semibold text-fg">
-            {product.label.trim() === '' ? t('calculator.product.title', { index }) : product.label}
+            {product.label.trim() === ''
+              ? t('calculator.product.title', { index })
+              : product.label}
           </h3>
         </div>
         <button

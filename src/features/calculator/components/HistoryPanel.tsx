@@ -3,6 +3,7 @@ import { BookmarkPlus, History, Trash2 } from 'lucide-react'
 import { formatUnitPrice, type AppLocale } from '../../../lib/currency'
 import { useProducts } from '../hooks/useCalculator'
 import { baseUnitOf, familyOf, rank, type PricedEntry } from '../lib/units'
+import { isComparableProduct } from '../store/calculatorStore'
 import { useHistoryEntries, useHistoryStore } from '../store/historyStore'
 
 /**
@@ -18,9 +19,7 @@ export function HistoryPanel() {
   const removeSnapshot = useHistoryStore((state) => state.removeSnapshot)
   const clearHistory = useHistoryStore((state) => state.clearHistory)
 
-  const comparableCount = products.filter(
-    (product) => product.price > 0 && product.quantity > 0,
-  ).length
+  const comparableCount = products.filter(isComparableProduct).length
   const locale: AppLocale = i18n.language === 'pt-BR' ? 'pt-BR' : 'en'
 
   return (
@@ -80,7 +79,9 @@ interface WinnerInfo {
 
 function winnerOf(products: readonly PricedEntry[]): WinnerInfo | null {
   try {
-    const ranked = rank(products)
+    const comparable = products.filter(isComparableProduct)
+    if (comparable.length < 2) return null
+    const ranked = rank(comparable)
     if (ranked.length === 0) return null
     const { label, unitPrice, unit } = ranked[0]
     return { name: label, unitPrice, unit }
