@@ -8,6 +8,7 @@ beforeEach(() => {
   usePurchaseStore.setState({
     open: createOpenPurchase(),
     history: [],
+    budget: null,
     migratedFromListV11: false,
   })
 })
@@ -117,5 +118,14 @@ describe('purchaseStore', () => {
     expect(usePurchaseStore.getState().open.id).toBe(openId)
     expect(usePurchaseStore.getState().open.lines).toHaveLength(0)
     expect(usePurchaseStore.getState().history).toHaveLength(0)
+  })
+
+  it('sets and clears a trip budget', () => {
+    usePurchaseStore.getState().setBudget(100)
+    expect(usePurchaseStore.getState().budget).toBe(100)
+    usePurchaseStore.getState().setBudget(0)
+    expect(usePurchaseStore.getState().budget).toBe(100)
+    usePurchaseStore.getState().setBudget(null)
+    expect(usePurchaseStore.getState().budget).toBeNull()
   })
 })

@@ -51,6 +51,7 @@ beforeEach(() => {
   usePurchaseStore.setState({
     open: createOpenPurchase(),
     history: [],
+    budget: null,
     migratedFromListV11: false,
   })
   vi.restoreAllMocks()
@@ -128,6 +129,7 @@ describe('ReceiptPage', () => {
           ],
         },
       ],
+      budget: null,
       migratedFromListV11: true,
     })
     renderPage()
@@ -138,5 +140,34 @@ describe('ReceiptPage', () => {
     expect(dialog).toHaveTextContent('Rice')
     expect(dialog).toHaveTextContent(/total/i)
     expect(screen.queryByRole('button', { name: /remove rice/i })).not.toBeInTheDocument()
+  })
+
+  it('copies receipt text when share falls back to clipboard', async () => {
+    const user = userEvent.setup()
+    const writeText = vi.fn().mockResolvedValue(undefined)
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    })
+    seedLines()
+    renderPage()
+
+    await user.click(screen.getByRole('button', { name: /share receipt/i }))
+    expect(writeText).toHaveBeenCalled()
+    expect(writeText.mock.calls[0][0]).toContain('Milk')
+    expect(screen.getByText(/copied to clipboard/i)).toBeInTheDocument()
+  })
+
+  it('sets a budget and shows remaining vs spend', async () => {
+    const user = userEvent.setup()
+    seedLines()
+    renderPage()
+
+    await user.click(screen.getByRole('button', { name: /set a budget/i }))
+    await user.type(screen.getByLabelText(/budget amount/i), '20')
+    await user.click(screen.getByRole('button', { name: /save budget/i }))
+
+    expect(usePurchaseStore.getState().budget).toBe(20)
+    expect(screen.getByText(/\$10\.00 left/i)).toBeInTheDocument()
   })
 })

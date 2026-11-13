@@ -29,6 +29,7 @@ beforeEach(() => {
   usePurchaseStore.setState({
     open: createOpenPurchase(),
     history: [],
+    budget: null,
     migratedFromListV11: true,
   })
   useCalculatorStore.setState({

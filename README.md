@@ -29,6 +29,7 @@ A portfolio-grade, mobile-first SPA + PWA for the aisle: *2 L for $10.00 vs 1.5 
 - Cupom lines (name · qty · price) with sticky total (integer cents).
 - Remove a line; **End purchase** archives the open receipt (frozen total, cap 20).
 - Toast after confirm with **Undo**; past purchases: open a read-only archived cupom.
+- **Share receipt** (Web Share / clipboard) and optional **trip budget** with remaining/overspend.
 - Bottom nav: List | Compare | Receipt.
 
 ### Shared
