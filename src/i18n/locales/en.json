@@ -50,6 +50,15 @@
     "toast": {
       "added": "Added to receipt · {{amount}}",
       "dismiss": "Dismiss"
+    },
+    "history": {
+      "title": "Past purchases",
+      "empty": "No archived receipts yet. End a purchase to save one.",
+      "listLabel": "Archived receipts",
+      "lineCount": "{{count}} items",
+      "lineCount_one": "{{count}} item",
+      "summary": "{{count}} items · {{amount}}",
+      "detailTitle": "Receipt · {{when}}"
     }
   },
   "list": {

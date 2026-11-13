@@ -1,6 +1,6 @@
 # INITIAL ROADMAP + MILESTONES — prices
 
-**Status:** Active (calculator v1.0 + list v1.1 shipped; receipt M-12 done, R1 cupom)
+**Status:** Active (calculator v1.0 + list v1.1 + receipt v1.2 track; R2 release)
 **Date:** 2026-09-08 (list 2026-11-13; receipt 2026-11-13)
 **Related:** `project-brief.md`, `shopping-list-brief.md`, `receipt-brief.md`, architecture reviews
 

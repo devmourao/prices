@@ -1,6 +1,6 @@
 # BACKLOG — Receipt / Purchases module
 
-**Status:** Active — M-12 done; Sprint R1 (cupom) in progress  
+**Status:** Active — M-13 done; Sprint R2 (history + v1.2) in progress  
 **Date:** 2026-11-13  
 **Related:** `receipt-brief.md` v0.1.0, `receipt-architecture.md`  
 **Convention:** `RC-NN` = receipt backlog item. Priority: P0 / P1 / P2.
@@ -45,10 +45,10 @@
 
 | ID | Title | Category | Priority | Description | Acceptance Criteria |
 | -- | ----- | -------- | -------- | ----------- | ------------------- |
-| RC-11 | Receipt history UI | Functionality | P1 | List archived purchases; open read-only cupom. | Cap 20; newest first |
-| RC-12 | Offline + a11y pass | Tests | P0 | Airplane: confirm → receipt → end; keyboard/nav. | Checklist recorded |
-| RC-13 | README + release notes v1.2.0 | Documentation | P0 | Third mode documented; demo script. | Reviewer demos in &lt;5 min |
-| RC-14 | Tag v1.2.0 | Documentation | P1 | SemVer tag after M-14 gate. | Tag published |
+| RC-11 | Receipt history UI | Functionality | P1 | List archived purchases; open read-only cupom. | ✅ Cap 20; newest first |
+| RC-12 | Offline + a11y pass | Tests | P0 | Airplane: confirm → receipt → end; keyboard/nav. | ✅ Checklist recorded (`receipt-mvp-verification.md`) |
+| RC-13 | README + release notes v1.2.0 | Documentation | P0 | Third mode documented; demo script. | ✅ Reviewer demos in &lt;5 min |
+| RC-14 | Tag v1.2.0 | Documentation | P1 | SemVer tag after M-14 gate. | After merge: `git tag -a v1.2.0` |
 
 ---
 
@@ -85,4 +85,4 @@
 
 ---
 
-*Ready for: Sprint R1 (RC-05–RC-10) → M-13 → Sprint R2 history/release.*
+*Ready for: M-14 merge → tag `v1.2.0` (RC-14).*

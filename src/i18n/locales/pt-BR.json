@@ -50,6 +50,15 @@
     "toast": {
       "added": "Adicionado ao recibo · {{amount}}",
       "dismiss": "Fechar"
+    },
+    "history": {
+      "title": "Compras anteriores",
+      "empty": "Nenhum recibo arquivado ainda. Encerre uma compra para salvar.",
+      "listLabel": "Recibos arquivados",
+      "lineCount": "{{count}} itens",
+      "lineCount_one": "{{count}} item",
+      "summary": "{{count}} itens · {{amount}}",
+      "detailTitle": "Recibo · {{when}}"
     }
   },
   "list": {
