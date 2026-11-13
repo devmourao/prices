@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ContactFooter } from '../../components/ui/ContactFooter'
 import { InstallPrompt } from '../../components/ui/InstallPrompt'
@@ -5,19 +6,29 @@ import { LanguageToggle } from '../../components/ui/LanguageToggle'
 import { OfflineBadge } from '../../components/ui/OfflineBadge'
 import { ThemeToggle } from '../../components/ui/ThemeToggle'
 import type { AppLocale } from '../../lib/currency'
+import { ClosedReceiptSheet } from './components/ClosedReceiptSheet'
 import { ReceiptHeader } from './components/ReceiptHeader'
+import { ReceiptHistory } from './components/ReceiptHistory'
 import { ReceiptLines } from './components/ReceiptLines'
 import { ReceiptTotal } from './components/ReceiptTotal'
-import { useOpenPurchase, useOpenPurchaseTotal, usePurchaseActions } from './hooks/usePurchase'
+import {
+  useOpenPurchase,
+  useOpenPurchaseTotal,
+  usePurchaseActions,
+  usePurchaseHistory,
+} from './hooks/usePurchase'
+import type { ClosedPurchase } from './store/purchaseStore'
 
 /**
- * Open cupom: lines + sticky total + end purchase (Sprint R1).
+ * Open cupom + archived history (read-only sheet).
  */
 export function ReceiptPage() {
   const { t, i18n } = useTranslation()
   const open = useOpenPurchase()
   const total = useOpenPurchaseTotal()
+  const history = usePurchaseHistory()
   const { removeLine, endPurchase } = usePurchaseActions()
+  const [selected, setSelected] = useState<ClosedPurchase | null>(null)
   const locale: AppLocale = i18n.language === 'pt-BR' ? 'pt-BR' : 'en'
 
   const confirmEnd = () => {
@@ -53,7 +64,17 @@ export function ReceiptPage() {
         </>
       )}
 
+      <ReceiptHistory history={history} locale={locale} onOpen={setSelected} />
+
       <ContactFooter />
+
+      {selected !== null && (
+        <ClosedReceiptSheet
+          purchase={selected}
+          locale={locale}
+          onClose={() => setSelected(null)}
+        />
+      )}
     </div>
   )
 }

@@ -13,4 +13,6 @@
   - [Release Notes v1.1.0](04-management/release-notes-v1.1.0.md)
   - [Receipt Brief](04-management/receipt-brief.md)
   - [Receipt Backlog](04-management/receipt-backlog.md)
+  - [Receipt MVP Verification](04-management/receipt-mvp-verification.md)
+  - [Release Notes v1.2.0](04-management/release-notes-v1.2.0.md)
   - [Development Standards](04-management/development-standards.md)

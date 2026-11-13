@@ -171,4 +171,4 @@ Display via existing `formatPrice`. If product later needs `price × qty`, defin
 
 ---
 
-*Next: Sprint R0 — purchaseStore + `/receipt` + migration (RC-01–RC-04).*
+*Shipped through Sprint R2 (history UI + v1.2 docs). Tag `v1.2.0` after M-14 merge.*

@@ -1,36 +1,40 @@
-# prices — Cost-Benefit Calculator + Shopping List
+# prices — Cost-Benefit Calculator + Shopping List + Receipt
 
-Compare supermarket products by unit price and plan the trip with a local shopping list — offline, in English or Portuguese, light or dark.
+Compare supermarket products by unit price, plan the trip with a local shopping list, and record confirmed buys as a cupom-style receipt — offline, in English or Portuguese, light or dark.
 
 **Live demo:** https://prices-mauve.vercel.app
 
 ## Why this project
 
-A portfolio-grade, mobile-first SPA + PWA for the aisle: *2 L for $10.00 vs 1.5 L for $7.50 — which is cheaper?* Type two prices, tap the unit buttons, and the cheapest option is highlighted. **v1.1** adds a shopping list so you can plan items, check them off, and open Compare from an item to bring the winner price back onto the list.
+A portfolio-grade, mobile-first SPA + PWA for the aisle: *2 L for $10.00 vs 1.5 L for $7.50 — which is cheaper?* Type two prices, tap the unit buttons, and the cheapest option is highlighted. **v1.2** adds a **Receipt** mode: confirm items from the list with price and quantity, then review a running cupom total and archive finished trips.
 
 ## Features
+
+### Shopping list (`/`)
+
+- Add items by name; pending checklist focused on what’s left.
+- Confirm buy (price required, qty default 1) → item leaves the list and enters the receipt.
+- Item sheet: mark bought, **compare options**, edit, delete.
+- Chip **Receipt · {amount}** jumps to the open cupom when lines exist.
 
 ### Compare (`/compare`)
 
 - Compare 2+ products by normalized unit price (L, mL, kg, g, unit).
-- One-tap unit selector (segmented buttons, keyboard-friendly radio pattern).
-- Instant best-value badge with savings percentage; ties and mixed-unit cases handled explicitly.
-- Local comparison history (last 20, restore/clear, persisted).
+- One-tap unit selector; best-value badge; local comparison history (last 20).
+- Handoff from a list item: seed Compare → **Apply and mark bought** (receipt) or **Apply price only** (stay on list).
 
-### Shopping list (`/`) — v1.1
+### Receipt (`/receipt`) — v1.2
 
-- Add items by name; check off; optional paid price / quantity / unit.
-- Progress (done/total) and cents-safe spend, persisted offline.
-- Item sheet: mark bought, **compare options**, edit, delete.
-- Handoff: seed Compare from a list item → **Use this price on the list** (mark bought or price only).
-- Bottom nav: List | Compare (Compare stays usable with an empty list).
+- Cupom lines (name · qty · price) with sticky total (integer cents).
+- Remove a line; **End purchase** archives the open receipt (frozen total, cap 20).
+- Past purchases: open a read-only archived cupom.
+- Bottom nav: List | Compare | Receipt.
 
 ### Shared
 
-- Offline-first PWA (precached app shell, update prompt, installable with maskable icons).
-- Light/dark theme with fluid transitions, persisted, system-aware on first run.
-- English default with PT-BR toggle, persisted; currency follows locale (USD/BRL via `Intl`).
-- Accessible: `<main>` landmark, labeled controls, visible focus, live regions, sheet focus trap, `prefers-reduced-motion` respected.
+- Offline-first PWA (precached shell, update prompt, installable).
+- Light/dark theme + EN / PT-BR, persisted; currency follows locale (USD/BRL).
+- Accessible: `<main>`, labeled controls, live regions, sheet focus trap, `prefers-reduced-motion`.
 
 ## Tech stack
 
@@ -39,11 +43,11 @@ A portfolio-grade, mobile-first SPA + PWA for the aisle: *2 L for $10.00 vs 1.5 
 | Language  | TypeScript (strict)                               |
 | Framework | React 19 + Vite 8 + React Router                  |
 | Styling   | Tailwind CSS 4 (class-based dark mode + tokens)   |
-| State     | Zustand (`persist` for calculator/history/list)   |
+| State     | Zustand (`persist` for calculator/list/purchase)  |
 | i18n      | i18next + react-i18next + browser detection       |
 | PWA       | Workbox-based Vite plugin (precache + fallback)   |
 | Icons     | lucide-react (tree-shaken)                        |
-| Tests     | Vitest + Testing Library + jsdom (69 tests)       |
+| Tests     | Vitest + Testing Library + jsdom                  |
 
 ## Getting started (under 5 minutes)
 
@@ -51,61 +55,46 @@ Prerequisites: Node.js 20+ and npm.
 
 ```bash
 npm install
-npm run dev      # local dev server (online; offline works on served builds)
+npm run dev      # local dev server
 npm test         # unit suite (Vitest)
 npm run lint     # ESLint
 npm run build    # typecheck + production build to dist/
 npx vite preview # serve the production build locally (PWA fully active)
 ```
 
-**Demo both modes:** open `/` for the list, `/compare` for the calculator (or use the bottom nav).
-
-To try offline mode: open the preview (or demo) URL once, wait for the app to load, then enable *Offline* in DevTools → Network and reload. Walk both routes and a list→compare handoff (checklist: `docs/04-management/list-mvp-verification.md`).
+**Demo script:** `docs/04-management/release-notes-v1.2.0.md`. Offline/a11y checklist: `docs/04-management/receipt-mvp-verification.md`.
 
 ## Project structure
 
 ```text
 src/
-  main.tsx                 # bootstrap: styles, i18n, PWA registration
-  App.tsx                  # BrowserRouter: / List, /compare Calculator + BottomNav
-  app/
-    App-level composition: PWA registration, preferences store
-  features/calculator/
-    CalculatorPage.tsx     # Compare view + handoff bar
-    components/            # ProductCard, UnitSelector, ResultsList, HandoffBar, …
-    hooks/ store/ lib/     # zustand + pure unit math
-  features/list/
-    ListPage.tsx           # checklist, progress, clear actions
-    components/            # AddItemField, ListItemRow, ItemSheet, ApplyPriceDialog
-    hooks/ store/ lib/     # listStore, totals, handoff seed
-  components/ui/           # BottomNav, Sheet, toggles, badges, fields, …
-  i18n/locales/            # en.json, pt-BR.json (no hardcoded UI strings)
-  lib/                     # Intl currency helpers + tests
-public/icons/              # PWA icons (192/512 + maskable + Apple touch)
-docs/                      # living documentation (brief, architecture, roadmap, backlog)
+  App.tsx                  # / List, /compare Compare, /receipt Receipt + BottomNav
+  features/calculator/     # Compare + handoff bar
+  features/list/           # checklist, ItemSheet, ApplyPriceDialog
+  features/purchase/       # ReceiptPage, purchaseStore, totals, migration
+  components/ui/           # BottomNav (3 tabs), Sheet, toggles, …
+  i18n/locales/            # en.json, pt-BR.json
+docs/                      # brief, architecture, roadmap, backlog, release notes
 ```
-
-State strategy: thin UI over persisted Zustand stores; all unit math lives in pure, unit-tested functions outside React; list orchestrates navigation and applies results without reimplementing ranking.
 
 ## Key decisions
 
-- **Zustand over Context** — fine-grained subscriptions + persist middleware, less boilerplate.
-- **Pure `lib/units.ts`** — conversions/ranking/savings isolated from React for testing; integer cents for ranking.
-- **Cross-family comparison blocked** — liters vs kilos is meaningless; a localized message replaces wrong math.
-- **List vs Compare mental model** — checklist plans/executes; calculator decides; handoff via `?itemId=` (AD-07–AD-10).
-- **Class-based dark theme + pre-paint guard** — persisted, system-aware, no flash.
-- **Explicit locale persistence** — the detector does not persist manual switches, so changes are mirrored to storage directly.
+- **List vs Compare vs Receipt** — plan / decide / record (AD-07–AD-14).
+- **Model B snapshots** — confirm writes immutable purchase lines; list stays pending-only.
+- **Single `confirmPurchase` door** — no double accounting via list `done` + receipt.
+- **Pure `lib/units.ts` + cents totals** — ranking and spend stay float-safe.
+- **Zustand persist** — calculator, list, and purchase stores in `localStorage`.
 
 ## Accessibility & quality
 
-- `npm test` (90 tests), `npm run lint`, `npm run build` (typecheck) all green.
-- Keyboard-only flow: Tab/arrows on unit groups; sheet Esc + Tab trap; bottom nav `aria-current`.
+- `npm test`, `npm run lint`, `npm run build` (typecheck) all green.
+- Keyboard: unit groups, sheet Esc + Tab trap, three-tab nav `aria-current`.
 - Lighthouse targets (mobile): Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 90.
-- Release notes: `docs/04-management/release-notes-v1.1.0.md`.
+- Release notes: `docs/04-management/release-notes-v1.2.0.md`.
 
 ## Roadmap
 
-Calculator v1.0 → shopping list **v1.1** → **receipt/cupom** track (list → confirm → receipt, toward v1.2). See `docs/04-management/roadmap.md`, `shopping-list-backlog.md`, `receipt-backlog.md`.
+Calculator **v1.0** → shopping list **v1.1** → receipt/cupom **v1.2**. See `docs/04-management/roadmap.md`.
 
 ## Screenshots
 

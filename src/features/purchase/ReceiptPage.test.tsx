@@ -105,4 +105,38 @@ describe('ReceiptPage', () => {
     expect(usePurchaseStore.getState().open.lines).toHaveLength(2)
     expect(usePurchaseStore.getState().history).toHaveLength(0)
   })
+
+  it('opens a read-only archived cupom from history', async () => {
+    const user = userEvent.setup()
+    usePurchaseStore.setState({
+      open: createOpenPurchase(),
+      history: [
+        {
+          id: 'closed-1',
+          startedAt: '2026-11-12T09:00:00.000Z',
+          closedAt: '2026-11-12T10:00:00.000Z',
+          totalCents: 1000,
+          lines: [
+            {
+              id: 'hl1',
+              name: 'Rice',
+              quantity: 1,
+              unit: 'kg',
+              price: 10,
+              addedAt: '2026-11-12T09:30:00.000Z',
+            },
+          ],
+        },
+      ],
+      migratedFromListV11: true,
+    })
+    renderPage()
+
+    expect(screen.getByRole('heading', { name: /past purchases/i })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: /\$10\.00/i }))
+    const dialog = screen.getByRole('dialog')
+    expect(dialog).toHaveTextContent('Rice')
+    expect(dialog).toHaveTextContent(/total/i)
+    expect(screen.queryByRole('button', { name: /remove rice/i })).not.toBeInTheDocument()
+  })
 })

@@ -1,6 +1,6 @@
 # prices
 
-Cost-benefit calculator + shopping list for supermarket use (React + Vite + TypeScript PWA) — v1.1; receipt/cupom track approved (foundation toward v1.2).
+Cost-benefit calculator + shopping list + receipt for supermarket use (React + Vite + TypeScript PWA) — v1.2.
 Live demo: https://prices-mauve.vercel.app
 
 ## Docs
@@ -15,10 +15,12 @@ Live demo: https://prices-mauve.vercel.app
 - [docs/04-management/initial-backlog.md](docs/04-management/initial-backlog.md): calculator backlog CB-01 to CB-29.
 - [docs/04-management/shopping-list-brief.md](docs/04-management/shopping-list-brief.md): list module vision, flows, UX.
 - [docs/04-management/shopping-list-backlog.md](docs/04-management/shopping-list-backlog.md): list backlog SL-00+.
-- [docs/04-management/list-mvp-verification.md](docs/04-management/list-mvp-verification.md): offline + a11y checklist.
+- [docs/04-management/list-mvp-verification.md](docs/04-management/list-mvp-verification.md): offline + a11y checklist (list).
 - [docs/04-management/release-notes-v1.1.0.md](docs/04-management/release-notes-v1.1.0.md): v1.1 release notes.
 - [docs/04-management/receipt-brief.md](docs/04-management/receipt-brief.md): receipt/cupom vision (list → confirm → receipt).
 - [docs/04-management/receipt-backlog.md](docs/04-management/receipt-backlog.md): receipt backlog RC-00+.
+- [docs/04-management/receipt-mvp-verification.md](docs/04-management/receipt-mvp-verification.md): offline + a11y checklist (receipt).
+- [docs/04-management/release-notes-v1.2.0.md](docs/04-management/release-notes-v1.2.0.md): v1.2 release notes.
 
 ## Architecture
 
@@ -36,8 +38,8 @@ Live demo: https://prices-mauve.vercel.app
 - `src/App.tsx`: BrowserRouter — `/` List, `/compare` Compare, `/receipt` Receipt, BottomNav.
 - `src/app/`: PWA registration, preferences store.
 - `src/features/calculator/`: Compare page, components, hooks, stores, pure domain lib.
-- `src/features/list/`: ListPage checklist, listStore, handoff seed/apply.
-- `src/features/purchase/`: ReceiptPage cupom, purchaseStore, confirm → snapshot lines, toast/chip (Sprint R1).
+- `src/features/list/`: ListPage checklist, listStore, handoff seed/apply → confirmPurchase.
+- `src/features/purchase/`: ReceiptPage cupom + history, purchaseStore, totals, migration, toast/chip.
 - `src/components/ui/`: BottomNav (3 tabs), segmented control, toggles, badges, inputs.
 - `src/i18n/locales/`: en.json, pt-BR.json (no hardcoded UI strings).
 - `src/lib/`: Intl currency helpers.
