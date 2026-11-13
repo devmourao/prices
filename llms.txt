@@ -1,6 +1,6 @@
 # prices
 
-Cost-benefit calculator + shopping list for supermarket use (React + Vite + TypeScript PWA) — v1.1.
+Cost-benefit calculator + shopping list for supermarket use (React + Vite + TypeScript PWA) — v1.1; receipt/cupom track proposed for v1.2.
 Live demo: https://prices-mauve.vercel.app
 
 ## Docs
@@ -11,17 +11,20 @@ Live demo: https://prices-mauve.vercel.app
 ## Product
 
 - [docs/04-management/project-brief.md](docs/04-management/project-brief.md): vision, scope, stakeholders, success criteria.
-- [docs/04-management/roadmap.md](docs/04-management/roadmap.md): phases and milestones (M-01 to M-10).
+- [docs/04-management/roadmap.md](docs/04-management/roadmap.md): phases and milestones (M-01 to M-14).
 - [docs/04-management/initial-backlog.md](docs/04-management/initial-backlog.md): calculator backlog CB-01 to CB-29.
 - [docs/04-management/shopping-list-brief.md](docs/04-management/shopping-list-brief.md): list module vision, flows, UX.
 - [docs/04-management/shopping-list-backlog.md](docs/04-management/shopping-list-backlog.md): list backlog SL-00+.
 - [docs/04-management/list-mvp-verification.md](docs/04-management/list-mvp-verification.md): offline + a11y checklist.
 - [docs/04-management/release-notes-v1.1.0.md](docs/04-management/release-notes-v1.1.0.md): v1.1 release notes.
+- [docs/04-management/receipt-brief.md](docs/04-management/receipt-brief.md): receipt/cupom vision (list → confirm → receipt).
+- [docs/04-management/receipt-backlog.md](docs/04-management/receipt-backlog.md): receipt backlog RC-00+.
 
 ## Architecture
 
 - [docs/02-architecture/architecture-review.md](docs/02-architecture/architecture-review.md): stack, folder structure, Zustand, AD-01 to AD-06.
 - [docs/02-architecture/shopping-list-architecture.md](docs/02-architecture/shopping-list-architecture.md): routes, list slice, handoff, AD-07 to AD-10.
+- [docs/02-architecture/receipt-architecture.md](docs/02-architecture/receipt-architecture.md): purchase snapshots, AD-11 to AD-14.
 
 ## Way of working
 
@@ -33,7 +36,8 @@ Live demo: https://prices-mauve.vercel.app
 - `src/App.tsx`: BrowserRouter — `/` List, `/compare` Calculator, BottomNav.
 - `src/app/`: PWA registration, preferences store.
 - `src/features/calculator/`: Compare page, components, hooks, stores, pure domain lib.
-- `src/features/list/`: ListPage checklist, listStore, handoff seed/apply (Sprint L0–L2).
+- `src/features/list/`: ListPage checklist, listStore, handoff seed/apply.
+- `src/features/purchase/`: planned — ReceiptPage, purchaseStore (see receipt architecture).
 - `src/components/ui/`: BottomNav, segmented control, toggles, badges, inputs.
 - `src/i18n/locales/`: en.json, pt-BR.json (no hardcoded UI strings).
 - `src/lib/`: Intl currency helpers.

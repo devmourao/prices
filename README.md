@@ -105,7 +105,7 @@ State strategy: thin UI over persisted Zustand stores; all unit math lives in pu
 
 ## Roadmap
 
-Calculator v1.0 → shopping list track (shell → checklist → handoff → **v1.1 hardening**). See `docs/04-management/roadmap.md`, `shopping-list-backlog.md`, and `list-mvp-verification.md`.
+Calculator v1.0 → shopping list **v1.1** → proposed **receipt/cupom** track (list → confirm → receipt, v1.2). See `docs/04-management/roadmap.md`, `shopping-list-backlog.md`, `receipt-backlog.md`.
 
 ## Screenshots
 

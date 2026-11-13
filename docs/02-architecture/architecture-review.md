@@ -221,4 +221,4 @@ type CalculatorState = {
 
 ---
 
-**Addendum (2026-11-13):** Shopping List module planning lives in [`shopping-list-architecture.md`](./shopping-list-architecture.md) (AD-07–AD-10). Calculator decisions AD-01–AD-06 remain in force.
+**Addendum (2026-11-13):** Shopping List module: [`shopping-list-architecture.md`](./shopping-list-architecture.md) (AD-07–AD-10). Receipt / purchases module (proposed): [`receipt-architecture.md`](./receipt-architecture.md) (AD-11–AD-14). Calculator decisions AD-01–AD-06 remain in force.
