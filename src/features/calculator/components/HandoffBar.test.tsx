@@ -6,6 +6,7 @@ import { MemoryRouter, Route, Routes } from 'react-router'
 import i18n from '../../../i18n'
 import { useListStore } from '../../list/store/listStore'
 import { seedCalculatorForListItem } from '../../list/lib/handoff'
+import { createOpenPurchase, usePurchaseStore } from '../../purchase/store/purchaseStore'
 import { useCalculatorStore } from '../store/calculatorStore'
 import { CalculatorPage } from '../CalculatorPage'
 
@@ -25,6 +26,11 @@ function renderCompare(itemId: string) {
 beforeEach(() => {
   localStorage.clear()
   useListStore.setState({ items: [] })
+  usePurchaseStore.setState({
+    open: createOpenPurchase(),
+    history: [],
+    migratedFromListV11: true,
+  })
   useCalculatorStore.setState({
     products: [
       { id: 'a', label: '', price: 0, quantity: 1, unit: 'L' },
@@ -34,7 +40,7 @@ beforeEach(() => {
 })
 
 describe('Compare handoff', () => {
-  it('shows handoff chrome and applies winner price to the list', async () => {
+  it('applies and marks bought into the receipt', async () => {
     const user = userEvent.setup()
     useListStore.getState().addItem('Milk')
     const item = useListStore.getState().items[0]
@@ -64,12 +70,49 @@ describe('Compare handoff', () => {
     await user.click(within(dialog).getByRole('button', { name: /apply and mark bought/i }))
 
     expect(screen.getByText('List home')).toBeInTheDocument()
+    expect(useListStore.getState().items).toHaveLength(0)
+    expect(usePurchaseStore.getState().open.lines).toHaveLength(1)
+    expect(usePurchaseStore.getState().open.lines[0]).toMatchObject({
+      name: 'Milk',
+      price: 9,
+      quantity: 2,
+      unit: 'L',
+    })
+  })
+
+  it('applies price only without creating a receipt line', async () => {
+    const user = userEvent.setup()
+    useListStore.getState().addItem('Milk')
+    const item = useListStore.getState().items[0]
+    seedCalculatorForListItem(item)
+
+    const [first, second] = useCalculatorStore.getState().products
+    useCalculatorStore.getState().updateProduct(first.id, {
+      label: 'Milk',
+      price: 10,
+      quantity: 2,
+      unit: 'L',
+    })
+    useCalculatorStore.getState().updateProduct(second.id, {
+      label: 'Milk',
+      price: 9,
+      quantity: 2,
+      unit: 'L',
+    })
+
+    renderCompare(item.id)
+    await user.click(screen.getByRole('button', { name: /use this price on the list/i }))
+    await user.click(
+      within(screen.getByRole('dialog')).getByRole('button', { name: /apply price only/i }),
+    )
+
     expect(useListStore.getState().items[0]).toMatchObject({
-      status: 'done',
+      status: 'todo',
       paidPrice: 9,
       paidQuantity: 2,
       paidUnit: 'L',
     })
+    expect(usePurchaseStore.getState().open.lines).toHaveLength(0)
   })
 
   it('hides apply CTA for orphan item ids', () => {

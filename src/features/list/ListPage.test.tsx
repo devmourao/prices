@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { I18nextProvider } from 'react-i18next'
 import { MemoryRouter } from 'react-router'
 import i18n from '../../i18n'
+import { createOpenPurchase, usePurchaseStore } from '../purchase/store/purchaseStore'
 import { ListPage } from './ListPage'
 import { useListStore } from './store/listStore'
 
@@ -20,18 +21,23 @@ function renderPage() {
 beforeEach(() => {
   localStorage.clear()
   useListStore.setState({ items: [] })
+  usePurchaseStore.setState({
+    open: createOpenPurchase(),
+    history: [],
+    migratedFromListV11: true,
+  })
   vi.restoreAllMocks()
 })
 
 describe('ListPage', () => {
-  it('shows empty state and zero progress', () => {
+  it('shows empty state and pending progress', () => {
     renderPage()
     expect(screen.getByRole('heading', { name: /shopping list/i })).toBeInTheDocument()
     expect(screen.getByText(/no items yet/i)).toBeInTheDocument()
-    expect(screen.getByText(/0 of 0 done/i)).toBeInTheDocument()
+    expect(screen.getByText(/0 of 0 left/i)).toBeInTheDocument()
   })
 
-  it('adds items quickly and updates progress', async () => {
+  it('adds items quickly and updates pending count', async () => {
     const user = userEvent.setup()
     renderPage()
 
@@ -41,10 +47,10 @@ describe('ListPage', () => {
 
     expect(screen.getByText('Milk')).toBeInTheDocument()
     expect(screen.getByText('Bread')).toBeInTheDocument()
-    expect(screen.getByText(/0 of 2 done/i)).toBeInTheDocument()
+    expect(screen.getByText(/2 of 2 left/i)).toBeInTheDocument()
   })
 
-  it('checks off an item from the checkbox', async () => {
+  it('opens confirm-buy sheet from the checkbox', async () => {
     const user = userEvent.setup()
     useListStore.setState({
       items: [
@@ -59,14 +65,11 @@ describe('ListPage', () => {
     renderPage()
 
     await user.click(screen.getByRole('checkbox', { name: /mark milk as bought/i }))
-    expect(screen.getByRole('checkbox', { name: /mark milk as not bought/i })).toHaveAttribute(
-      'aria-checked',
-      'true',
-    )
-    expect(screen.getByText(/1 of 1 done/i)).toBeInTheDocument()
+    const dialog = screen.getByRole('dialog')
+    expect(within(dialog).getByLabelText(/price paid/i)).toBeInTheDocument()
   })
 
-  it('marks bought with price from the sheet', async () => {
+  it('confirms buy into receipt and shrinks the list', async () => {
     const user = userEvent.setup()
     useListStore.setState({
       items: [
@@ -84,16 +87,19 @@ describe('ListPage', () => {
     const dialog = screen.getByRole('dialog')
     await user.click(within(dialog).getByRole('button', { name: /mark bought/i }))
     await user.type(within(dialog).getByLabelText(/price paid/i), '5.50')
-    await user.click(within(dialog).getByRole('button', { name: /^save$/i }))
+    await user.click(within(dialog).getByRole('button', { name: /add to receipt/i }))
 
-    expect(useListStore.getState().items[0]).toMatchObject({
-      status: 'done',
-      paidPrice: 5.5,
+    expect(useListStore.getState().items).toHaveLength(0)
+    expect(usePurchaseStore.getState().open.lines).toHaveLength(1)
+    expect(usePurchaseStore.getState().open.lines[0]).toMatchObject({
+      name: 'Milk',
+      price: 5.5,
+      quantity: 1,
     })
-    expect(screen.getByText(/spent \$5\.50/i)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /receipt/i })).toBeInTheDocument()
   })
 
-  it('clears bought items after confirm', async () => {
+  it('clears leftover bought items after confirm', async () => {
     const user = userEvent.setup()
     vi.spyOn(window, 'confirm').mockReturnValue(true)
     useListStore.setState({

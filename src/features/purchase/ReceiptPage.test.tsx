@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import { beforeEach, describe, expect, it } from 'vitest'
+import userEvent from '@testing-library/user-event'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { I18nextProvider } from 'react-i18next'
 import { MemoryRouter } from 'react-router'
 import i18n from '../../i18n'
@@ -16,6 +17,35 @@ function renderPage() {
   )
 }
 
+function seedLines() {
+  usePurchaseStore.setState({
+    open: {
+      id: 'p1',
+      startedAt: '2026-11-13T10:00:00.000Z',
+      lines: [
+        {
+          id: 'l1',
+          name: 'Milk',
+          quantity: 1,
+          unit: 'L',
+          price: 5.5,
+          addedAt: '2026-11-13T10:01:00.000Z',
+        },
+        {
+          id: 'l2',
+          name: 'Bread',
+          quantity: 1,
+          unit: 'un',
+          price: 4.5,
+          addedAt: '2026-11-13T10:02:00.000Z',
+        },
+      ],
+    },
+    history: [],
+    migratedFromListV11: true,
+  })
+}
+
 beforeEach(() => {
   localStorage.clear()
   usePurchaseStore.setState({
@@ -23,45 +53,56 @@ beforeEach(() => {
     history: [],
     migratedFromListV11: false,
   })
+  vi.restoreAllMocks()
 })
 
 describe('ReceiptPage', () => {
-  it('shows empty state', () => {
+  it('shows empty state and disabled end purchase', () => {
     renderPage()
     expect(screen.getByRole('heading', { name: /receipt/i })).toBeInTheDocument()
     expect(screen.getByText(/confirm items from the list/i)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /end purchase/i })).toBeDisabled()
   })
 
-  it('lists open lines and total', () => {
-    usePurchaseStore.setState({
-      open: {
-        id: 'p1',
-        startedAt: '2026-11-13T10:00:00.000Z',
-        lines: [
-          {
-            id: 'l1',
-            name: 'Milk',
-            quantity: 1,
-            unit: 'L',
-            price: 5.5,
-            addedAt: '2026-11-13T10:01:00.000Z',
-          },
-          {
-            id: 'l2',
-            name: 'Bread',
-            quantity: 1,
-            unit: 'un',
-            price: 4.5,
-            addedAt: '2026-11-13T10:02:00.000Z',
-          },
-        ],
-      },
-      history: [],
-      migratedFromListV11: true,
-    })
+  it('lists open lines with sticky total', () => {
+    seedLines()
     renderPage()
     expect(screen.getByText('Milk')).toBeInTheDocument()
     expect(screen.getByText('Bread')).toBeInTheDocument()
     expect(screen.getByText(/total/i)).toBeInTheDocument()
+  })
+
+  it('removes a line from the open receipt', async () => {
+    const user = userEvent.setup()
+    seedLines()
+    renderPage()
+
+    await user.click(screen.getByRole('button', { name: /remove milk/i }))
+    expect(screen.queryByText('Milk')).not.toBeInTheDocument()
+    expect(usePurchaseStore.getState().open.lines).toHaveLength(1)
+  })
+
+  it('ends purchase into history with frozen total', async () => {
+    const user = userEvent.setup()
+    vi.spyOn(window, 'confirm').mockReturnValue(true)
+    seedLines()
+    renderPage()
+
+    await user.click(screen.getByRole('button', { name: /end purchase/i }))
+    expect(usePurchaseStore.getState().open.lines).toHaveLength(0)
+    expect(usePurchaseStore.getState().history).toHaveLength(1)
+    expect(usePurchaseStore.getState().history[0].totalCents).toBe(1000)
+    expect(screen.getByText(/confirm items from the list/i)).toBeInTheDocument()
+  })
+
+  it('cancels end purchase when confirm is dismissed', async () => {
+    const user = userEvent.setup()
+    vi.spyOn(window, 'confirm').mockReturnValue(false)
+    seedLines()
+    renderPage()
+
+    await user.click(screen.getByRole('button', { name: /end purchase/i }))
+    expect(usePurchaseStore.getState().open.lines).toHaveLength(2)
+    expect(usePurchaseStore.getState().history).toHaveLength(0)
   })
 })

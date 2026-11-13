@@ -37,7 +37,7 @@ Live demo: https://prices-mauve.vercel.app
 - `src/app/`: PWA registration, preferences store.
 - `src/features/calculator/`: Compare page, components, hooks, stores, pure domain lib.
 - `src/features/list/`: ListPage checklist, listStore, handoff seed/apply.
-- `src/features/purchase/`: ReceiptPage, purchaseStore, purchaseTotals, v1.1 migration (Sprint R0).
+- `src/features/purchase/`: ReceiptPage cupom, purchaseStore, confirm → snapshot lines, toast/chip (Sprint R1).
 - `src/components/ui/`: BottomNav (3 tabs), segmented control, toggles, badges, inputs.
 - `src/i18n/locales/`: en.json, pt-BR.json (no hardcoded UI strings).
 - `src/lib/`: Intl currency helpers.
