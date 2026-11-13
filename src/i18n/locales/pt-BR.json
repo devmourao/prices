@@ -38,12 +38,49 @@
   "list": {
     "title": "Lista de compras",
     "tagline": "Planeje a compra. Decida no corredor.",
-    "empty": "Nenhum item ainda. Em breve você poderá adicionar produtos — ou abra Comparar para ver o custo-benefício agora.",
+    "empty": "Nenhum item ainda. Digite um nome abaixo para começar — ou abra Comparar para um custo-benefício rápido.",
     "itemsLabel": "Itens da lista",
     "progress": {
       "label": "Progresso",
       "summary": "{{done}} de {{total}} feitos",
       "spend": "Gasto {{amount}}"
+    },
+    "add": {
+      "label": "Adicionar item",
+      "placeholder": "Ex.: Leite",
+      "submit": "Adicionar"
+    },
+    "sheet": {
+      "dismiss": "Fechar"
+    },
+    "item": {
+      "markDone": "Marcar {{name}} como comprado",
+      "markTodo": "Marcar {{name}} como não comprado",
+      "markBought": "Marcar comprado",
+      "compare": "Comparar opções",
+      "edit": "Editar nome",
+      "delete": "Excluir",
+      "buyTitle": "Marcar como comprado",
+      "editTitle": "Editar item",
+      "nameLabel": "Nome do item",
+      "priceLabel": "Preço pago",
+      "pricePlaceholder": "Ex.: 10,00",
+      "quantityLabel": "Quantidade (opcional)",
+      "quantityPlaceholder": "Ex.: 1 ou 1,5",
+      "priceOptional": "O preço é opcional — você pode marcar sem informar.",
+      "back": "Voltar",
+      "saveBought": "Salvar",
+      "saveEdit": "Salvar nome",
+      "errors": {
+        "priceInvalid": "Informe um preço válido",
+        "quantityPositive": "Informe uma quantidade maior que zero"
+      }
+    },
+    "clear": {
+      "done": "Limpar comprados",
+      "all": "Limpar tudo",
+      "confirmDone": "Remover todos os itens comprados da lista?",
+      "confirmAll": "Limpar toda a lista de compras?"
     }
   },
   "calculator": {

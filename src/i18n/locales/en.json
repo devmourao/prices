@@ -38,12 +38,49 @@
   "list": {
     "title": "Shopping list",
     "tagline": "Plan the trip. Decide in the aisle.",
-    "empty": "No items yet. Add products in the next update — or open Compare to check unit prices now.",
+    "empty": "No items yet. Type a name below to start — or open Compare for a quick unit-price check.",
     "itemsLabel": "List items",
     "progress": {
       "label": "Progress",
       "summary": "{{done}} of {{total}} done",
       "spend": "Spent {{amount}}"
+    },
+    "add": {
+      "label": "Add item",
+      "placeholder": "e.g. Milk",
+      "submit": "Add"
+    },
+    "sheet": {
+      "dismiss": "Close"
+    },
+    "item": {
+      "markDone": "Mark {{name}} as bought",
+      "markTodo": "Mark {{name}} as not bought",
+      "markBought": "Mark bought",
+      "compare": "Compare options",
+      "edit": "Edit name",
+      "delete": "Delete",
+      "buyTitle": "Mark as bought",
+      "editTitle": "Edit item",
+      "nameLabel": "Item name",
+      "priceLabel": "Price paid",
+      "pricePlaceholder": "e.g. 10.00",
+      "quantityLabel": "Quantity (optional)",
+      "quantityPlaceholder": "e.g. 1 or 1.5",
+      "priceOptional": "Price is optional — you can check it off without one.",
+      "back": "Back",
+      "saveBought": "Save",
+      "saveEdit": "Save name",
+      "errors": {
+        "priceInvalid": "Enter a valid price",
+        "quantityPositive": "Enter a quantity greater than zero"
+      }
+    },
+    "clear": {
+      "done": "Clear bought",
+      "all": "Clear all",
+      "confirmDone": "Remove all bought items from the list?",
+      "confirmAll": "Clear the entire shopping list?"
     }
   },
   "calculator": {
