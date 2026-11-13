@@ -33,7 +33,15 @@
   "nav": {
     "label": "Principal",
     "list": "Lista",
-    "compare": "Comparar"
+    "compare": "Comparar",
+    "receipt": "Recibo"
+  },
+  "receipt": {
+    "title": "Recibo",
+    "tagline": "O que você comprou nesta ida.",
+    "empty": "Confirme itens da lista para montar o recibo.",
+    "linesLabel": "Linhas do recibo",
+    "total": "Total {{amount}}"
   },
   "list": {
     "title": "Lista de compras",

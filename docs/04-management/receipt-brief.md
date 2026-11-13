@@ -1,7 +1,7 @@
 # PRODUCT BRIEF — Receipt / Purchases module (`prices` v1.2+)
 
 **Version:** 0.1.0  
-**Status:** Proposed — Pending Owner Approval  
+**Status:** Approved (M-11)  
 **Date:** 2026-11-13  
 **Owner:** Marcos Ferreira Mourão  
 **Related:** `shopping-list-brief.md`, `shopping-list-architecture.md`, `receipt-backlog.md`, `docs/02-architecture/receipt-architecture.md`
@@ -150,7 +150,7 @@ Do **not** treat Receipt as a place to “add products without confirming.” No
 | Role | Name | Date |
 | ---- | ---- | ---- |
 | Author | Frontend Architect (agent-assisted) | 2026-11-13 |
-| Approver | Marcos Ferreira Mourão | TBD — Pending |
+| Approver | Marcos Ferreira Mourão | 2026-11-13 (PR #11) |
 
 ---
 

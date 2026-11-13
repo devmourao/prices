@@ -1,6 +1,6 @@
 # prices
 
-Cost-benefit calculator + shopping list for supermarket use (React + Vite + TypeScript PWA) — v1.1; receipt/cupom track proposed for v1.2.
+Cost-benefit calculator + shopping list for supermarket use (React + Vite + TypeScript PWA) — v1.1; receipt/cupom track approved (foundation toward v1.2).
 Live demo: https://prices-mauve.vercel.app
 
 ## Docs
@@ -33,12 +33,12 @@ Live demo: https://prices-mauve.vercel.app
 ## Code map
 
 - `src/main.tsx`: bootstrap (styles, i18n, PWA registration).
-- `src/App.tsx`: BrowserRouter — `/` List, `/compare` Calculator, BottomNav.
+- `src/App.tsx`: BrowserRouter — `/` List, `/compare` Compare, `/receipt` Receipt, BottomNav.
 - `src/app/`: PWA registration, preferences store.
 - `src/features/calculator/`: Compare page, components, hooks, stores, pure domain lib.
 - `src/features/list/`: ListPage checklist, listStore, handoff seed/apply.
-- `src/features/purchase/`: planned — ReceiptPage, purchaseStore (see receipt architecture).
-- `src/components/ui/`: BottomNav, segmented control, toggles, badges, inputs.
+- `src/features/purchase/`: ReceiptPage, purchaseStore, purchaseTotals, v1.1 migration (Sprint R0).
+- `src/components/ui/`: BottomNav (3 tabs), segmented control, toggles, badges, inputs.
 - `src/i18n/locales/`: en.json, pt-BR.json (no hardcoded UI strings).
 - `src/lib/`: Intl currency helpers.
 - `vite.config.ts`: Tailwind, PWA manifest, Vitest.

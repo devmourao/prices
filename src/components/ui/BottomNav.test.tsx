@@ -24,12 +24,24 @@ describe('BottomNav', () => {
       'aria-current',
       'page',
     )
+    expect(screen.getByRole('link', { name: /receipt/i })).not.toHaveAttribute(
+      'aria-current',
+      'page',
+    )
   })
 
-  it('navigates to Compare', async () => {
+  it('navigates to Compare and Receipt', async () => {
     const user = userEvent.setup()
     renderNav('/')
     await user.click(screen.getByRole('link', { name: /compare/i }))
     expect(screen.getByRole('link', { name: /compare/i })).toHaveAttribute('aria-current', 'page')
+
+    await user.click(screen.getByRole('link', { name: /receipt/i }))
+    expect(screen.getByRole('link', { name: /receipt/i })).toHaveAttribute('aria-current', 'page')
+  })
+
+  it('marks Receipt as current on /receipt', () => {
+    renderNav('/receipt')
+    expect(screen.getByRole('link', { name: /receipt/i })).toHaveAttribute('aria-current', 'page')
   })
 })

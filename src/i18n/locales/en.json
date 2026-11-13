@@ -33,7 +33,15 @@
   "nav": {
     "label": "Main",
     "list": "List",
-    "compare": "Compare"
+    "compare": "Compare",
+    "receipt": "Receipt"
+  },
+  "receipt": {
+    "title": "Receipt",
+    "tagline": "What you bought this trip.",
+    "empty": "Confirm items from the list to build your receipt.",
+    "linesLabel": "Receipt lines",
+    "total": "Total {{amount}}"
   },
   "list": {
     "title": "Shopping list",
