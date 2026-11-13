@@ -8,4 +8,6 @@
   - [Initial Backlog](04-management/initial-backlog.md)
   - [Shopping List Brief](04-management/shopping-list-brief.md)
   - [Shopping List Backlog](04-management/shopping-list-backlog.md)
+  - [List MVP Verification](04-management/list-mvp-verification.md)
+  - [Release Notes v1.1.0](04-management/release-notes-v1.1.0.md)
   - [Development Standards](04-management/development-standards.md)

@@ -1,6 +1,6 @@
 # ARCHITECTURE ADDENDUM — Shopping List module
 
-**Status:** Proposed — Pending Owner Approval  
+**Status:** Implemented (v1.1 — M-07–M-09 code; M-10 docs/hardening)  
 **Date:** 2026-11-13  
 **Related:** `architecture-review.md` (AD-01–AD-06), `shopping-list-brief.md` v0.1.0
 

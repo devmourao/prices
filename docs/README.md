@@ -9,11 +9,13 @@ Browse the project knowledge base: vision, architecture, roadmap, backlog, and t
 - [Roadmap](04-management/roadmap.md) — phases and milestones (calculator + list track).
 - [Initial Backlog](04-management/initial-backlog.md) — calculator items CB-01 to CB-29.
 
-## Shopping list track (v1.x+)
+## Shopping list track (v1.1)
 
 - [Shopping List Brief](04-management/shopping-list-brief.md) — mental model, flows, UX principles, scope.
 - [Shopping List Architecture](02-architecture/shopping-list-architecture.md) — routes, feature slice, handoff protocol (AD-07–AD-10).
 - [Shopping List Backlog](04-management/shopping-list-backlog.md) — SL-00 to SL-18 MVP + follow-ups.
+- [List MVP Verification](04-management/list-mvp-verification.md) — offline + a11y checklist (SL-15/SL-16).
+- [Release Notes v1.1.0](04-management/release-notes-v1.1.0.md) — demo script and tag steps.
 
 ## Way of working
 

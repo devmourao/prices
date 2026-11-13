@@ -1,6 +1,6 @@
 # prices
 
-Cost-benefit calculator for supermarket use (React + Vite + TypeScript PWA), with a planned shopping-list module.
+Cost-benefit calculator + shopping list for supermarket use (React + Vite + TypeScript PWA) — v1.1.
 Live demo: https://prices-mauve.vercel.app
 
 ## Docs
@@ -15,6 +15,8 @@ Live demo: https://prices-mauve.vercel.app
 - [docs/04-management/initial-backlog.md](docs/04-management/initial-backlog.md): calculator backlog CB-01 to CB-29.
 - [docs/04-management/shopping-list-brief.md](docs/04-management/shopping-list-brief.md): list module vision, flows, UX.
 - [docs/04-management/shopping-list-backlog.md](docs/04-management/shopping-list-backlog.md): list backlog SL-00+.
+- [docs/04-management/list-mvp-verification.md](docs/04-management/list-mvp-verification.md): offline + a11y checklist.
+- [docs/04-management/release-notes-v1.1.0.md](docs/04-management/release-notes-v1.1.0.md): v1.1 release notes.
 
 ## Architecture
 

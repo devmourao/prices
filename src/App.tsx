@@ -11,13 +11,13 @@ function App() {
   return (
     <BrowserRouter>
       <UpdatePrompt />
-      <div className="min-h-svh pb-24">
+      <main className="min-h-svh pb-24">
         <Routes>
           <Route path="/" element={<ListPage />} />
           <Route path="/compare" element={<CalculatorPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </div>
+      </main>
       <BottomNav />
     </BrowserRouter>
   )

@@ -8,9 +8,12 @@ interface SheetProps {
   readonly children: ReactNode
 }
 
+const FOCUSABLE =
+  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+
 /**
  * Bottom sheet for aisle actions. Esc / backdrop dismiss; focuses the
- * first control on open and restores focus on close.
+ * first control on open, traps Tab inside, and restores focus on close.
  */
 export function Sheet({ title, onClose, children }: SheetProps) {
   const { t } = useTranslation()
@@ -19,20 +22,43 @@ export function Sheet({ title, onClose, children }: SheetProps) {
 
   useEffect(() => {
     const previouslyFocused = document.activeElement
-    const first = panelRef.current?.querySelector<HTMLElement>(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-    )
+    const panel = panelRef.current
+    const first = panel?.querySelector<HTMLElement>(FOCUSABLE)
     first?.focus()
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         event.preventDefault()
         onClose()
+        return
+      }
+      if (event.key !== 'Tab' || panel === null) return
+
+      const focusables = [...panel.querySelectorAll<HTMLElement>(FOCUSABLE)].filter(
+        (node) => !node.hasAttribute('disabled') && node.tabIndex !== -1,
+      )
+      if (focusables.length === 0) return
+
+      const firstNode = focusables[0]
+      const lastNode = focusables[focusables.length - 1]
+      const active = document.activeElement
+
+      if (event.shiftKey && active === firstNode) {
+        event.preventDefault()
+        lastNode.focus()
+      } else if (!event.shiftKey && active === lastNode) {
+        event.preventDefault()
+        firstNode.focus()
       }
     }
+
     document.addEventListener('keydown', onKeyDown)
     return () => {
       document.removeEventListener('keydown', onKeyDown)
+      document.body.style.overflow = previousOverflow
       if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus()
     }
   }, [onClose])
