@@ -30,6 +30,22 @@
     "title": "prices",
     "tagline": "Descubra o melhor custo-benefício no corredor."
   },
+  "nav": {
+    "label": "Principal",
+    "list": "Lista",
+    "compare": "Comparar"
+  },
+  "list": {
+    "title": "Lista de compras",
+    "tagline": "Planeje a compra. Decida no corredor.",
+    "empty": "Nenhum item ainda. Em breve você poderá adicionar produtos — ou abra Comparar para ver o custo-benefício agora.",
+    "itemsLabel": "Itens da lista",
+    "progress": {
+      "label": "Progresso",
+      "summary": "{{done}} de {{total}} feitos",
+      "spend": "Gasto {{amount}}"
+    }
+  },
   "calculator": {
     "unitSelector": {
       "label": "Unidade"

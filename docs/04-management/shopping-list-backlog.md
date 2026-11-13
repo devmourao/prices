@@ -1,12 +1,12 @@
 # BACKLOG — Shopping List module
 
-**Status:** Proposed — Pending Owner Approval  
+**Status:** Active — M-06 approved (PR #5 merged); Sprint L0 in progress  
 **Date:** 2026-11-13  
 **Related:** `shopping-list-brief.md` v0.1.0, `shopping-list-architecture.md`, `initial-backlog.md` (CB-29)  
 **Convention:** `SL-NN` = shopping-list backlog item. Priority: P0 / P1 / P2.  
 **Traceability:** Promotes **CB-29** from “future research” to an approved product track after Owner sign-off on M-06.
 
-> Work top-down. No list feature code before M-06 (docs approval). Calculator v1.0 remains shippable on its own.
+> Work top-down. Calculator v1.0 remains shippable on `/compare`. List home is `/`.
 
 ---
 

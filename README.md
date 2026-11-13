@@ -30,7 +30,7 @@ A portfolio-grade, mobile-first SPA + PWA that answers a real aisle question: *2
 | i18n      | i18next + react-i18next + browser detection       |
 | PWA       | Workbox-based Vite plugin (precache + fallback)   |
 | Icons     | lucide-react (tree-shaken)                        |
-| Tests     | Vitest + Testing Library + jsdom (47 tests)       |
+| Tests     | Vitest + Testing Library + jsdom (59 tests)       |
 
 ## Getting started (under 5 minutes)
 
@@ -52,15 +52,19 @@ To try offline mode: open the preview (or demo) URL once, wait for the app to lo
 ```text
 src/
   main.tsx                 # bootstrap: styles, i18n, PWA registration
+  App.tsx                  # BrowserRouter: / List, /compare Calculator + BottomNav
   app/
-    App-level composition: providers, PWA update flow, preferences store
+    App-level composition: PWA registration, preferences store
   features/calculator/
-    CalculatorPage.tsx     # mobile-first single view with sticky results
+    CalculatorPage.tsx     # Compare view with sticky results
     components/            # ProductCard, UnitSelector, ResultsList, ...
     hooks/                 # thin selector layer over the stores
     store/                 # zustand stores (calculator, history)
     lib/                   # pure domain math (units, parsing) + tests
-  components/ui/           # reusable primitives (Button-like controls, toggles, badges)
+  features/list/
+    ListPage.tsx           # shopping list shell (progress + empty / items)
+    hooks/ store/ lib/     # listStore persist + cents-safe totals
+  components/ui/           # BottomNav, toggles, badges, fields, …
   i18n/locales/            # en.json, pt-BR.json (no hardcoded UI strings)
   lib/                     # Intl currency helpers + tests
 public/icons/              # PWA icons (192/512 + maskable + Apple touch)
@@ -80,7 +84,7 @@ State strategy: thin UI over persisted Zustand stores; all unit math lives in pu
 
 ## Accessibility & quality
 
-- `npm test` (47 tests), `npm run lint`, `npm run build` (typecheck) all green.
+- `npm test` (59 tests), `npm run lint`, `npm run build` (typecheck) all green.
 - Keyboard-only flow: Tab enters each option group once, arrows move/select.
 - Lighthouse targets (mobile): Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 90.
 
