@@ -17,13 +17,14 @@ Browse the project knowledge base: vision, architecture, roadmap, backlog, and t
 - [List MVP Verification](04-management/list-mvp-verification.md) — offline + a11y checklist (SL-15/SL-16).
 - [Release Notes v1.1.0](04-management/release-notes-v1.1.0.md) — demo script and tag steps.
 
-## Receipt track (v1.2)
+## Receipt track (v1.2 → v1.3)
 
 - [Receipt Brief](04-management/receipt-brief.md) — list → confirm → cupom mental model.
 - [Receipt Architecture](02-architecture/receipt-architecture.md) — snapshot lines (model B), AD-11–AD-14.
-- [Receipt Backlog](04-management/receipt-backlog.md) — RC-00+ through M-14.
+- [Receipt Backlog](04-management/receipt-backlog.md) — RC-00+ through M-14 + follow-ups.
 - [Receipt MVP Verification](04-management/receipt-mvp-verification.md) — offline + a11y checklist (RC-12).
-- [Release Notes v1.2.0](04-management/release-notes-v1.2.0.md) — demo script and tag steps.
+- [Release Notes v1.2.0](04-management/release-notes-v1.2.0.md) — receipt MVP demo script.
+- [Release Notes v1.3.0](04-management/release-notes-v1.3.0.md) — share, budget, undo, save-winner.
 
 ## Way of working
 

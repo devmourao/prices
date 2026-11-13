@@ -1,7 +1,7 @@
 # Release Notes — prices v1.2.0
 
 **Date:** 2026-11-13  
-**Tag:** `v1.2.0` (create after this PR merges to the release branch)  
+**Tag:** `v1.2.0` (published)  
 **Demo:** https://prices.mourao.info
 
 ---
@@ -47,13 +47,14 @@ Existing v1.1 list data with done+price items migrates once into the open receip
 
 ## Tagging / GitHub Release
 
-Tag `v1.2.0` is published on `chore/CB-03-core-deps`. Optional GitHub Release:
+Tag `v1.2.0` is published. Optional GitHub Release (if not created yet):
 
 ```bash
 gh release create v1.2.0 --title "prices v1.2.0" --notes-file docs/04-management/release-notes-v1.2.0.md
 ```
 
-Canonical demo: https://prices.mourao.info
+Canonical demo: https://prices.mourao.info  
+Later polish (share, budget, undo, save-winner): see [v1.3.0](./release-notes-v1.3.0.md).
 
 ## Follow-ups (not in v1.2.0)
 
