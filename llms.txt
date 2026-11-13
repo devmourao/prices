@@ -1,7 +1,7 @@
 # prices
 
 Cost-benefit calculator + shopping list + receipt for supermarket use (React + Vite + TypeScript PWA) — v1.2.
-Live demo: https://prices-mauve.vercel.app
+Live demo: https://prices.mourao.info
 
 ## Docs
 

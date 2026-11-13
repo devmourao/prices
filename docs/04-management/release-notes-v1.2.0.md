@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-13  
 **Tag:** `v1.2.0` (create after this PR merges to the release branch)  
-**Demo:** https://prices-mauve.vercel.app
+**Demo:** https://prices.mourao.info
 
 ---
 

@@ -2,7 +2,7 @@
 
 Compare supermarket products by unit price, plan the trip with a local shopping list, and record confirmed buys as a cupom-style receipt — offline, in English or Portuguese, light or dark.
 
-**Live demo:** https://prices-mauve.vercel.app
+**Live demo:** https://prices.mourao.info
 
 ## Why this project
 
