@@ -81,6 +81,16 @@
       "all": "Clear all",
       "confirmDone": "Remove all bought items from the list?",
       "confirmAll": "Clear the entire shopping list?"
+    },
+    "handoff": {
+      "comparing": "Comparing options for “{{name}}”",
+      "backToList": "Back to list",
+      "usePrice": "Use this price on the list",
+      "tieHint": "It’s a tie — adjust an option to pick a price for the list.",
+      "applyTitle": "Apply to list",
+      "applyBody": "Save the better shelf price on “{{name}}”.",
+      "applyAndDone": "Apply and mark bought",
+      "applyPriceOnly": "Apply price only"
     }
   },
   "calculator": {

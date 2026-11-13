@@ -81,6 +81,16 @@
       "all": "Limpar tudo",
       "confirmDone": "Remover todos os itens comprados da lista?",
       "confirmAll": "Limpar toda a lista de compras?"
+    },
+    "handoff": {
+      "comparing": "Comparando opções para “{{name}}”",
+      "backToList": "Voltar à lista",
+      "usePrice": "Usar este preço na lista",
+      "tieHint": "Empate — ajuste uma opção para escolher o preço da lista.",
+      "applyTitle": "Aplicar na lista",
+      "applyBody": "Salvar o melhor preço de gôndola em “{{name}}”.",
+      "applyAndDone": "Aplicar e marcar comprado",
+      "applyPriceOnly": "Só aplicar o preço"
     }
   },
   "calculator": {

@@ -21,6 +21,8 @@ interface CalculatorState {
   updateProduct: (id: string, patch: Partial<Omit<Product, 'id'>>) => void
   removeProduct: (id: string) => void
   clearAll: () => void
+  /** Replace scratch products (list → compare handoff seed). */
+  replaceProducts: (products: readonly Product[]) => void
 }
 
 export type ComparisonStatus =
@@ -59,6 +61,7 @@ export const useCalculatorStore = create<CalculatorState>()(
           products: state.products.filter((product) => product.id !== id),
         })),
       clearAll: () => set({ products: [] }),
+      replaceProducts: (products) => set({ products: products.map((product) => ({ ...product })) }),
     }),
     {
       name: 'prices-calculator',
@@ -67,6 +70,14 @@ export const useCalculatorStore = create<CalculatorState>()(
     },
   ),
 )
+
+/** Two blank options labeled for a list item (aisle scratchpad). */
+export function buildSeededProducts(label: string, unit: Unit = 'L'): Product[] {
+  return [
+    { id: crypto.randomUUID(), label, price: 0, quantity: 1, unit },
+    { id: crypto.randomUUID(), label, price: 0, quantity: 1, unit },
+  ]
+}
 
 /**
  * Single comparison path shared by ResultsList and selectors.

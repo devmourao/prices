@@ -70,4 +70,16 @@ describe('calculator store', () => {
     useCalculatorStore.getState().clearAll()
     expect(useCalculatorStore.getState().products).toHaveLength(0)
   })
+
+  it('replaces products for list handoff seeds', () => {
+    useCalculatorStore.getState().replaceProducts([
+      { id: '1', label: 'Milk', price: 0, quantity: 1, unit: 'L' },
+      { id: '2', label: 'Milk', price: 0, quantity: 1, unit: 'L' },
+    ])
+    expect(useCalculatorStore.getState().products.map((row) => row.label)).toEqual([
+      'Milk',
+      'Milk',
+    ])
+  })
 })
+

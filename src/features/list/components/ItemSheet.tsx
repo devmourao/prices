@@ -8,6 +8,7 @@ import { UnitSelector } from '../../calculator/components/UnitSelector'
 import { parseAmount } from '../../calculator/lib/parse'
 import type { Unit } from '../../calculator/lib/units'
 import { useListActions } from '../hooks/useList'
+import { seedCalculatorForListItem } from '../lib/handoff'
 import type { ListItem } from '../store/listStore'
 
 interface ItemSheetProps {
@@ -92,6 +93,7 @@ export function ItemSheet({ item, onClose }: ItemSheetProps) {
           <button
             type="button"
             onClick={() => {
+              seedCalculatorForListItem(item)
               onClose()
               void navigate(`/compare?itemId=${encodeURIComponent(item.id)}`)
             }}
