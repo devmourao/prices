@@ -40,12 +40,15 @@ export type ConfirmPurchaseInput = {
 interface PurchaseState {
   readonly open: OpenPurchase
   readonly history: readonly ClosedPurchase[]
+  /** Optional trip budget in major currency units (null = unset). */
+  readonly budget: number | null
   /** One-shot v1.1 done+price → lines migration flag (persisted). */
   readonly migratedFromListV11: boolean
   confirmPurchase: (input: ConfirmPurchaseInput) => void
   removeLine: (lineId: string) => void
   endPurchase: () => boolean
   clearOpen: () => void
+  setBudget: (budget: number | null) => void
 }
 
 function nowIso(): string {
@@ -65,6 +68,7 @@ export const usePurchaseStore = create<PurchaseState>()(
     (set, get) => ({
       open: createOpenPurchase(),
       history: [],
+      budget: null,
       migratedFromListV11: false,
       confirmPurchase: (input) => {
         const name = input.name.trim()
@@ -122,6 +126,14 @@ export const usePurchaseStore = create<PurchaseState>()(
             lines: [],
           },
         })),
+      setBudget: (budget) => {
+        if (budget === null) {
+          set({ budget: null })
+          return
+        }
+        if (!Number.isFinite(budget) || budget <= 0) return
+        set({ budget })
+      },
     }),
     {
       name: 'prices-purchase',
@@ -129,6 +141,7 @@ export const usePurchaseStore = create<PurchaseState>()(
       partialize: (state) => ({
         open: state.open,
         history: state.history,
+        budget: state.budget,
         migratedFromListV11: state.migratedFromListV11,
       }),
     },

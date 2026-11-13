@@ -29,6 +29,7 @@ A portfolio-grade, mobile-first SPA + PWA for the aisle: *2 L for $10.00 vs 1.5 
 - Cupom lines (name · qty · price) with sticky total (integer cents).
 - Remove a line; **End purchase** archives the open receipt (frozen total, cap 20).
 - Toast after confirm with **Undo**; past purchases: open a read-only archived cupom.
+- **Share receipt** (Web Share / clipboard) and optional **trip budget** with remaining/overspend.
 - Bottom nav: List | Compare | Receipt.
 
 ### Shared
@@ -102,3 +103,5 @@ Calculator **v1.0** → shopping list **v1.1** → receipt/cupom **v1.2**. See `
 <img src="docs/03-design/screenshots/Print01.jpeg" width="300" alt="Best-value verdict and history, light mode, Portuguese" />
 <img src="docs/03-design/screenshots/Print02.jpeg" width="300" alt="Product card and comparison, dark mode, English" />
 <img src="docs/03-design/screenshots/Print03.jpeg" width="300" alt="Comparison, history and contact footer, dark mode, English" />
+<img src="docs/03-design/screenshots/Print04-receipt.jpeg" width="300" alt="Receipt cupom with trip budget, share, and sticky total" />
+<img src="docs/03-design/screenshots/Print05-compare-best-value.jpeg" width="300" alt="Compare view with best-value badge and unit-price ranking" />

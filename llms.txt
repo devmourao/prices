@@ -39,7 +39,7 @@ Live demo: https://prices.mourao.info
 - `src/app/`: PWA registration, preferences store.
 - `src/features/calculator/`: Compare page, components, hooks, stores, pure domain lib.
 - `src/features/list/`: ListPage checklist, listStore, handoff seed/apply → confirmPurchase.
-- `src/features/purchase/`: ReceiptPage cupom + history, purchaseStore, totals, migration, toast/chip.
+- `src/features/purchase/`: ReceiptPage cupom + history, share, trip budget, purchaseStore, totals, toast/undo.
 - `src/components/ui/`: BottomNav (3 tabs), segmented control, toggles, badges, inputs.
 - `src/i18n/locales/`: en.json, pt-BR.json (no hardcoded UI strings).
 - `src/lib/`: Intl currency helpers.
