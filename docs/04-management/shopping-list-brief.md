@@ -47,7 +47,7 @@ The calculator remains **independently reachable**. The list does not own compar
 
 | Surface | Job |
 | ------- | --- |
-| **List** | Plan and execute the trip (what’s left, what’s done, how much spent). |
+| **List** | Plan and execute the trip (what’s left). Confirmed buys feed the future Receipt track. |
 | **Compare** | Decide between package options (unit price). |
 | **Item sheet** | Bridge: buy / compare / edit — never dump ranking into the checklist. |
 

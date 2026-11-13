@@ -2,6 +2,7 @@
 - Architecture
   - [Architecture Review](02-architecture/architecture-review.md)
   - [Shopping List Architecture](02-architecture/shopping-list-architecture.md)
+  - [Receipt Architecture](02-architecture/receipt-architecture.md)
 - Management
   - [Project Brief](04-management/project-brief.md)
   - [Roadmap](04-management/roadmap.md)
@@ -10,4 +11,6 @@
   - [Shopping List Backlog](04-management/shopping-list-backlog.md)
   - [List MVP Verification](04-management/list-mvp-verification.md)
   - [Release Notes v1.1.0](04-management/release-notes-v1.1.0.md)
+  - [Receipt Brief](04-management/receipt-brief.md)
+  - [Receipt Backlog](04-management/receipt-backlog.md)
   - [Development Standards](04-management/development-standards.md)
