@@ -9,11 +9,10 @@ import { ContactFooter } from '../../components/ui/ContactFooter'
 import { InstallPrompt } from '../../components/ui/InstallPrompt'
 import { OfflineBadge } from '../../components/ui/OfflineBadge'
 import { ThemeToggle } from '../../components/ui/ThemeToggle'
-import { UpdatePrompt } from '../../components/ui/UpdatePrompt'
 
 /**
- * Mobile-first single view: header, product cards, add action,
- * and results pinned to the viewport bottom. Add price -> tap
+ * Mobile-first Compare view: header, product cards, add action,
+ * and results pinned above the bottom nav. Add price -> tap
  * unit -> read the winner: three taps or fewer after typing.
  */
 export function CalculatorPage() {
@@ -23,7 +22,6 @@ export function CalculatorPage() {
 
   return (
     <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-6">
-      <UpdatePrompt />
       <header className="flex items-start justify-between gap-2">
         <div className="flex flex-col gap-1">
           <h1 className="text-2xl font-bold text-fg">{t('app.title')}</h1>
@@ -66,7 +64,7 @@ export function CalculatorPage() {
         )}
       </div>
 
-      <div className="sticky bottom-0 -mx-4 bg-bg/95 px-4 py-2 backdrop-blur">
+      <div className="sticky bottom-20 -mx-4 bg-bg/95 px-4 py-2 backdrop-blur">
         <ResultsList />
       </div>
 

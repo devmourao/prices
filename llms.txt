@@ -28,10 +28,11 @@ Live demo: https://prices-mauve.vercel.app
 ## Code map
 
 - `src/main.tsx`: bootstrap (styles, i18n, PWA registration).
-- `src/app/`: composition root (PWA flow, preferences store).
-- `src/features/calculator/`: page, components, hooks, stores, pure domain lib.
-- `src/features/list/`: planned — list page, sheet, store (see shopping-list architecture).
-- `src/components/ui/`: reusable primitives (segmented control, toggles, badges, inputs).
+- `src/App.tsx`: BrowserRouter — `/` List, `/compare` Calculator, BottomNav.
+- `src/app/`: PWA registration, preferences store.
+- `src/features/calculator/`: Compare page, components, hooks, stores, pure domain lib.
+- `src/features/list/`: ListPage shell, listStore, listTotals (Sprint L0).
+- `src/components/ui/`: BottomNav, segmented control, toggles, badges, inputs.
 - `src/i18n/locales/`: en.json, pt-BR.json (no hardcoded UI strings).
 - `src/lib/`: Intl currency helpers.
 - `vite.config.ts`: Tailwind, PWA manifest, Vitest.

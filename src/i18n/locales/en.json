@@ -30,6 +30,22 @@
     "title": "prices",
     "tagline": "Find the best value in the aisle."
   },
+  "nav": {
+    "label": "Main",
+    "list": "List",
+    "compare": "Compare"
+  },
+  "list": {
+    "title": "Shopping list",
+    "tagline": "Plan the trip. Decide in the aisle.",
+    "empty": "No items yet. Add products in the next update — or open Compare to check unit prices now.",
+    "itemsLabel": "List items",
+    "progress": {
+      "label": "Progress",
+      "summary": "{{done}} of {{total}} done",
+      "spend": "Spent {{amount}}"
+    }
+  },
   "calculator": {
     "unitSelector": {
       "label": "Unit"
