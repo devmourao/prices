@@ -10,5 +10,5 @@ export const CONTACT = {
   email: 'dev@mourao.info',
   githubUrl: 'https://github.com/devmourao',
   linkedinUrl: 'https://www.linkedin.com/in/devmourao/',
-  projectUrl: 'https://prices-mauve.vercel.app',
+  projectUrl: 'https://prices.mourao.info',
 } as const
