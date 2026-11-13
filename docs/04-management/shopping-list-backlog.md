@@ -70,7 +70,7 @@
 | -- | ----- | -------- | ----- |
 | SL-20 | Multiple lists / list picker | P2 | After single-list evidence |
 | SL-21 | Categories or aisle groups | P2 | Only with user pain evidence |
-| SL-22 | “Save winner to list” from standalone Compare | P2 | Creates or matches item by name |
+| SL-22 | “Save winner to list” from standalone Compare | P2 | ✅ Creates or matches item by name (post-v1.2) |
 | SL-23 | Preferred store / budget cap | P2 | Product track, not portfolio MVP |
 | SL-24 | Sync / accounts | P2 | Requires backend — out of current architecture |
 | SL-25 | Barcode / OCR | P2 | Remains deferred (was CB-28) |

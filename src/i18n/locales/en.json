@@ -49,7 +49,8 @@
     "chip": "Receipt · {{amount}}",
     "toast": {
       "added": "Added to receipt · {{amount}}",
-      "dismiss": "Dismiss"
+      "dismiss": "Dismiss",
+      "undo": "Undo"
     },
     "history": {
       "title": "Past purchases",
@@ -120,6 +121,14 @@
       "applyBody": "Use the better shelf price for “{{name}}”. Mark bought adds it to the receipt.",
       "applyAndDone": "Apply and mark bought",
       "applyPriceOnly": "Apply price only"
+    },
+    "saveWinner": {
+      "hint": "Like this deal? Save the better pack to your list.",
+      "cta": "Save winner to list",
+      "title": "Save to list",
+      "body": "Add “{{name}}” to the shopping list (match by name if it already exists).",
+      "addAndBought": "Add and mark bought",
+      "addPriceOnly": "Add with price only"
     }
   },
   "calculator": {

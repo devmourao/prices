@@ -11,10 +11,11 @@ import { HandoffBar } from './components/HandoffBar'
 import { HistoryPanel } from './components/HistoryPanel'
 import { ProductCard } from './components/ProductCard'
 import { ResultsList } from './components/ResultsList'
+import { SaveWinnerBar } from './components/SaveWinnerBar'
 
 /**
- * Mobile-first Compare view. Optional `?itemId=` enables list handoff:
- * seed labels, apply winner price back to the shopping list.
+ * Mobile-first Compare view. Optional `?itemId=` enables list handoff;
+ * standalone compare can save the winner to the list (SL-22).
  */
 export function CalculatorPage() {
   const { t, i18n } = useTranslation()
@@ -39,6 +40,7 @@ export function CalculatorPage() {
       <InstallPrompt />
 
       <HandoffBar locale={locale} />
+      <SaveWinnerBar locale={locale} />
 
       <div className="flex flex-col gap-3">
         {products.map((product, position) => (

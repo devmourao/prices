@@ -49,7 +49,8 @@
     "chip": "Recibo · {{amount}}",
     "toast": {
       "added": "Adicionado ao recibo · {{amount}}",
-      "dismiss": "Fechar"
+      "dismiss": "Fechar",
+      "undo": "Desfazer"
     },
     "history": {
       "title": "Compras anteriores",
@@ -120,6 +121,14 @@
       "applyBody": "Usar o melhor preço de gôndola em “{{name}}”. Marcar comprado adiciona ao recibo.",
       "applyAndDone": "Aplicar e marcar comprado",
       "applyPriceOnly": "Só aplicar o preço"
+    },
+    "saveWinner": {
+      "hint": "Gostou do custo-benefício? Salve o melhor pacote na lista.",
+      "cta": "Salvar vencedor na lista",
+      "title": "Salvar na lista",
+      "body": "Adicionar “{{name}}” à lista de compras (reusa o item se o nome já existir).",
+      "addAndBought": "Adicionar e marcar comprado",
+      "addPriceOnly": "Adicionar só com preço"
     }
   },
   "calculator": {

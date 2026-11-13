@@ -22,12 +22,13 @@ A portfolio-grade, mobile-first SPA + PWA for the aisle: *2 L for $10.00 vs 1.5 
 - Compare 2+ products by normalized unit price (L, mL, kg, g, unit).
 - One-tap unit selector; best-value badge; local comparison history (last 20).
 - Handoff from a list item: seed Compare → **Apply and mark bought** (receipt) or **Apply price only** (stay on list).
+- Standalone Compare: **Save winner to list** (match/create by name → receipt or price-only).
 
 ### Receipt (`/receipt`) — v1.2
 
 - Cupom lines (name · qty · price) with sticky total (integer cents).
 - Remove a line; **End purchase** archives the open receipt (frozen total, cap 20).
-- Past purchases: open a read-only archived cupom.
+- Toast after confirm with **Undo**; past purchases: open a read-only archived cupom.
 - Bottom nav: List | Compare | Receipt.
 
 ### Shared

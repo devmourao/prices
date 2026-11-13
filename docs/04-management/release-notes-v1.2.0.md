@@ -45,14 +45,15 @@ npx vite preview
 
 Existing v1.1 list data with done+price items migrates once into the open receipt on first load after upgrade.
 
-## Tagging
+## Tagging / GitHub Release
 
-After merge to the protected release branch:
+Tag `v1.2.0` is published on `chore/CB-03-core-deps`. Optional GitHub Release:
 
 ```bash
-git tag -a v1.2.0 -m "prices v1.2.0 — receipt/cupom + purchase history"
-git push origin v1.2.0
+gh release create v1.2.0 --title "prices v1.2.0" --notes-file docs/04-management/release-notes-v1.2.0.md
 ```
+
+Canonical demo: https://prices.mourao.info
 
 ## Follow-ups (not in v1.2.0)
 

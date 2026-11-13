@@ -8,12 +8,13 @@ export function useListItems() {
 
 export function useListActions() {
   const addItem = useListStore((state) => state.addItem)
+  const restoreItem = useListStore((state) => state.restoreItem)
   const updateItem = useListStore((state) => state.updateItem)
   const removeItem = useListStore((state) => state.removeItem)
   const markBought = useListStore((state) => state.markBought)
   const clearDone = useListStore((state) => state.clearDone)
   const clearAll = useListStore((state) => state.clearAll)
-  return { addItem, updateItem, removeItem, markBought, clearDone, clearAll }
+  return { addItem, restoreItem, updateItem, removeItem, markBought, clearDone, clearAll }
 }
 
 export function useListProgress() {
